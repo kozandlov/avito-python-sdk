@@ -1,0 +1,58 @@
+name: Avito OpenAPI Sync
+
+on:
+  schedule:
+    - cron: "0 3 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: avito-openapi-sync
+  cancel-in-progress: true
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -e .[dev] build
+
+      - name: Regenerate SDK from Avito OpenAPI
+        run: |
+          python tools/fetch_specs.py
+          python tools/patch_specs.py
+          python tools/generate_clients.py
+          python tools/build_coverage_report.py
+          pytest -q
+          python -m build
+
+      - name: Create or update pull request
+        uses: peter-evans/create-pull-request@v6
+        with:
+          branch: bot/avito-openapi-sync
+          title: "chore: sync SDK with Avito OpenAPI"
+          commit-message: "chore: auto-regenerate from Avito OpenAPI"
+          body: |
+            Автоматическая перегенерация SDK по обновлениям официального Avito OpenAPI.
+          labels: automation,avito,sdk
+          add-paths: |
+            specs/**
+            src/**
+            docs/**
+            tools/**
+            tests/**
+            pyproject.toml
+            README.md

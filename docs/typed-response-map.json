@@ -1,0 +1,1839 @@
+{
+  "accounts-hierarchy": [
+    {
+      "operation_id": "checkAhUserV1",
+      "python_method": "check_ah_user_v1",
+      "http_method": "GET",
+      "path": "/checkAhUserV1",
+      "response_status": "200",
+      "response_model": "AccountsHierarchyApiCheckAhUserV1Response",
+      "schema_kind": "object"
+    },
+    {
+      "operation_id": "getEmployeesV1",
+      "python_method": "get_employees_v1",
+      "http_method": "GET",
+      "path": "/getEmployeesV1",
+      "response_status": "200",
+      "response_model": "AccountsHierarchyApiGetEmployeesV1Response",
+      "schema_kind": "ref"
+    },
+    {
+      "operation_id": "linkItemsV1",
+      "python_method": "link_items_v1",
+      "http_method": "POST",
+      "path": "/linkItemsV1",
+      "response_status": "204",
+      "response_model": "None",
+      "schema_kind": "none"
+    },
+    {
+      "operation_id": "listCompanyPhonesV1",
+      "python_method": "list_company_phones_v1",
+      "http_method": "GET",
+      "path": "/listCompanyPhonesV1",
+      "response_status": "200",
+      "response_model": "AccountsHierarchyApiListCompanyPhonesV1Response",
+      "schema_kind": "ref"
+    },
+    {
+      "operation_id": "listItemsByEmployeeIdV1",
+      "python_method": "list_items_by_employee_id_v1",
+      "http_method": "POST",
+      "path": "/listItemsByEmployeeIdV1",
+      "response_status": "200",
+      "response_model": "AccountsHierarchyApiListItemsByEmployeeIdV1Response",
+      "schema_kind": "ref"
+    }
+  ],
+  "auction": [
+    {
+      "operation_id": "getUserBids",
+      "python_method": "get_user_bids",
+      "http_method": "GET",
+      "path": "/auction/1/bids",
+      "response_status": "200",
+      "response_model": "AuctionApiGetUserBidsResponse",
+      "schema_kind": "object"
+    },
+    {
+      "operation_id": "saveItemBids",
+      "python_method": "save_item_bids",
+      "http_method": "POST",
+      "path": "/auction/1/bids",
+      "response_status": "200",
+      "response_model": "None",
+      "schema_kind": "none"
+    }
+  ],
+  "auth": [
+    {
+      "operation_id": "getAccessToken",
+      "python_method": "get_access_token",
+      "http_method": "POST",
+      "path": "/token",
+      "response_status": "200",
+      "response_model": "AuthApiGetAccessTokenResponse",
+      "schema_kind": "object"
+    }
+  ],
+  "autoload": [
+    {
+      "operation_id": "getProfile",
+      "python_method": "get_profile",
+      "http_method": "GET",
+      "path": "/autoload/v1/profile",
+      "response_status": "200",
+      "response_model": "AutoloadApiGetProfileResponse",
+      "schema_kind": "object"
+    },
+    {
+      "operation_id": "createOrUpdateProfile",
+      "python_method": "create_or_update_profile",
+      "http_method": "POST",
+      "path": "/autoload/v1/profile",
+      "response_status": "200",
+      "response_model": "None",
+      "schema_kind": "none"
+    },
+    {
+      "operation_id": "upload",
+      "python_method": "upload",
+      "http_method": "POST",
+      "path": "/autoload/v1/upload",
+      "response_status": "200",
+      "response_model": "None",
+      "schema_kind": "none"
+    },
+    {
+      "operation_id": "userDocsNodeFields",
+      "python_method": "user_docs_node_fields",
+      "http_method": "GET",
+      "path": "/autoload/v1/user-docs/node/{node_slug}/fields",
+      "response_status": "200",
+      "response_model": "AutoloadApiUserDocsNodeFieldsResponse",
+      "schema_kind": "ref"
+    },
+    {
+      "operation_id": "userDocsTree",
+      "python_method": "user_docs_tree",
+      "http_method": "GET",
+      "path": "/autoload/v1/user-docs/tree",
+      "response_status": "200",
+      "response_model": "AutoloadApiUserDocsTreeResponse",
+      "schema_kind": "ref"
+    },
+    {
+      "operation_id": "getAdIdsByAvitoIds",
+      "python_method": "get_ad_ids_by_avito_ids",
+      "http_method": "GET",
+      "path": "/autoload/v2/items/ad_ids",
+      "response_status": "200",
+      "response_model": "AutoloadApiGetAdIdsByAvitoIdsResponse",
+      "schema_kind": "object"
+    },
+    {
+      "operation_id": "getAvitoIdsByAdIds",
+      "python_method": "get_avito_ids_by_ad_ids",
+      "http_method": "GET",
+      "path": "/autoload/v2/items/avito_ids",
+      "response_status": "200",
+      "response_model": "AutoloadApiGetAvitoIdsByAdIdsResponse",
+      "schema_kind": "object"
+    },
+    {
+      "operation_id": "getProfileV2",
+      "python_method": "get_profile_v2",
+      "http_method": "GET",
+      "path": "/autoload/v2/profile",
+      "response_status": "200",
+      "response_model": "AutoloadApiGetProfileV2Response",
+      "schema_kind": "object"
+    },
+    {
+      "operation_id": "createOrUpdateProfileV2",
+      "python_method": "create_or_update_profile_v2",
+      "http_method": "POST",
+      "path": "/autoload/v2/profile",
+      "response_status": "200",
+      "response_model": "None",
+      "schema_kind": "none"
+    },
+    {
+      "operation_id": "getReportsV2",
+      "python_method": "get_reports_v2",
+      "http_method": "GET",
+      "path": "/autoload/v2/reports",
+      "response_status": "200",
+      "response_model": "AutoloadApiGetReportsV2Response",
+      "schema_kind": "object"
+    },
+    {
+      "operation_id": "getAutoloadItemsInfoV2",
+      "python_method": "get_autoload_items_info_v2",
+      "http_method": "GET",
+      "path": "/autoload/v2/reports/items",
+      "response_status": "200",
+      "response_model": "AutoloadApiGetAutoloadItemsInfoV2Response",
+      "schema_kind": "object"
+    },
+    {
+      "operation_id": "getLastCompletedReport",
+      "python_method": "get_last_completed_report",
+      "http_method": "GET",
+      "path": "/autoload/v2/reports/last_completed_report",
+      "response_status": "200",
+      "response_model": "AutoloadApiGetLastCompletedReportResponse",
+      "schema_kind": "ref"
+    },
+    {
+      "operation_id": "getReportByIdV2",
+      "python_method": "get_report_by_id_v2",
+      "http_method": "GET",
+      "path": "/autoload/v2/reports/{report_id}",
+      "response_status": "200",
+      "response_model": "AutoloadApiGetReportByIdV2Response",
+      "schema_kind": "ref"
+    },
+    {
+      "operation_id": "getReportItemsById",
+      "python_method": "get_report_items_by_id",
+      "http_method": "GET",
+      "path": "/autoload/v2/reports/{report_id}/items",
+      "response_status": "200",
+      "response_model": "AutoloadApiGetReportItemsByIdResponse",
+      "schema_kind": "object"
+    },
+    {
+      "operation_id": "getReportItemsFeesById",
+      "python_method": "get_report_items_fees_by_id",
+      "http_method": "GET",
+      "path": "/autoload/v2/reports/{report_id}/items/fees",
+      "response_status": "200",
+      "response_model": "AutoloadApiGetReportItemsFeesByIdResponse",
+      "schema_kind": "object"
+    },
+    {
+      "operation_id": "getLastCompletedReportV3",
+      "python_method": "get_last_completed_report_v3",
+      "http_method": "GET",
+      "path": "/autoload/v3/reports/last_completed_report",
+      "response_status": "200",
+      "response_model": "AutoloadApiGetLastCompletedReportV3Response",
+      "schema_kind": "ref"
+    },
+    {
+      "operation_id": "getReportByIdV3",
+      "python_method": "get_report_by_id_v3",
+      "http_method": "GET",
+      "path": "/autoload/v3/reports/{report_id}",
+      "response_status": "200",
+      "response_model": "AutoloadApiGetReportByIdV3Response",
+      "schema_kind": "ref"
+    }
+  ],
+  "autostrategy": [
+    {
+      "operation_id": "getAutostrategyBudget",
+      "python_method": "get_autostrategy_budget",
+      "http_method": "POST",
+      "path": "/autostrategy/v1/budget",
+      "response_status": "200",
+      "response_model": "AutostrategyApiGetAutostrategyBudgetResponse",
+      "schema_kind": "object"
+    },
+    {
+      "operation_id": "createAutostrategyCampaign",
+      "python_method": "create_autostrategy_campaign",
+      "http_method": "POST",
+      "path": "/autostrategy/v1/campaign/create",
+      "response_status": "200",
+      "response_model": "AutostrategyApiCreateAutostrategyCampaignResponse",
+      "schema_kind": "object"
+    },
+    {
+      "operation_id": "editAutostrategyCampaign",
+      "python_method": "edit_autostrategy_campaign",
+      "http_method": "POST",
+      "path": "/autostrategy/v1/campaign/edit",
+      "response_status": "200",
+      "response_model": "AutostrategyApiEditAutostrategyCampaignResponse",
+      "schema_kind": "object"
+    },
+    {
+      "operation_id": "getAutostrategyCampaignInfo",
+      "python_method": "get_autostrategy_campaign_info",
+      "http_method": "POST",
+      "path": "/autostrategy/v1/campaign/info",
+      "response_status": "200",
+      "response_model": "AutostrategyApiGetAutostrategyCampaignInfoResponse",
+      "schema_kind": "object"
+    },
+    {
+      "operation_id": "stopAutostrategyCampaign",
+      "python_method": "stop_autostrategy_campaign",
+      "http_method": "POST",
+      "path": "/autostrategy/v1/campaign/stop",
+      "response_status": "200",
+      "response_model": "AutostrategyApiStopAutostrategyCampaignResponse",
+      "schema_kind": "object"
+    },
+    {
+      "operation_id": "getAutostrategyCampaigns",
+      "python_method": "get_autostrategy_campaigns",
+      "http_method": "POST",
+      "path": "/autostrategy/v1/campaigns",
+      "response_status": "200",
+      "response_model": "AutostrategyApiGetAutostrategyCampaignsResponse",
+      "schema_kind": "ref"
+    },
+    {
+      "operation_id": "getAutostrategyStat",
+      "python_method": "get_autostrategy_stat",
+      "http_method": "POST",
+      "path": "/autostrategy/v1/stat",
+      "response_status": "200",
+      "response_model": "AutostrategyApiGetAutostrategyStatResponse",
+      "schema_kind": "object"
+    }
+  ],
+  "autoteka": [
+    {
+      "operation_id": "catalogsResolve",
+      "python_method": "catalogs_resolve",
+      "http_method": "POST",
+      "path": "/autoteka/v1/catalogs/resolve",
+      "response_status": "200",
+      "response_model": "AutotekaApiCatalogsResolveResponse",
+      "schema_kind": "ref"
+    },
+    {
+      "operation_id": "getLeads",
+      "python_method": "get_leads",
+      "http_method": "POST",
+      "path": "/autoteka/v1/get-leads/",
+      "response_status": "200",
+      "response_model": "AutotekaApiGetLeadsResponse",
+      "schema_kind": "ref"
+    },
+    {
+      "operation_id": "monitoringBucketAdd",
+      "python_method": "monitoring_bucket_add",
+      "http_method": "POST",
+      "path": "/autoteka/v1/monitoring/bucket/add",
+      "response_status": "200",
+      "response_model": "AutotekaApiMonitoringBucketAddResponse",
+      "schema_kind": "ref"
+    },
+    {
+      "operation_id": "monitoringBucketDelete",
+      "python_method": "monitoring_bucket_delete",
+      "http_method": "POST",
+      "path": "/autoteka/v1/monitoring/bucket/delete",
+      "response_status": "200",
+      "response_model": "AutotekaApiMonitoringBucketDeleteResponse",
+      "schema_kind": "ref"
+    },
+    {
+      "operation_id": "monitoringBucketRemove",
+      "python_method": "monitoring_bucket_remove",
+      "http_method": "POST",
+      "path": "/autoteka/v1/monitoring/bucket/remove",
+      "response_status": "200",
+      "response_model": "AutotekaApiMonitoringBucketRemoveResponse",
+      "schema_kind": "ref"
+    },
+    {
+      "operation_id": "monitoringGetRegActions",
+      "python_method": "monitoring_get_reg_actions",
+      "http_method": "GET",
+      "path": "/autoteka/v1/monitoring/get-reg-actions/",
+      "response_status": "200",
+      "response_model": "AutotekaApiMonitoringGetRegActionsResponse",
+      "schema_kind": "ref"
+    },
+    {
+      "operation_id": "getActivePackage",
+      "python_method": "get_active_package",
+      "http_method": "GET",
+      "path": "/autoteka/v1/packages/active_package",
+      "response_status": "200",
+      "response_model": "AutotekaApiGetActivePackageResponse",
+      "schema_kind": "ref"
+    },
+    {
+      "operation_id": "postPreviewByVin",
+      "python_method": "post_preview_by_vin",
+      "http_method": "POST",
+      "path": "/autoteka/v1/previews",
+      "response_status": "200",
+      "response_model": "AutotekaApiPostPreviewByVinResponse",
+      "schema_kind": "ref"
+    },
+    {
+      "operation_id": "getPreview",
+      "python_method": "get_preview",
+      "http_method": "GET",
+      "path": "/autoteka/v1/previews/{previewId}",
+      "response_status": "200",
+      "response_model": "AutotekaApiGetPreviewResponse",
+      "schema_kind": "ref"
+    },
+    {
+      "operation_id": "postReport",
+      "python_method": "post_report",
+      "http_method": "POST",
+      "path": "/autoteka/v1/reports",
+      "response_status": "200",
+      "response_model": "AutotekaApiPostReportResponse",
+      "schema_kind": "ref"
+    },
+    {
+      "operation_id": "postReportByVehicleId",
+      "python_method": "post_report_by_vehicle_id",
+      "http_method": "POST",
+      "path": "/autoteka/v1/reports-by-vehicle-id",
+      "response_status": "200",
+      "response_model": "AutotekaApiPostReportByVehicleIdResponse",
+      "schema_kind": "ref"
+    },
+    {
+      "operation_id": "getReportList",
+      "python_method": "get_report_list",
+      "http_method": "GET",
+      "path": "/autoteka/v1/reports/list/",
+      "response_status": "200",
+      "response_model": "AutotekaApiGetReportListResponse",
+      "schema_kind": "ref"
+    },
+    {
+      "operation_id": "getReport",
+      "python_method": "get_report",
+      "http_method": "GET",
+      "path": "/autoteka/v1/reports/{report_id}",
+      "response_status": "200",
+      "response_model": "AutotekaApiGetReportResponse",
+      "schema_kind": "ref"
+    },
+    {
+      "operation_id": "postPreviewByExternalItem",
+      "python_method": "post_preview_by_external_item",
+      "http_method": "POST",
+      "path": "/autoteka/v1/request-preview-by-external-item",
+      "response_status": "200",
+      "response_model": "AutotekaApiPostPreviewByExternalItemResponse",
+      "schema_kind": "ref"
+    },
+    {
+      "operation_id": "postPreviewByItemId",
+      "python_method": "post_preview_by_item_id",
+      "http_method": "POST",
+      "path": "/autoteka/v1/request-preview-by-item-id",
+      "response_status": "200",
+      "response_model": "AutotekaApiPostPreviewByItemIdResponse",
+      "schema_kind": "ref"
+    },
+    {
+      "operation_id": "postPreviewByRegNumber",
+      "python_method": "post_preview_by_reg_number",
+      "http_method": "POST",
+      "path": "/autoteka/v1/request-preview-by-regnumber",
+      "response_status": "200",
+      "response_model": "AutotekaApiPostPreviewByRegNumberResponse",
+      "schema_kind": "ref"
+    },
+    {
+      "operation_id": "scoringByVehicleId",
+      "python_method": "scoring_by_vehicle_id",
+      "http_method": "POST",
+      "path": "/autoteka/v1/scoring/by-vehicle-id",
+      "response_status": "200",
+      "response_model": "AutotekaApiScoringByVehicleIdResponse",
+      "schema_kind": "ref"
+    },
+    {
+      "operation_id": "scoringGetById",
+      "python_method": "scoring_get_by_id",
+      "http_method": "GET",
+      "path": "/autoteka/v1/scoring/{scoring_id}",
+      "response_status": "200",
+      "response_model": "AutotekaApiScoringGetByIdResponse",
+      "schema_kind": "ref"
+    },
+    {
+      "operation_id": "specificationByPlateNumber",
+      "python_method": "specification_by_plate_number",
+      "http_method": "POST",
+      "path": "/autoteka/v1/specifications/by-plate-number",
+      "response_status": "200",
+      "response_model": "AutotekaApiSpecificationByPlateNumberResponse",
+      "schema_kind": "ref"
+    },
+    {
+      "operation_id": "specificationByVehicleId",
+      "python_method": "specification_by_vehicle_id",
+      "http_method": "POST",
+      "path": "/autoteka/v1/specifications/by-vehicle-id",
+      "response_status": "200",
+      "response_model": "AutotekaApiSpecificationByVehicleIdResponse",
+      "schema_kind": "ref"
+    },
+    {
+      "operation_id": "specificationGetById",
+      "python_method": "specification_get_by_id",
+      "http_method": "GET",
+      "path": "/autoteka/v1/specifications/specification/{specificationID}",
+      "response_status": "200",
+      "response_model": "AutotekaApiSpecificationGetByIdResponse",
+      "schema_kind": "ref"
+    },
+    {
+      "operation_id": "postSyncCreateReportByRegNumber",
+      "python_method": "post_sync_create_report_by_reg_number",
+      "http_method": "POST",
+      "path": "/autoteka/v1/sync/create-by-regnumber",
+      "response_status": "200",
+      "response_model": "AutotekaApiPostSyncCreateReportByRegNumberResponse",
+      "schema_kind": "ref"
+    },
+    {
+      "operation_id": "postSyncCreateReportByVin",
+      "python_method": "post_sync_create_report_by_vin",
+      "http_method": "POST",
+      "path": "/autoteka/v1/sync/create-by-vin",
+      "response_status": "200",
+      "response_model": "AutotekaApiPostSyncCreateReportByVinResponse",
+      "schema_kind": "ref"
+    },
+    {
+      "operation_id": "postTeaser",
+      "python_method": "post_teaser",
+      "http_method": "POST",
+      "path": "/autoteka/v1/teasers",
+      "response_status": "200",
+      "response_model": "AutotekaApiPostTeaserResponse",
+      "schema_kind": "ref"
+    },
+    {
+      "operation_id": "getTeaser",
+      "python_method": "get_teaser",
+      "http_method": "GET",
+      "path": "/autoteka/v1/teasers/{teaser_id}",
+      "response_status": "200",
+      "response_model": "AutotekaApiGetTeaserResponse",
+      "schema_kind": "ref"
+    },
+    {
+      "operation_id": "valuationBySpecification",
+      "python_method": "valuation_by_specification",
+      "http_method": "POST",
+      "path": "/autoteka/v1/valuation/by-specification",
+      "response_status": "200",
+      "response_model": "AutotekaApiValuationBySpecificationResponse",
+      "schema_kind": "ref"
+    },
+    {
+      "operation_id": "getAccessToken",
+      "python_method": "get_access_token",
+      "http_method": "POST",
+      "path": "/token",
+      "response_status": "200",
+      "response_model": "AutotekaApiGetAccessTokenResponse",
+      "schema_kind": "object"
+    }
+  ],
+  "calltracking": [
+    {
+      "operation_id": "get_call_by_id",
+      "python_method": "get_call_by_id",
+      "http_method": "POST",
+      "path": "/calltracking/v1/getCallById/",
+      "response_status": "200",
+      "response_model": "None",
+      "schema_kind": "none"
+    },
+    {
+      "operation_id": "get_calls",
+      "python_method": "get_calls",
+      "http_method": "POST",
+      "path": "/calltracking/v1/getCalls/",
+      "response_status": "200",
+      "response_model": "None",
+      "schema_kind": "none"
+    },
+    {
+      "operation_id": "get_record_by_call_id",
+      "python_method": "get_record_by_call_id",
+      "http_method": "GET",
+      "path": "/calltracking/v1/getRecordByCallId/",
+      "response_status": "200",
+      "response_model": "None",
+      "schema_kind": "none"
+    }
+  ],
+  "cpa": [
+    {
+      "operation_id": "getCall",
+      "python_method": "get_call",
+      "http_method": "GET",
+      "path": "/cpa/v1/call/{call_id}",
+      "response_status": "200",
+      "response_model": "None",
+      "schema_kind": "none"
+    },
+    {
+      "operation_id": "chatByActionId",
+      "python_method": "chat_by_action_id",
+      "http_method": "GET",
+      "path": "/cpa/v1/chatByActionId/{actionId}",
+      "response_status": "200",
+      "response_model": "CpaApiChatByActionIdResponse",
+      "schema_kind": "object"
+    },
+    {
+      "operation_id": "chatsByTime",
+      "python_method": "chats_by_time",
+      "http_method": "POST",
+      "path": "/cpa/v1/chatsByTime",
+      "response_status": "200",
+      "response_model": "CpaApiChatsByTimeResponse",
+      "schema_kind": "object"
+    },
+    {
+      "operation_id": "postCreateComplaint",
+      "python_method": "post_create_complaint",
+      "http_method": "POST",
+      "path": "/cpa/v1/createComplaint",
+      "response_status": "200",
+      "response_model": "CpaApiPostCreateComplaintResponse",
+      "schema_kind": "object"
+    },
+    {
+      "operation_id": "createComplaintByActionId",
+      "python_method": "create_complaint_by_action_id",
+      "http_method": "POST",
+      "path": "/cpa/v1/createComplaintByActionId",
+      "response_status": "200",
+      "response_model": "CpaApiCreateComplaintByActionIdResponse",
+      "schema_kind": "object"
+    },
+    {
+      "operation_id": "phonesInfoFromChats",
+      "python_method": "phones_info_from_chats",
+      "http_method": "POST",
+      "path": "/cpa/v1/phonesInfoFromChats",
+      "response_status": "200",
+      "response_model": "CpaApiPhonesInfoFromChatsResponse",
+      "schema_kind": "object"
+    },
+    {
+      "operation_id": "balanceInfoV2",
+      "python_method": "balance_info_v2",
+      "http_method": "POST",
+      "path": "/cpa/v2/balanceInfo",
+      "response_status": "200",
+      "response_model": "CpaApiBalanceInfoV2Response",
+      "schema_kind": "object"
+    },
+    {
+      "operation_id": "getCallByIdV2",
+      "python_method": "get_call_by_id_v2",
+      "http_method": "POST",
+      "path": "/cpa/v2/callById",
+      "response_status": "200",
+      "response_model": "CpaApiGetCallByIdV2Response",
+      "schema_kind": "object"
+    },
+    {
+      "operation_id": "getCallsByTimeV2",
+      "python_method": "get_calls_by_time_v2",
+      "http_method": "POST",
+      "path": "/cpa/v2/callsByTime",
+      "response_status": "200",
+      "response_model": "CpaApiGetCallsByTimeV2Response",
+      "schema_kind": "object"
+    },
+    {
+      "operation_id": "chatsByTime_2",
+      "python_method": "chats_by_time_2",
+      "http_method": "POST",
+      "path": "/cpa/v2/chatsByTime",
+      "response_status": "200",
+      "response_model": "CpaApiChatsByTime2Response",
+      "schema_kind": "object"
+    },
+    {
+      "operation_id": "balanceInfoV3",
+      "python_method": "balance_info_v3",
+      "http_method": "POST",
+      "path": "/cpa/v3/balanceInfo",
+      "response_status": "200",
+      "response_model": "CpaApiBalanceInfoV3Response",
+      "schema_kind": "object"
+    }
+  ],
+  "cpxpromo": [
+    {
+      "operation_id": "getBids",
+      "python_method": "get_bids",
+      "http_method": "GET",
+      "path": "/cpxpromo/1/getBids/{itemId}",
+      "response_status": "200",
+      "response_model": "CpxpromoApiGetBidsResponse",
+      "schema_kind": "ref"
+    },
+    {
+      "operation_id": "getPromotionsByItemIds",
+      "python_method": "get_promotions_by_item_ids",
+      "http_method": "POST",
+      "path": "/cpxpromo/1/getPromotionsByItemIds",
+      "response_status": "200",
+      "response_model": "CpxpromoApiGetPromotionsByItemIdsResponse",
+      "schema_kind": "ref"
+    },
+    {
+      "operation_id": "removePromotion",
+      "python_method": "remove_promotion",
+      "http_method": "POST",
+      "path": "/cpxpromo/1/remove",
+      "response_status": "200",
+      "response_model": "CpxpromoApiRemovePromotionResponse",
+      "schema_kind": "object"
+    },
+    {
+      "operation_id": "saveAutoBid",
+      "python_method": "save_auto_bid",
+      "http_method": "POST",
+      "path": "/cpxpromo/1/setAuto",
+      "response_status": "200",
+      "response_model": "None",
+      "schema_kind": "none"
+    },
+    {
+      "operation_id": "saveManualBid",
+      "python_method": "save_manual_bid",
+      "http_method": "POST",
+      "path": "/cpxpromo/1/setManual",
+      "response_status": "200",
+      "response_model": "None",
+      "schema_kind": "none"
+    }
+  ],
+  "delivery-sandbox": [
+    {
+      "operation_id": "CancelAnnouncement3PL",
+      "python_method": "cancel_announcement3_pl",
+      "http_method": "POST",
+      "path": "/cancelAnnouncement",
+      "response_status": "200",
+      "response_model": "DeliverySandboxApiCancelAnnouncement3PlResponse",
+      "schema_kind": "ref"
+    },
+    {
+      "operation_id": "CreateAnnouncement3PL",
+      "python_method": "create_announcement3_pl",
+      "http_method": "POST",
+      "path": "/createAnnouncement",
+      "response_status": "200",
+      "response_model": "DeliverySandboxApiCreateAnnouncement3PlResponse",
+      "schema_kind": "ref"
+    },
+    {
+      "operation_id": "createParcel",
+      "python_method": "create_parcel",
+      "http_method": "POST",
+      "path": "/createParcel",
+      "response_status": "200",
+      "response_model": "DeliverySandboxApiCreateParcelResponse",
+      "schema_kind": "ref"
+    },
+    {
+      "operation_id": "CreateAnnouncement",
+      "python_method": "create_announcement",
+      "http_method": "POST",
+      "path": "/delivery-sandbox/announcements/create",
+      "response_status": "200",
+      "response_model": "DeliverySandboxApiCreateAnnouncementResponse",
+      "schema_kind": "ref"
+    },
+    {
+      "operation_id": "TrackAnnouncement",
+      "python_method": "track_announcement",
+      "http_method": "POST",
+      "path": "/delivery-sandbox/announcements/track",
+      "response_status": "200",
+      "response_model": "DeliverySandboxApiTrackAnnouncementResponse",
+      "schema_kind": "ref"
+    },
+    {
+      "operation_id": "customAreaSchedule",
+      "python_method": "custom_area_schedule",
+      "http_method": "POST",
+      "path": "/delivery-sandbox/areas/custom-schedule",
+      "response_status": "200",
+      "response_model": "DeliverySandboxApiCustomAreaScheduleResponse",
+      "schema_kind": "ref"
+    },
+    {
+      "operation_id": "cancelParcel",
+      "python_method": "cancel_parcel",
+      "http_method": "POST",
+      "path": "/delivery-sandbox/cancelParcel",
+      "response_status": "200",
+      "response_model": "DeliverySandboxApiCancelParcelResponse",
+      "schema_kind": "ref"
+    },
+    {
+      "operation_id": "checkConfirmationCode",
+      "python_method": "check_confirmation_code",
+      "http_method": "POST",
+      "path": "/delivery-sandbox/order/checkConfirmationCode",
+      "response_status": "200",
+      "response_model": "DeliverySandboxApiCheckConfirmationCodeResponse",
+      "schema_kind": "ref"
+    },
+    {
+      "operation_id": "setOrderProperties",
+      "python_method": "set_order_properties",
+      "http_method": "POST",
+      "path": "/delivery-sandbox/order/properties",
+      "response_status": "200",
+      "response_model": "DeliverySandboxApiSetOrderPropertiesResponse",
+      "schema_kind": "ref"
+    },
+    {
+      "operation_id": "setOrderRealAddress",
+      "python_method": "set_order_real_address",
+      "http_method": "POST",
+      "path": "/delivery-sandbox/order/realAddress",
+      "response_status": "200",
+      "response_model": "DeliverySandboxApiSetOrderRealAddressResponse",
+      "schema_kind": "ref"
+    },
+    {
+      "operation_id": "tracking",
+      "python_method": "tracking",
+      "http_method": "POST",
+      "path": "/delivery-sandbox/order/tracking",
+      "response_status": "200",
+      "response_model": "DeliverySandboxApiTrackingResponse",
+      "schema_kind": "ref"
+    },
+    {
+      "operation_id": "prohibitOrderAcceptance",
+      "python_method": "prohibit_order_acceptance",
+      "http_method": "POST",
+      "path": "/delivery-sandbox/prohibitOrderAcceptance",
+      "response_status": "200",
+      "response_model": "DeliverySandboxApiProhibitOrderAcceptanceResponse",
+      "schema_kind": "ref"
+    },
+    {
+      "operation_id": "GetSortingCenter",
+      "python_method": "get_sorting_center",
+      "http_method": "GET",
+      "path": "/delivery-sandbox/sorting-center",
+      "response_status": "200",
+      "response_model": "DeliverySandboxApiGetSortingCenterResponse",
+      "schema_kind": "ref"
+    },
+    {
+      "operation_id": "AddSortingCenter",
+      "python_method": "add_sorting_center",
+      "http_method": "POST",
+      "path": "/delivery-sandbox/tariffs/sorting-center",
+      "response_status": "200",
+      "response_model": "DeliverySandboxApiAddSortingCenterResponse",
+      "schema_kind": "ref"
+    },
+    {
+      "operation_id": "AddAreasSandbox",
+      "python_method": "add_areas_sandbox",
+      "http_method": "POST",
+      "path": "/delivery-sandbox/tariffs/{tariff_id}/areas",
+      "response_status": "200",
+      "response_model": "DeliverySandboxApiAddAreasSandboxResponse",
+      "schema_kind": "ref"
+    },
+    {
+      "operation_id": "AddTagsToSortingCenter",
+      "python_method": "add_tags_to_sorting_center",
+      "http_method": "POST",
+      "path": "/delivery-sandbox/tariffs/{tariff_id}/tagged-sorting-centers",
+      "response_status": "200",
+      "response_model": "DeliverySandboxApiAddTagsToSortingCenterResponse",
+      "schema_kind": "ref"
+    },
+    {
+      "operation_id": "AddTerminalsSandbox",
+      "python_method": "add_terminals_sandbox",
+      "http_method": "POST",
+      "path": "/delivery-sandbox/tariffs/{tariff_id}/terminals",
+      "response_status": "200",
+      "response_model": "DeliverySandboxApiAddTerminalsSandboxResponse",
+      "schema_kind": "ref"
+    },
+    {
+      "operation_id": "UpdateTerms",
+      "python_method": "update_terms",
+      "http_method": "POST",
+      "path": "/delivery-sandbox/tariffs/{tariff_id}/terms",
+      "response_status": "200",
+      "response_model": "DeliverySandboxApiUpdateTermsResponse",
+      "schema_kind": "ref"
+    },
+    {
+      "operation_id": "AddTariffSandboxV2",
+      "python_method": "add_tariff_sandbox_v2",
+      "http_method": "POST",
+      "path": "/delivery-sandbox/tariffsV2",
+      "response_status": "200",
+      "response_model": "DeliverySandboxApiAddTariffSandboxV2Response",
+      "schema_kind": "ref"
+    },
+    {
+      "operation_id": "GetTask",
+      "python_method": "get_task",
+      "http_method": "GET",
+      "path": "/delivery-sandbox/tasks/{task_id}",
+      "response_status": "200",
+      "response_model": "DeliverySandboxApiGetTaskResponse",
+      "schema_kind": "ref"
+    },
+    {
+      "operation_id": "v1cancelAnnouncement",
+      "python_method": "v1cancel_announcement",
+      "http_method": "POST",
+      "path": "/delivery-sandbox/v1/cancelAnnouncement",
+      "response_status": "200",
+      "response_model": "DeliverySandboxApiV1cancelAnnouncementResponse",
+      "schema_kind": "ref"
+    },
+    {
+      "operation_id": "v1CancelParcel",
+      "python_method": "v1_cancel_parcel",
+      "http_method": "POST",
+      "path": "/delivery-sandbox/v1/cancelParcel",
+      "response_status": "200",
+      "response_model": "DeliverySandboxApiV1CancelParcelResponse",
+      "schema_kind": "ref"
+    },
+    {
+      "operation_id": "v1changeParcel",
+      "python_method": "v1change_parcel",
+      "http_method": "POST",
+      "path": "/delivery-sandbox/v1/changeParcel",
+      "response_status": "200",
+      "response_model": "DeliverySandboxApiV1changeParcelResponse",
+      "schema_kind": "ref"
+    },
+    {
+      "operation_id": "v1createAnnouncement",
+      "python_method": "v1create_announcement",
+      "http_method": "POST",
+      "path": "/delivery-sandbox/v1/createAnnouncement",
+      "response_status": "200",
+      "response_model": "DeliverySandboxApiV1createAnnouncementResponse",
+      "schema_kind": "ref"
+    },
+    {
+      "operation_id": "v1getAnnouncementEvent",
+      "python_method": "v1get_announcement_event",
+      "http_method": "POST",
+      "path": "/delivery-sandbox/v1/getAnnouncementEvent",
+      "response_status": "200",
+      "response_model": "DeliverySandboxApiV1getAnnouncementEventResponse",
+      "schema_kind": "ref"
+    },
+    {
+      "operation_id": "v1getChangeParcelInfo",
+      "python_method": "v1get_change_parcel_info",
+      "http_method": "POST",
+      "path": "/delivery-sandbox/v1/getChangeParcelInfo",
+      "response_status": "200",
+      "response_model": "DeliverySandboxApiV1getChangeParcelInfoResponse",
+      "schema_kind": "ref"
+    },
+    {
+      "operation_id": "v1getParcelInfo",
+      "python_method": "v1get_parcel_info",
+      "http_method": "POST",
+      "path": "/delivery-sandbox/v1/getParcelInfo",
+      "response_status": "200",
+      "response_model": "DeliverySandboxApiV1getParcelInfoResponse",
+      "schema_kind": "ref"
+    },
+    {
+      "operation_id": "v1getRegisteredParcelID",
+      "python_method": "v1get_registered_parcel_id",
+      "http_method": "POST",
+      "path": "/delivery-sandbox/v1/getRegisteredParcelID",
+      "response_status": "200",
+      "response_model": "DeliverySandboxApiV1getRegisteredParcelIdResponse",
+      "schema_kind": "ref"
+    },
+    {
+      "operation_id": "CreateSandboxParcelV2",
+      "python_method": "create_sandbox_parcel_v2",
+      "http_method": "POST",
+      "path": "/delivery-sandbox/v2/createParcel",
+      "response_status": "200",
+      "response_model": "DeliverySandboxApiCreateSandboxParcelV2Response",
+      "schema_kind": "ref"
+    },
+    {
+      "operation_id": "ChangeParcelResult",
+      "python_method": "change_parcel_result",
+      "http_method": "POST",
+      "path": "/delivery/order/changeParcelResult",
+      "response_status": "200",
+      "response_model": "DeliverySandboxApiChangeParcelResultResponse",
+      "schema_kind": "ref"
+    },
+    {
+      "operation_id": "ChangeParcels",
+      "python_method": "change_parcels",
+      "http_method": "POST",
+      "path": "/sandbox/changeParcels",
+      "response_status": "200",
+      "response_model": "DeliverySandboxApiChangeParcelsResponse",
+      "schema_kind": "ref"
+    }
+  ],
+  "item": [
+    {
+      "operation_id": "vasPrices",
+      "python_method": "vas_prices",
+      "http_method": "POST",
+      "path": "/core/v1/accounts/{userId}/vas/prices",
+      "response_status": "200",
+      "response_model": "ItemApiVasPricesResponse",
+      "schema_kind": "oneOf"
+    },
+    {
+      "operation_id": "postCallsStats",
+      "python_method": "post_calls_stats",
+      "http_method": "POST",
+      "path": "/core/v1/accounts/{user_id}/calls/stats/",
+      "response_status": "200",
+      "response_model": "ItemApiPostCallsStatsResponse",
+      "schema_kind": "ref"
+    },
+    {
+      "operation_id": "getItemInfo",
+      "python_method": "get_item_info",
+      "http_method": "GET",
+      "path": "/core/v1/accounts/{user_id}/items/{item_id}/",
+      "response_status": "200",
+      "response_model": "ItemApiGetItemInfoResponse",
+      "schema_kind": "ref"
+    },
+    {
+      "operation_id": "putItemVas",
+      "python_method": "put_item_vas",
+      "http_method": "PUT",
+      "path": "/core/v1/accounts/{user_id}/items/{item_id}/vas",
+      "response_status": "200",
+      "response_model": "ItemApiPutItemVasResponse",
+      "schema_kind": "ref"
+    },
+    {
+      "operation_id": "getItemsInfo",
+      "python_method": "get_items_info",
+      "http_method": "GET",
+      "path": "/core/v1/items",
+      "response_status": "200",
+      "response_model": "ItemApiGetItemsInfoResponse",
+      "schema_kind": "ref"
+    },
+    {
+      "operation_id": "updatePrice",
+      "python_method": "update_price",
+      "http_method": "POST",
+      "path": "/core/v1/items/{item_id}/update_price",
+      "response_status": "200",
+      "response_model": "ItemApiUpdatePriceResponse",
+      "schema_kind": "ref"
+    },
+    {
+      "operation_id": "putItemVasPackageV2",
+      "python_method": "put_item_vas_package_v2",
+      "http_method": "PUT",
+      "path": "/core/v2/accounts/{user_id}/items/{item_id}/vas_packages",
+      "response_status": "200",
+      "response_model": "ItemApiPutItemVasPackageV2Response",
+      "schema_kind": "ref"
+    },
+    {
+      "operation_id": "applyVas",
+      "python_method": "apply_vas",
+      "http_method": "PUT",
+      "path": "/core/v2/items/{itemId}/vas/",
+      "response_status": "200",
+      "response_model": "ItemApiApplyVasResponse",
+      "schema_kind": "object"
+    },
+    {
+      "operation_id": "itemStatsShallow",
+      "python_method": "item_stats_shallow",
+      "http_method": "POST",
+      "path": "/stats/v1/accounts/{user_id}/items",
+      "response_status": "200",
+      "response_model": "ItemApiItemStatsShallowResponse",
+      "schema_kind": "ref"
+    },
+    {
+      "operation_id": "itemAnalytics",
+      "python_method": "item_analytics",
+      "http_method": "POST",
+      "path": "/stats/v2/accounts/{user_id}/items",
+      "response_status": "200",
+      "response_model": "ItemApiItemAnalyticsResponse",
+      "schema_kind": "ref"
+    }
+  ],
+  "job": [
+    {
+      "operation_id": "applicationsGetByIds",
+      "python_method": "applications_get_by_ids",
+      "http_method": "POST",
+      "path": "/job/v1/applications/get_by_ids",
+      "response_status": "200",
+      "response_model": "JobApiApplicationsGetByIdsResponse",
+      "schema_kind": "ref"
+    },
+    {
+      "operation_id": "applicationsGetIds",
+      "python_method": "applications_get_ids",
+      "http_method": "GET",
+      "path": "/job/v1/applications/get_ids",
+      "response_status": "200",
+      "response_model": "JobApiApplicationsGetIdsResponse",
+      "schema_kind": "ref"
+    },
+    {
+      "operation_id": "applicationsSetIsViewed",
+      "python_method": "applications_set_is_viewed",
+      "http_method": "POST",
+      "path": "/job/v1/applications/set_is_viewed",
+      "response_status": "200",
+      "response_model": "JobApiApplicationsSetIsViewedResponse",
+      "schema_kind": "ref"
+    },
+    {
+      "operation_id": "applicationsWebhookGet",
+      "python_method": "applications_webhook_get",
+      "http_method": "GET",
+      "path": "/job/v1/applications/webhook",
+      "response_status": "200",
+      "response_model": "JobApiApplicationsWebhookGetResponse",
+      "schema_kind": "ref"
+    },
+    {
+      "operation_id": "applicationsWebhookPut",
+      "python_method": "applications_webhook_put",
+      "http_method": "PUT",
+      "path": "/job/v1/applications/webhook",
+      "response_status": "200",
+      "response_model": "JobApiApplicationsWebhookPutResponse",
+      "schema_kind": "ref"
+    },
+    {
+      "operation_id": "applicationsWebhookDelete",
+      "python_method": "applications_webhook_delete",
+      "http_method": "DELETE",
+      "path": "/job/v1/applications/webhook",
+      "response_status": "200",
+      "response_model": "JobApiApplicationsWebhookDeleteResponse",
+      "schema_kind": "object"
+    },
+    {
+      "operation_id": "applicationsWebhooksGet",
+      "python_method": "applications_webhooks_get",
+      "http_method": "GET",
+      "path": "/job/v1/applications/webhooks",
+      "response_status": "200",
+      "response_model": "JobApiApplicationsWebhooksGetResponse",
+      "schema_kind": "ref"
+    },
+    {
+      "operation_id": "resumesGet",
+      "python_method": "resumes_get",
+      "http_method": "GET",
+      "path": "/job/v1/resumes/",
+      "response_status": "200",
+      "response_model": "JobApiResumesGetResponse",
+      "schema_kind": "object"
+    },
+    {
+      "operation_id": "resumeGetContacts",
+      "python_method": "resume_get_contacts",
+      "http_method": "GET",
+      "path": "/job/v1/resumes/{resume_id}/contacts/",
+      "response_status": "200",
+      "response_model": "JobApiResumeGetContactsResponse",
+      "schema_kind": "ref"
+    },
+    {
+      "operation_id": "vacancyCreate",
+      "python_method": "vacancy_create",
+      "http_method": "POST",
+      "path": "/job/v1/vacancies",
+      "response_status": "201",
+      "response_model": "JobApiVacancyCreateResponse",
+      "schema_kind": "ref"
+    },
+    {
+      "operation_id": "vacancyArchive",
+      "python_method": "vacancy_archive",
+      "http_method": "PUT",
+      "path": "/job/v1/vacancies/archived/{vacancy_id}",
+      "response_status": "204",
+      "response_model": "None",
+      "schema_kind": "none"
+    },
+    {
+      "operation_id": "vacancyUpdate",
+      "python_method": "vacancy_update",
+      "http_method": "PUT",
+      "path": "/job/v1/vacancies/{vacancy_id}",
+      "response_status": "204",
+      "response_model": "None",
+      "schema_kind": "none"
+    },
+    {
+      "operation_id": "vacancyProlongate",
+      "python_method": "vacancy_prolongate",
+      "http_method": "POST",
+      "path": "/job/v1/vacancies/{vacancy_id}/prolongate",
+      "response_status": "204",
+      "response_model": "None",
+      "schema_kind": "none"
+    },
+    {
+      "operation_id": "resumeGetItem",
+      "python_method": "resume_get_item",
+      "http_method": "GET",
+      "path": "/job/v2/resumes/{resume_id}",
+      "response_status": "200",
+      "response_model": "JobApiResumeGetItemResponse",
+      "schema_kind": "ref"
+    },
+    {
+      "operation_id": "searchVacancy",
+      "python_method": "search_vacancy",
+      "http_method": "GET",
+      "path": "/job/v2/vacancies",
+      "response_status": "200",
+      "response_model": "JobApiSearchVacancyResponse",
+      "schema_kind": "object"
+    },
+    {
+      "operation_id": "vacancyCreateV2",
+      "python_method": "vacancy_create_v2",
+      "http_method": "POST",
+      "path": "/job/v2/vacancies",
+      "response_status": "202",
+      "response_model": "JobApiVacancyCreateV2Response",
+      "schema_kind": "ref"
+    },
+    {
+      "operation_id": "vacanciesGetByIds",
+      "python_method": "vacancies_get_by_ids",
+      "http_method": "POST",
+      "path": "/job/v2/vacancies/batch",
+      "response_status": "200",
+      "response_model": "JobApiVacanciesGetByIdsResponse",
+      "schema_kind": "ref"
+    },
+    {
+      "operation_id": "vacancyGetStatuses",
+      "python_method": "vacancy_get_statuses",
+      "http_method": "POST",
+      "path": "/job/v2/vacancies/statuses",
+      "response_status": "200",
+      "response_model": "JobApiVacancyGetStatusesResponse",
+      "schema_kind": "ref"
+    },
+    {
+      "operation_id": "vacancyUpdateV2",
+      "python_method": "vacancy_update_v2",
+      "http_method": "POST",
+      "path": "/job/v2/vacancies/update/{vacancy_uuid}",
+      "response_status": "202",
+      "response_model": "JobApiVacancyUpdateV2Response",
+      "schema_kind": "ref"
+    },
+    {
+      "operation_id": "vacancyGetItem",
+      "python_method": "vacancy_get_item",
+      "http_method": "GET",
+      "path": "/job/v2/vacancies/{vacancy_id}",
+      "response_status": "200",
+      "response_model": "JobApiVacancyGetItemResponse",
+      "schema_kind": "ref"
+    },
+    {
+      "operation_id": "vacancyAutoRenewal",
+      "python_method": "vacancy_auto_renewal",
+      "http_method": "PUT",
+      "path": "/job/v2/vacancies/{vacancy_uuid}/auto_renewal",
+      "response_status": "204",
+      "response_model": "None",
+      "schema_kind": "none"
+    },
+    {
+      "operation_id": "getDicts",
+      "python_method": "get_dicts",
+      "http_method": "GET",
+      "path": "/job/v2/vacancy/dict",
+      "response_status": "200",
+      "response_model": "JobApiGetDictsResponse",
+      "schema_kind": "array"
+    },
+    {
+      "operation_id": "getDictByID",
+      "python_method": "get_dict_by_id",
+      "http_method": "GET",
+      "path": "/job/v2/vacancy/dict/{dictionary_id}",
+      "response_status": "200",
+      "response_model": "JobApiGetDictByIdResponse",
+      "schema_kind": "array"
+    }
+  ],
+  "messenger": [
+    {
+      "operation_id": "postSendMessage",
+      "python_method": "post_send_message",
+      "http_method": "POST",
+      "path": "/messenger/v1/accounts/{user_id}/chats/{chat_id}/messages",
+      "response_status": "200",
+      "response_model": "MessengerApiPostSendMessageResponse",
+      "schema_kind": "object"
+    },
+    {
+      "operation_id": "postSendImageMessage",
+      "python_method": "post_send_image_message",
+      "http_method": "POST",
+      "path": "/messenger/v1/accounts/{user_id}/chats/{chat_id}/messages/image",
+      "response_status": "200",
+      "response_model": "MessengerApiPostSendImageMessageResponse",
+      "schema_kind": "object"
+    },
+    {
+      "operation_id": "deleteMessage",
+      "python_method": "delete_message",
+      "http_method": "POST",
+      "path": "/messenger/v1/accounts/{user_id}/chats/{chat_id}/messages/{message_id}",
+      "response_status": "200",
+      "response_model": "MessengerApiDeleteMessageResponse",
+      "schema_kind": "object"
+    },
+    {
+      "operation_id": "chatRead",
+      "python_method": "chat_read",
+      "http_method": "POST",
+      "path": "/messenger/v1/accounts/{user_id}/chats/{chat_id}/read",
+      "response_status": "200",
+      "response_model": "MessengerApiChatReadResponse",
+      "schema_kind": "object"
+    },
+    {
+      "operation_id": "getVoiceFiles",
+      "python_method": "get_voice_files",
+      "http_method": "GET",
+      "path": "/messenger/v1/accounts/{user_id}/getVoiceFiles",
+      "response_status": "200",
+      "response_model": "MessengerApiGetVoiceFilesResponse",
+      "schema_kind": "ref"
+    },
+    {
+      "operation_id": "uploadImages",
+      "python_method": "upload_images",
+      "http_method": "POST",
+      "path": "/messenger/v1/accounts/{user_id}/uploadImages",
+      "response_status": "200",
+      "response_model": "MessengerApiUploadImagesResponse",
+      "schema_kind": "object"
+    },
+    {
+      "operation_id": "getSubscriptions",
+      "python_method": "get_subscriptions",
+      "http_method": "POST",
+      "path": "/messenger/v1/subscriptions",
+      "response_status": "200",
+      "response_model": "MessengerApiGetSubscriptionsResponse",
+      "schema_kind": "object"
+    },
+    {
+      "operation_id": "postWebhookUnsubscribe",
+      "python_method": "post_webhook_unsubscribe",
+      "http_method": "POST",
+      "path": "/messenger/v1/webhook/unsubscribe",
+      "response_status": "200",
+      "response_model": "MessengerApiPostWebhookUnsubscribeResponse",
+      "schema_kind": "object"
+    },
+    {
+      "operation_id": "postBlacklistV2",
+      "python_method": "post_blacklist_v2",
+      "http_method": "POST",
+      "path": "/messenger/v2/accounts/{user_id}/blacklist",
+      "response_status": "200",
+      "response_model": "None",
+      "schema_kind": "none"
+    },
+    {
+      "operation_id": "getChatsV2",
+      "python_method": "get_chats_v2",
+      "http_method": "GET",
+      "path": "/messenger/v2/accounts/{user_id}/chats",
+      "response_status": "200",
+      "response_model": "MessengerApiGetChatsV2Response",
+      "schema_kind": "ref"
+    },
+    {
+      "operation_id": "getChatByIdV2",
+      "python_method": "get_chat_by_id_v2",
+      "http_method": "GET",
+      "path": "/messenger/v2/accounts/{user_id}/chats/{chat_id}",
+      "response_status": "200",
+      "response_model": "MessengerApiGetChatByIdV2Response",
+      "schema_kind": "ref"
+    },
+    {
+      "operation_id": "getMessagesV3",
+      "python_method": "get_messages_v3",
+      "http_method": "GET",
+      "path": "/messenger/v3/accounts/{user_id}/chats/{chat_id}/messages/",
+      "response_status": "200",
+      "response_model": "MessengerApiGetMessagesV3Response",
+      "schema_kind": "ref"
+    },
+    {
+      "operation_id": "postWebhookV3",
+      "python_method": "post_webhook_v3",
+      "http_method": "POST",
+      "path": "/messenger/v3/webhook",
+      "response_status": "200",
+      "response_model": "MessengerApiPostWebhookV3Response",
+      "schema_kind": "object"
+    }
+  ],
+  "order-management": [
+    {
+      "operation_id": "markings",
+      "python_method": "markings",
+      "http_method": "POST",
+      "path": "/order-management/1/markings",
+      "response_status": "200",
+      "response_model": "OrderManagementApiMarkingsResponse",
+      "schema_kind": "ref"
+    },
+    {
+      "operation_id": "acceptReturnOrder",
+      "python_method": "accept_return_order",
+      "http_method": "POST",
+      "path": "/order-management/1/order/acceptReturnOrder",
+      "response_status": "200",
+      "response_model": "OrderManagementApiAcceptReturnOrderResponse",
+      "schema_kind": "ref"
+    },
+    {
+      "operation_id": "applyTransition",
+      "python_method": "apply_transition",
+      "http_method": "POST",
+      "path": "/order-management/1/order/applyTransition",
+      "response_status": "200",
+      "response_model": "OrderManagementApiApplyTransitionResponse",
+      "schema_kind": "ref"
+    },
+    {
+      "operation_id": "checkConfirmationCode",
+      "python_method": "check_confirmation_code",
+      "http_method": "POST",
+      "path": "/order-management/1/order/checkConfirmationCode",
+      "response_status": "200",
+      "response_model": "OrderManagementApiCheckConfirmationCodeResponse",
+      "schema_kind": "ref"
+    },
+    {
+      "operation_id": "cncSetDetails",
+      "python_method": "cnc_set_details",
+      "http_method": "POST",
+      "path": "/order-management/1/order/cncSetDetails",
+      "response_status": "200",
+      "response_model": "OrderManagementApiCncSetDetailsResponse",
+      "schema_kind": "ref"
+    },
+    {
+      "operation_id": "getCourierDeliveryRange",
+      "python_method": "get_courier_delivery_range",
+      "http_method": "GET",
+      "path": "/order-management/1/order/getCourierDeliveryRange",
+      "response_status": "200",
+      "response_model": "OrderManagementApiGetCourierDeliveryRangeResponse",
+      "schema_kind": "ref"
+    },
+    {
+      "operation_id": "setCourierDeliveryRange",
+      "python_method": "set_courier_delivery_range",
+      "http_method": "POST",
+      "path": "/order-management/1/order/setCourierDeliveryRange",
+      "response_status": "200",
+      "response_model": "OrderManagementApiSetCourierDeliveryRangeResponse",
+      "schema_kind": "ref"
+    },
+    {
+      "operation_id": "setOrderTrackingNumber",
+      "python_method": "set_order_tracking_number",
+      "http_method": "POST",
+      "path": "/order-management/1/order/setTrackingNumber",
+      "response_status": "200",
+      "response_model": "OrderManagementApiSetOrderTrackingNumberResponse",
+      "schema_kind": "ref"
+    },
+    {
+      "operation_id": "getOrders",
+      "python_method": "get_orders",
+      "http_method": "GET",
+      "path": "/order-management/1/orders",
+      "response_status": "200",
+      "response_model": "OrderManagementApiGetOrdersResponse",
+      "schema_kind": "ref"
+    },
+    {
+      "operation_id": "generateLabels",
+      "python_method": "generate_labels",
+      "http_method": "POST",
+      "path": "/order-management/1/orders/labels",
+      "response_status": "200",
+      "response_model": "OrderManagementApiGenerateLabelsResponse",
+      "schema_kind": "ref"
+    },
+    {
+      "operation_id": "generateLabelsExtended",
+      "python_method": "generate_labels_extended",
+      "http_method": "POST",
+      "path": "/order-management/1/orders/labels/extended",
+      "response_status": "200",
+      "response_model": "OrderManagementApiGenerateLabelsExtendedResponse",
+      "schema_kind": "ref"
+    },
+    {
+      "operation_id": "downloadLabel",
+      "python_method": "download_label",
+      "http_method": "GET",
+      "path": "/order-management/1/orders/labels/{taskID}/download",
+      "response_status": "200",
+      "response_model": "None",
+      "schema_kind": "none"
+    }
+  ],
+  "promotion": [
+    {
+      "operation_id": "get_bbip_forecasts_by_items_v1",
+      "python_method": "get_bbip_forecasts_by_items_v1",
+      "http_method": "POST",
+      "path": "/promotion/v1/items/services/bbip/forecasts/get",
+      "response_status": "200",
+      "response_model": "PromotionApiGetBbipForecastsByItemsV1Response",
+      "schema_kind": "ref"
+    },
+    {
+      "operation_id": "create_bbip_order_for_items_v1",
+      "python_method": "create_bbip_order_for_items_v1",
+      "http_method": "PUT",
+      "path": "/promotion/v1/items/services/bbip/orders/create",
+      "response_status": "200",
+      "response_model": "PromotionApiCreateBbipOrderForItemsV1Response",
+      "schema_kind": "ref"
+    },
+    {
+      "operation_id": "get_bbip_suggests_by_items_v1",
+      "python_method": "get_bbip_suggests_by_items_v1",
+      "http_method": "POST",
+      "path": "/promotion/v1/items/services/bbip/suggests/get",
+      "response_status": "200",
+      "response_model": "PromotionApiGetBbipSuggestsByItemsV1Response",
+      "schema_kind": "ref"
+    },
+    {
+      "operation_id": "get_dict_of_services_v1",
+      "python_method": "get_dict_of_services_v1",
+      "http_method": "POST",
+      "path": "/promotion/v1/items/services/dict",
+      "response_status": "200",
+      "response_model": "PromotionApiGetDictOfServicesV1Response",
+      "schema_kind": "ref"
+    },
+    {
+      "operation_id": "get_services_by_items_v1",
+      "python_method": "get_services_by_items_v1",
+      "http_method": "POST",
+      "path": "/promotion/v1/items/services/get",
+      "response_status": "200",
+      "response_model": "PromotionApiGetServicesByItemsV1Response",
+      "schema_kind": "ref"
+    },
+    {
+      "operation_id": "list_orders_by_user_v1",
+      "python_method": "list_orders_by_user_v1",
+      "http_method": "POST",
+      "path": "/promotion/v1/items/services/orders/get",
+      "response_status": "200",
+      "response_model": "PromotionApiListOrdersByUserV1Response",
+      "schema_kind": "ref"
+    },
+    {
+      "operation_id": "get_order_status_v1",
+      "python_method": "get_order_status_v1",
+      "http_method": "POST",
+      "path": "/promotion/v1/items/services/orders/status",
+      "response_status": "200",
+      "response_model": "PromotionApiGetOrderStatusV1Response",
+      "schema_kind": "ref"
+    }
+  ],
+  "ratings": [
+    {
+      "operation_id": "createReviewAnswerV1",
+      "python_method": "create_review_answer_v1",
+      "http_method": "POST",
+      "path": "/ratings/v1/answers",
+      "response_status": "200",
+      "response_model": "RatingsApiCreateReviewAnswerV1Response",
+      "schema_kind": "ref"
+    },
+    {
+      "operation_id": "removeReviewAnswerV1",
+      "python_method": "remove_review_answer_v1",
+      "http_method": "DELETE",
+      "path": "/ratings/v1/answers/{answer_id}",
+      "response_status": "200",
+      "response_model": "RatingsApiRemoveReviewAnswerV1Response",
+      "schema_kind": "ref"
+    },
+    {
+      "operation_id": "getRatingsInfoV1",
+      "python_method": "get_ratings_info_v1",
+      "http_method": "GET",
+      "path": "/ratings/v1/info",
+      "response_status": "200",
+      "response_model": "RatingsApiGetRatingsInfoV1Response",
+      "schema_kind": "ref"
+    },
+    {
+      "operation_id": "getReviewsV1",
+      "python_method": "get_reviews_v1",
+      "http_method": "GET",
+      "path": "/ratings/v1/reviews",
+      "response_status": "200",
+      "response_model": "RatingsApiGetReviewsV1Response",
+      "schema_kind": "ref"
+    }
+  ],
+  "realty-reports": [
+    {
+      "operation_id": "market_price_correspondence_v1",
+      "python_method": "market_price_correspondence_v1",
+      "http_method": "GET",
+      "path": "/realty/v1/marketPriceCorrespondence/{itemId}/{price}",
+      "response_status": "200",
+      "response_model": "RealtyReportsApiMarketPriceCorrespondenceV1Response",
+      "schema_kind": "object"
+    },
+    {
+      "operation_id": "CreateReportForClassified",
+      "python_method": "create_report_for_classified",
+      "http_method": "POST",
+      "path": "/realty/v1/report/create/{itemId}",
+      "response_status": "200",
+      "response_model": "RealtyReportsApiCreateReportForClassifiedResponse",
+      "schema_kind": "object"
+    }
+  ],
+  "sbc-gateway": [
+    {
+      "operation_id": "openApiAvailable",
+      "python_method": "open_api_available",
+      "http_method": "POST",
+      "path": "/special-offers/v1/available",
+      "response_status": "200",
+      "response_model": "SbcGatewayApiOpenApiAvailableResponse",
+      "schema_kind": "ref"
+    },
+    {
+      "operation_id": "openApiMultiConfirm",
+      "python_method": "open_api_multi_confirm",
+      "http_method": "POST",
+      "path": "/special-offers/v1/multiConfirm",
+      "response_status": "200",
+      "response_model": "SbcGatewayApiOpenApiMultiConfirmResponse",
+      "schema_kind": "ref"
+    },
+    {
+      "operation_id": "openApiMultiCreate",
+      "python_method": "open_api_multi_create",
+      "http_method": "POST",
+      "path": "/special-offers/v1/multiCreate",
+      "response_status": "200",
+      "response_model": "SbcGatewayApiOpenApiMultiCreateResponse",
+      "schema_kind": "ref"
+    },
+    {
+      "operation_id": "openApiStats",
+      "python_method": "open_api_stats",
+      "http_method": "POST",
+      "path": "/special-offers/v1/stats",
+      "response_status": "200",
+      "response_model": "SbcGatewayApiOpenApiStatsResponse",
+      "schema_kind": "ref"
+    },
+    {
+      "operation_id": "openApiTariffInfo",
+      "python_method": "open_api_tariff_info",
+      "http_method": "POST",
+      "path": "/special-offers/v1/tariffInfo",
+      "response_status": "200",
+      "response_model": "SbcGatewayApiOpenApiTariffInfoResponse",
+      "schema_kind": "ref"
+    }
+  ],
+  "stock-management": [
+    {
+      "operation_id": "post_stock_management_1_info",
+      "python_method": "post_stock_management_1_info",
+      "http_method": "POST",
+      "path": "/stock-management/1/info",
+      "response_status": "200",
+      "response_model": "StockManagementApiPostStockManagement1InfoResponse",
+      "schema_kind": "ref"
+    },
+    {
+      "operation_id": "put_stock_management_1_stocks",
+      "python_method": "put_stock_management_1_stocks",
+      "http_method": "PUT",
+      "path": "/stock-management/1/stocks",
+      "response_status": "200",
+      "response_model": "StockManagementApiPutStockManagement1StocksResponse",
+      "schema_kind": "ref"
+    }
+  ],
+  "str": [
+    {
+      "operation_id": "putBookingsInfo",
+      "python_method": "put_bookings_info",
+      "http_method": "POST",
+      "path": "/core/v1/accounts/{user_id}/items/{item_id}/bookings",
+      "response_status": "200",
+      "response_model": "StrApiPutBookingsInfoResponse",
+      "schema_kind": "object"
+    },
+    {
+      "operation_id": "getRealtyBookings",
+      "python_method": "get_realty_bookings",
+      "http_method": "GET",
+      "path": "/realty/v1/accounts/{user_id}/items/{item_id}/bookings",
+      "response_status": "200",
+      "response_model": "StrApiGetRealtyBookingsResponse",
+      "schema_kind": "object"
+    },
+    {
+      "operation_id": "postRealtyPrices",
+      "python_method": "post_realty_prices",
+      "http_method": "POST",
+      "path": "/realty/v1/accounts/{user_id}/items/{item_id}/prices",
+      "response_status": "200",
+      "response_model": "StrApiPostRealtyPricesResponse",
+      "schema_kind": "object"
+    },
+    {
+      "operation_id": "putIntervals",
+      "python_method": "put_intervals",
+      "http_method": "POST",
+      "path": "/realty/v1/items/intervals",
+      "response_status": "200",
+      "response_model": "StrApiPutIntervalsResponse",
+      "schema_kind": "object"
+    },
+    {
+      "operation_id": "postBaseParams",
+      "python_method": "post_base_params",
+      "http_method": "POST",
+      "path": "/realty/v1/items/{item_id}/base",
+      "response_status": "200",
+      "response_model": "None",
+      "schema_kind": "none"
+    }
+  ],
+  "tariff": [
+    {
+      "operation_id": "getTariffInfo",
+      "python_method": "get_tariff_info",
+      "http_method": "GET",
+      "path": "/tariff/info/1",
+      "response_status": "200",
+      "response_model": "TariffApiGetTariffInfoResponse",
+      "schema_kind": "ref"
+    }
+  ],
+  "trxpromo": [
+    {
+      "operation_id": "api_trx_promo_open_api_apply",
+      "python_method": "api_trx_promo_open_api_apply",
+      "http_method": "POST",
+      "path": "/trx-promo/1/apply",
+      "response_status": "200",
+      "response_model": "TrxpromoApiApiTrxPromoOpenApiApplyResponse",
+      "schema_kind": "ref"
+    },
+    {
+      "operation_id": "api_trx_promo_open_api_cancel",
+      "python_method": "api_trx_promo_open_api_cancel",
+      "http_method": "POST",
+      "path": "/trx-promo/1/cancel",
+      "response_status": "200",
+      "response_model": "TrxpromoApiApiTrxPromoOpenApiCancelResponse",
+      "schema_kind": "ref"
+    },
+    {
+      "operation_id": "api_trx_promo_open_api_commissions",
+      "python_method": "api_trx_promo_open_api_commissions",
+      "http_method": "GET",
+      "path": "/trx-promo/1/commissions",
+      "response_status": "200",
+      "response_model": "TrxpromoApiApiTrxPromoOpenApiCommissionsResponse",
+      "schema_kind": "ref"
+    }
+  ],
+  "user": [
+    {
+      "operation_id": "postOperationsHistory",
+      "python_method": "post_operations_history",
+      "http_method": "POST",
+      "path": "/core/v1/accounts/operations_history/",
+      "response_status": "200",
+      "response_model": "UserApiPostOperationsHistoryResponse",
+      "schema_kind": "ref"
+    },
+    {
+      "operation_id": "getUserInfoSelf",
+      "python_method": "get_user_info_self",
+      "http_method": "GET",
+      "path": "/core/v1/accounts/self",
+      "response_status": "200",
+      "response_model": "UserApiGetUserInfoSelfResponse",
+      "schema_kind": "ref"
+    },
+    {
+      "operation_id": "getUserBalance",
+      "python_method": "get_user_balance",
+      "http_method": "GET",
+      "path": "/core/v1/accounts/{user_id}/balance/",
+      "response_status": "200",
+      "response_model": "UserApiGetUserBalanceResponse",
+      "schema_kind": "ref"
+    }
+  ]
+}

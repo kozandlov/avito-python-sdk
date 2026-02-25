@@ -1,0 +1,191 @@
+{
+  "generated_at_utc": "2026-02-25T08:46:30.723529+00:00",
+  "source_list_url": "https://developers.avito.ru/web/1/openapi/list",
+  "slug_count": 23,
+  "entries": [
+    {
+      "slug": "accounts-hierarchy",
+      "title": "Иерархия Аккаунтов",
+      "source": "https://developers.avito.ru/web/1/openapi/info/accounts-hierarchy",
+      "raw_file": "specs/raw/accounts-hierarchy.json",
+      "sha256": "f6cf5f6ecfbe319c7ad0955d418654aa44ae3c717f768d30ad672f38e0ab5401",
+      "operations": 5
+    },
+    {
+      "slug": "auction",
+      "title": "CPA-аукцион",
+      "source": "https://developers.avito.ru/web/1/openapi/info/auction",
+      "raw_file": "specs/raw/auction.json",
+      "sha256": "d7b6a4a789115c6a366718514a38ec03819a2ee6613cf3455def8602825229c7",
+      "operations": 2
+    },
+    {
+      "slug": "auth",
+      "title": "Авторизация",
+      "source": "https://developers.avito.ru/web/1/openapi/info/auth",
+      "raw_file": "specs/raw/auth.json",
+      "sha256": "fffff1aff034290a0ecd3bf451173cfeff2679ac5205b669529feebc6506f5cd",
+      "operations": 3
+    },
+    {
+      "slug": "autoload",
+      "title": "Автозагрузка",
+      "source": "https://developers.avito.ru/web/1/openapi/info/autoload",
+      "raw_file": "specs/raw/autoload.json",
+      "sha256": "ecc7d9536fe0d5808710514f2d647782a41d58b5ef427e4cb5e0ab31e1bcf9a4",
+      "operations": 17
+    },
+    {
+      "slug": "autostrategy",
+      "title": "Автостратегия",
+      "source": "https://developers.avito.ru/web/1/openapi/info/autostrategy",
+      "raw_file": "specs/raw/autostrategy.json",
+      "sha256": "feb7cc4a4d8207f6279081fbd7b8b0d57c889fb40357e1e416d8556e6648da39",
+      "operations": 7
+    },
+    {
+      "slug": "autoteka",
+      "title": "Автотека",
+      "source": "https://developers.avito.ru/web/1/openapi/info/autoteka",
+      "raw_file": "specs/raw/autoteka.json",
+      "sha256": "4369b77d709bd23573f2d3ffb600190fdf2bae1a911cdf5baf3ac3b906b890a1",
+      "operations": 27
+    },
+    {
+      "slug": "calltracking",
+      "title": "CallTracking[КТ]",
+      "source": "https://developers.avito.ru/web/1/openapi/info/calltracking",
+      "raw_file": "specs/raw/calltracking.json",
+      "sha256": "25eb16b0378eb76dffa18439b6b477aa2b00e255266c8c7b6c687a18aec51cf5",
+      "operations": 3
+    },
+    {
+      "slug": "cpa",
+      "title": "CPA Авито",
+      "source": "https://developers.avito.ru/web/1/openapi/info/cpa",
+      "raw_file": "specs/raw/cpa.json",
+      "sha256": "05e6aa65f14445c4d29b9dc96366838f08569b5a115238723837e257d85bfe2e",
+      "operations": 11
+    },
+    {
+      "slug": "cpxpromo",
+      "title": "Настройка цены целевого действия",
+      "source": "https://developers.avito.ru/web/1/openapi/info/cpxpromo",
+      "raw_file": "specs/raw/cpxpromo.json",
+      "sha256": "82291e0844d6c639360f81171b3cfa34382dee4ff468104756e3f91c4f3dc8e6",
+      "operations": 5
+    },
+    {
+      "slug": "delivery-sandbox",
+      "title": "Доставка",
+      "source": "https://developers.avito.ru/web/1/openapi/info/delivery-sandbox",
+      "raw_file": "specs/raw/delivery-sandbox.json",
+      "sha256": "7fafdf4bbf40d2abad1691398bc61da7f795d7feb91daea1841403ea04bbe046",
+      "operations": 31
+    },
+    {
+      "slug": "item",
+      "title": "Объявления",
+      "source": "https://developers.avito.ru/web/1/openapi/info/item",
+      "raw_file": "specs/raw/item.json",
+      "sha256": "3be992f1669df7e581ee28684a1cdb156c5201cd38a78cc0f671638bb3264ccd",
+      "operations": 10
+    },
+    {
+      "slug": "job",
+      "title": "Авито.Работа",
+      "source": "https://developers.avito.ru/web/1/openapi/info/job",
+      "raw_file": "specs/raw/job.json",
+      "sha256": "fbcaa2cc2f9210e8088219e4dc20de942c003eb12f3e00e695d3938d012bd834",
+      "operations": 23
+    },
+    {
+      "slug": "messenger",
+      "title": "Мессенджер",
+      "source": "https://developers.avito.ru/web/1/openapi/info/messenger",
+      "raw_file": "specs/raw/messenger.json",
+      "sha256": "a2b8e709c29ec92e9cd3e152bb400fa20d7f2d5214357929691df0f5a2c0d9e0",
+      "operations": 13
+    },
+    {
+      "slug": "order-management",
+      "title": "Управление заказами",
+      "source": "https://developers.avito.ru/web/1/openapi/info/order-management",
+      "raw_file": "specs/raw/order-management.json",
+      "sha256": "faeabf08783552b08b054424c8cf733503ffb5a5a1aa6d4dd6bed5be9d646c0d",
+      "operations": 12
+    },
+    {
+      "slug": "promotion",
+      "title": "Продвижение",
+      "source": "https://developers.avito.ru/web/1/openapi/info/promotion",
+      "raw_file": "specs/raw/promotion.json",
+      "sha256": "a3b9571c613a71469e1ee8fd38010e3e1bfdac8600172589bce465e38d085cda",
+      "operations": 7
+    },
+    {
+      "slug": "ratings",
+      "title": "Рейтинги и отзывы",
+      "source": "https://developers.avito.ru/web/1/openapi/info/ratings",
+      "raw_file": "specs/raw/ratings.json",
+      "sha256": "a623a2b6d3c920151eccc995c514ca669f30b835ca9d85b3d526c436e9c4fb63",
+      "operations": 4
+    },
+    {
+      "slug": "realty-reports",
+      "title": "Аналитика по недвижимости",
+      "source": "https://developers.avito.ru/web/1/openapi/info/realty-reports",
+      "raw_file": "specs/raw/realty-reports.json",
+      "sha256": "ad349922d891316a0aa945b268fa179118cb0e5c2f381e8864b2dc9ba7be4f3e",
+      "operations": 2
+    },
+    {
+      "slug": "sbc-gateway",
+      "title": "Рассылка скидок и спецпредложений в мессенджере (beta-version)",
+      "source": "https://developers.avito.ru/web/1/openapi/info/sbc-gateway",
+      "raw_file": "specs/raw/sbc-gateway.json",
+      "sha256": "9c1e9c38a54d991eeb88c724e47172fb4712c4e8d3f164d1417402b2d71ba030",
+      "operations": 5
+    },
+    {
+      "slug": "stock-management",
+      "title": "Управление остатками",
+      "source": "https://developers.avito.ru/web/1/openapi/info/stock-management",
+      "raw_file": "specs/raw/stock-management.json",
+      "sha256": "5ce822fccab38dc41a9c2b2c9340775d736b23a4f0058cbd73e475e06c10f159",
+      "operations": 2
+    },
+    {
+      "slug": "str",
+      "title": "Краткосрочная аренда",
+      "source": "https://developers.avito.ru/web/1/openapi/info/str",
+      "raw_file": "specs/raw/str.json",
+      "sha256": "6942f6f9eff10147dc700d74d3661518a406e34058ed3fe658f22a3774f12999",
+      "operations": 5
+    },
+    {
+      "slug": "tariff",
+      "title": "Тарифы",
+      "source": "https://developers.avito.ru/web/1/openapi/info/tariff",
+      "raw_file": "specs/raw/tariff.json",
+      "sha256": "6d9e27b2a18bde2bdad1800f9bd5f51cacdd0dfc3e3d52fabf00de35dfc71374",
+      "operations": 1
+    },
+    {
+      "slug": "trxpromo",
+      "title": "TrxPromo",
+      "source": "https://developers.avito.ru/web/1/openapi/info/trxpromo",
+      "raw_file": "specs/raw/trxpromo.json",
+      "sha256": "17af8142a76838720856218f35630f2385487a5b8d17825ad428f3cca453fcc7",
+      "operations": 3
+    },
+    {
+      "slug": "user",
+      "title": "Информация о пользователе",
+      "source": "https://developers.avito.ru/web/1/openapi/info/user",
+      "raw_file": "specs/raw/user.json",
+      "sha256": "c3de3f054277a0756a968aa526b09b459c6c5a74ab9230113ef117358caca88f",
+      "operations": 3
+    }
+  ]
+}
