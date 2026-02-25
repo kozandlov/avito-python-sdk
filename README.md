@@ -33,6 +33,18 @@ async def main() -> None:
         print(token.access_token[:8], me.model_dump(exclude_none=True))
 ```
 
+## Установка из пакетного менеджера
+
+```bash
+pip install pyAvitoApi
+```
+
+Для фиксации версии в `requirements.txt`:
+
+```text
+pyAvitoApi==0.2.0
+```
+
 ## Перегенерация
 
 ```bash
@@ -41,6 +53,16 @@ python tools/patch_specs.py
 python tools/generate_clients.py
 python tools/build_coverage_report.py
 ```
+
+## Релиз и публикация в PyPI
+
+Пайплайн релиза автоматизирован через GitHub Actions:
+
+1. Запустите workflow `Release Bump And Tag`.
+2. Workflow увеличит patch-версию в `pyproject.toml`, создаст commit и тег `vX.Y.Z`.
+3. По тегу автоматически запускается `Publish To PyPI`, который собирает и публикует пакет.
+
+Публикация использует Trusted Publishing (OIDC) без API-токенов в GitHub Secrets.
 
 ## Тесты
 

@@ -12,6 +12,10 @@ license = { text = "MIT" }
 authors = [
   { name = "pyAvitoApi contributors" }
 ]
+urls = {
+  Repository = "https://github.com/kozandlov/avito-python-sdk",
+  Issues = "https://github.com/kozandlov/avito-python-sdk/issues"
+}
 keywords = ["avito", "sdk", "openapi", "async", "httpx"]
 classifiers = [
   "Development Status :: 3 - Alpha",
