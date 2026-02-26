@@ -98,6 +98,43 @@ result = await client.messenger.post_send_message(
 print(result.model_dump(exclude_none=True))
 ```
 
+## Webhooks Avito (быстрый старт)
+
+Webhook flow:
+
+1. Поднимите публичный `HTTPS` endpoint в вашей системе.
+2. Подпишите URL через `client.messenger.post_webhook_v3(...)`.
+3. На входящем endpoint быстро возвращайте `200 OK` и обрабатывайте payload асинхронно.
+4. Проверяйте подписки через `client.messenger.get_subscriptions(...)`.
+5. При необходимости отключайте подписку `client.messenger.post_webhook_unsubscribe(...)`.
+
+Пример подписки:
+
+```python
+headers = await client.auth.auth_header()
+response = await client.messenger.post_webhook_v3(
+    json_body={"url": "https://your-domain.com/avito/webhook?token=secret123"},
+    headers=headers,
+)
+print(response.model_dump(exclude_none=True))
+```
+
+Минимальный webhook endpoint (FastAPI):
+
+```python
+from fastapi import FastAPI, HTTPException, Request
+
+app = FastAPI()
+
+@app.post("/avito/webhook")
+async def avito_webhook(request: Request):
+    if request.query_params.get("token") != "secret123":
+        raise HTTPException(status_code=403, detail="forbidden")
+    event = await request.json()
+    # TODO: push event to queue and return quickly
+    return {"ok": True}
+```
+
 ## Typed response models
 
 ```python
@@ -142,6 +179,9 @@ except AvitoApiError as e:
 - `examples/fastapi_app/main.py`
 - `examples/django_app/avito_client.py`
 - `examples/celery_app/tasks.py`
+- `examples/webhooks/fastapi_receiver.py`
+- `examples/webhooks/subscribe.py`
+- `examples/webhooks/unsubscribe.py`
 - `examples/.env.example`
 
 ## Перегенерация SDK

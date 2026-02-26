@@ -128,7 +128,86 @@ result = await client.messenger.post_send_message(
 print(result.model_dump(exclude_none=True))
 ```
 
-## 6) Доступные API-group (slug -> property)
+## 6) Webhook-интеграция Avito
+
+Webhook-сценарий:
+1. Регистрируем URL (подписка).
+2. Получаем события на свой endpoint.
+3. Быстро подтверждаем прием (`200 OK`) и обрабатываем событие в фоне.
+4. Проверяем активные подписки.
+5. При необходимости отключаем подписку.
+
+### 6.1 Подписка на webhook V3
+
+```python
+headers = await client.auth.auth_header()
+
+subscription = await client.messenger.post_webhook_v3(
+    json_body={
+        "url": "https://your-domain.com/avito/webhook?token=secret123",
+    },
+    headers=headers,
+)
+print(subscription.model_dump(exclude_none=True))
+```
+
+### 6.2 Проверка активных подписок
+
+```python
+headers = await client.auth.auth_header()
+
+subscriptions = await client.messenger.get_subscriptions(
+    headers=headers,
+)
+print(subscriptions.model_dump(exclude_none=True))
+```
+
+### 6.3 Отключение webhook-подписки
+
+```python
+headers = await client.auth.auth_header()
+
+result = await client.messenger.post_webhook_unsubscribe(
+    json_body={
+        "url": "https://your-domain.com/avito/webhook?token=secret123",
+    },
+    headers=headers,
+)
+print(result.model_dump(exclude_none=True))
+```
+
+### 6.4 Пример приемника webhook (FastAPI)
+
+```python
+from fastapi import FastAPI, HTTPException, Request
+
+app = FastAPI()
+WEBHOOK_TOKEN = "secret123"
+
+
+@app.post("/avito/webhook")
+async def avito_webhook(request: Request):
+    token = request.query_params.get("token")
+    if token != WEBHOOK_TOKEN:
+        raise HTTPException(status_code=403, detail="forbidden")
+
+    event = await request.json()
+    # Быстрый ACK; тяжелую обработку отправляйте в очередь
+    # queue.publish(event)
+    return {"ok": True}
+```
+
+### 6.5 Production-рекомендации
+
+- Endpoint должен быть публичным по `HTTPS`.
+- Возвращайте `200 OK` в пределах ~2 секунд.
+- Делайте дедупликацию событий по `id` (идемпотентность).
+- Храните raw payload для аудита и повторной обработки.
+- Переносите обработку в очередь (Celery/RQ/Kafka).
+- Добавляйте retry/backoff и метрики (ошибки, latency, throughput).
+- Защитите endpoint shared-secret токеном (query/header).
+
+## 7) Доступные API-group (slug -> property)
 
 - `accounts-hierarchy` -> `client.accounts_hierarchy`
 - `auction` -> `client.auction`
@@ -160,7 +239,7 @@ print(result.model_dump(exclude_none=True))
   `from pyavitoapi.generated.auth import AuthApi`,
   но обычно это не нужно.
 
-## 7) Обработка ошибок
+## 8) Обработка ошибок
 
 В transport/core используются typed exceptions:
 
@@ -186,7 +265,7 @@ except AvitoApiError as e:
     print("API error:", e.status_code, e.payload)
 ```
 
-## 8) Перегенерация SDK при обновлении API
+## 9) Перегенерация SDK при обновлении API
 
 ```bash
 python tools/fetch_specs.py
@@ -200,7 +279,7 @@ python tools/build_coverage_report.py
 2. прогоните `pytest -q`,
 3. соберите пакет `python -m build`.
 
-## 9) Где смотреть детали
+## 10) Где смотреть детали
 
 - Endpoint matrix: `docs/endpoint-matrix.md`
 - Known quirks: `docs/known-quirks.md`
