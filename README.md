@@ -1,56 +1,62 @@
 # avito-python-sdk
 
-Асинхронная Python SDK-библиотека для Avito API.
+[![PyPI version](https://img.shields.io/pypi/v/avito-python-sdk.svg)](https://pypi.org/project/avito-python-sdk/)
+[![Python versions](https://img.shields.io/pypi/pyversions/avito-python-sdk.svg)](https://pypi.org/project/avito-python-sdk/)
+[![CI](https://github.com/kozandlov/avito-python-sdk/actions/workflows/ci.yml/badge.svg)](https://github.com/kozandlov/avito-python-sdk/actions/workflows/ci.yml)
+[![License](https://img.shields.io/badge/license-AGPLv3-blue.svg)](LICENSE)
 
-Пакет в `pip`: `avito-python-sdk`  
-Импорт в коде: `pyavitoapi`
+Асинхронная Python SDK-библиотека для Avito API с typed response models.
+
+- Пакет в `pip`: `avito-python-sdk`
+- Импорт в коде: `pyavitoapi`
+- Лицензия: `AGPL-3.0-only`
 
 ## Установка
 
-### Из PyPI
+### Через `pip`
 
 ```bash
 pip install avito-python-sdk
 ```
 
-### Установка конкретной версии
+### С фиксацией версии
 
 ```bash
 pip install avito-python-sdk==0.2.3
 ```
 
-### Использование в `requirements.txt`
+### Через `requirements.txt`
 
 ```text
 avito-python-sdk==0.2.3
 ```
 
-Установка зависимостей проекта:
-
 ```bash
 pip install -r requirements.txt
 ```
 
-### Для разработки SDK
+### Для разработки
 
 ```bash
 pip install -e .[dev]
 ```
 
-## Быстрый старт
+## Быстрый старт (до 5 минут)
 
 ```python
 import asyncio
+import os
 
 from pyavitoapi import AvitoAsyncClient
 
 
 async def main() -> None:
     async with AvitoAsyncClient(
-        client_id="YOUR_CLIENT_ID",
-        client_secret="YOUR_CLIENT_SECRET",
+        client_id=os.environ["AVITO_CLIENT_ID"],
+        client_secret=os.environ["AVITO_CLIENT_SECRET"],
     ) as client:
-        me = await client.user.get_user_info_self(path_params={})
+        headers = await client.auth.auth_header()
+        me = await client.user.get_user_info_self(path_params={}, headers=headers)
         print(me.model_dump(exclude_none=True))
 
 
@@ -58,78 +64,48 @@ if __name__ == "__main__":
     asyncio.run(main())
 ```
 
-## Примеры использования SDK
+## Готовые сценарии
 
-### 1) Получение access token
-
-```python
-token = await client.auth.get_client_credentials_token()
-print(token.access_token, token.expires_in)
-```
-
-### 2) Получение `Authorization` заголовка
+### 1) Профиль пользователя
 
 ```python
 headers = await client.auth.auth_header()
-# {'Authorization': 'Bearer ...'}
+me = await client.user.get_user_info_self(path_params={}, headers=headers)
+print(me.id, me.name, me.email)
 ```
 
-### 3) Информация о текущем пользователе
+### 2) Чаты Avito Messenger
 
 ```python
-me = await client.user.get_user_info_self(path_params={})
-print(me.id, me.name)
-```
-
-### 4) Баланс пользователя
-
-```python
-balance = await client.user.get_user_balance(path_params={"user_id": 123456789})
-print(balance.real, balance.bonus)
-```
-
-### 5) Список чатов (Messenger)
-
-```python
+headers = await client.auth.auth_header()
 chats = await client.messenger.get_chats_v2(
     path_params={"user_id": 123456789},
     query={"limit": 50, "offset": 0},
+    headers=headers,
 )
 print(chats.model_dump(exclude_none=True))
 ```
 
-### 6) Отправка сообщения в чат
+### 3) Отправка сообщения
 
 ```python
+headers = await client.auth.auth_header()
 result = await client.messenger.post_send_message(
     path_params={"user_id": 123456789, "chat_id": "CHAT_ID"},
-    json_body={
-        "type": "text",
-        "message": {"text": "Здравствуйте!"},
-    },
+    json_body={"type": "text", "message": {"text": "Здравствуйте!"}},
+    headers=headers,
 )
 print(result.model_dump(exclude_none=True))
 ```
 
-### 7) Доступные API-группы
-
-```python
-print(client.available_apis)
-```
-
 ## Typed response models
 
-Сгенерированные методы возвращают Pydantic-модели.
-
 ```python
-user = await client.user.get_user_info_self(path_params={})
+headers = await client.auth.auth_header()
+user = await client.user.get_user_info_self(path_params={}, headers=headers)
 
-# доступ к typed полям
 print(user.id, user.email)
-
-# преобразование в dict
-payload = user.model_dump(exclude_none=True)
-print(payload)
+print(user.model_dump(exclude_none=True))
 ```
 
 ## Обработка ошибок
@@ -144,7 +120,8 @@ from pyavitoapi.transport.errors import (
 )
 
 try:
-    data = await client.user.get_user_info_self(path_params={})
+    headers = await client.auth.auth_header()
+    await client.user.get_user_info_self(path_params={}, headers=headers)
 except AvitoRateLimitError as e:
     print("retry_after:", e.retry_after)
 except AvitoValidationError as e:
@@ -156,6 +133,16 @@ except AvitoTransportError as e:
 except AvitoApiError as e:
     print("api error:", e.status_code, e.payload)
 ```
+
+## Интеграционные примеры
+
+Готовые шаблоны лежат в директории `examples/`:
+
+- `examples/basic_user_info.py`
+- `examples/fastapi_app/main.py`
+- `examples/django_app/avito_client.py`
+- `examples/celery_app/tasks.py`
+- `examples/.env.example`
 
 ## Перегенерация SDK
 
@@ -183,12 +170,23 @@ python -m build
   - собирает wheel/sdist,
   - публикует пакет в PyPI через Trusted Publishing (OIDC).
 
+## Поддержка и вклад
+
+- Bug/Feature шаблоны: `.github/ISSUE_TEMPLATE/`
+- PR шаблон: `.github/pull_request_template.md`
+- Руководство для контрибьюторов: `CONTRIBUTING.md`
+- Политика безопасности: `SECURITY.md`
+- FAQ: `docs/FAQ.md`
+- Troubleshooting: `docs/TROUBLESHOOTING.md`
+
 ## Полезные ссылки
 
+- Примеры интеграции: `examples/README.md`
+- Growth metrics: `docs/GROWTH_METRICS.md`
+- Материалы для анонсов: `docs/articles/`
 - Руководство по использованию: `docs/USAGE.md`
 - Endpoint matrix: `docs/endpoint-matrix.md`
 - Known quirks: `docs/known-quirks.md`
 - Coverage report: `docs/final-compliance-report.md`
 - Typed response map: `docs/typed-response-map.json`
 - Release notes: `RELEASE_NOTES.md`
-- License: `AGPL-3.0-only`

@@ -1,0 +1,24 @@
+name: Feature request
+description: Предложить улучшение SDK
+title: "[Feature] "
+labels: ["enhancement"]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: Какая проблема решается?
+      description: Опишите текущую боль или ограничение.
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Предлагаемое решение
+      description: Как должен выглядеть API/поведение?
+    validations:
+      required: true
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Альтернативы
+      description: Какие варианты уже рассматривались?

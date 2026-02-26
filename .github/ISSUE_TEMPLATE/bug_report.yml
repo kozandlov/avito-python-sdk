@@ -1,0 +1,32 @@
+name: Bug report
+description: Сообщить о баге в SDK
+title: "[Bug] "
+labels: ["bug"]
+body:
+  - type: textarea
+    id: summary
+    attributes:
+      label: Краткое описание
+      description: Что происходит и что ожидалось?
+    validations:
+      required: true
+  - type: input
+    id: sdk_version
+    attributes:
+      label: Версия SDK
+      description: Например, avito-python-sdk==0.2.3
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Шаги воспроизведения
+      description: Минимальный сценарий воспроизведения.
+    validations:
+      required: true
+  - type: textarea
+    id: logs
+    attributes:
+      label: Логи/Traceback
+      description: Вставьте ошибку, если есть.
+      render: shell
