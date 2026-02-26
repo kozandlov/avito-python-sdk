@@ -3,14 +3,14 @@ requires = ["hatchling>=1.24.0"]
 build-backend = "hatchling.build"
 
 [project]
-name = "pyAvitoApi"
+name = "avito-python-sdk"
 version = "0.2.0"
 description = "Async Python SDK for Avito OpenAPI (full endpoint coverage)"
 readme = "README.md"
 requires-python = ">=3.11"
 license = { text = "MIT" }
 authors = [
-  { name = "pyAvitoApi contributors" }
+  { name = "kozandlov" }
 ]
 urls = {
   Repository = "https://github.com/kozandlov/avito-python-sdk",
