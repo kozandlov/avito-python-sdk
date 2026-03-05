@@ -125,4 +125,23 @@ class ItemApiItemAnalyticsResponseResultModel9(_BaseModel):
 class ItemApiItemAnalyticsResponse(_BaseModel):
     result: ItemApiItemAnalyticsResponseResultModel9 = None
 
-__all__ = ['ItemApiVasPricesResponse', 'CallsStatsDay', 'CallsStatsItem', 'ItemApiPostCallsStatsResponseResultModel1', 'ItemApiPostCallsStatsResponse', 'InfoVas', 'ItemApiGetItemInfoResponse', 'ItemApiPutItemVasResponse', 'ItemApiGetItemsInfoResponseMetaModel2', 'ItemApiGetItemsInfoResponseResourcesItemModel3CategoryModel4', 'ItemApiGetItemsInfoResponseResourcesItemModel3', 'ItemApiGetItemsInfoResponse', 'ItemApiUpdatePriceResponseResultModel5', 'ItemApiUpdatePriceResponse', 'ItemApiPutItemVasPackageV2Response', 'ApplyVasResp', 'ItemApiApplyVasResponse', 'StatisticsCountersItemModel7StatsItemModel8', 'StatisticsCountersItemModel7', 'StatisticsCounters', 'ItemApiItemStatsShallowResponseResultModel6', 'ItemApiItemStatsShallowResponse', 'ItemApiItemAnalyticsResponseResultModel9GroupingsItemModel10MetricsItemModel11', 'Groupings', 'ItemApiItemAnalyticsResponseResultModel9GroupingsItemModel10', 'ItemApiItemAnalyticsResponseResultModel9', 'ItemApiItemAnalyticsResponse']
+class ItemApiAccountSpendingsResponseResultModel12GroupingsItemModel13SpendingsItemModel14(_BaseModel):
+    slug: str
+    value: float
+
+class SpendingsGroupings(RootModel[Literal['day', 'week', 'month']]):
+    pass
+
+class ItemApiAccountSpendingsResponseResultModel12GroupingsItemModel13(_BaseModel):
+    date: str
+    spendings: list[ItemApiAccountSpendingsResponseResultModel12GroupingsItemModel13SpendingsItemModel14]
+    type: SpendingsGroupings
+
+class ItemApiAccountSpendingsResponseResultModel12(_BaseModel):
+    groupings: list[ItemApiAccountSpendingsResponseResultModel12GroupingsItemModel13]
+    timestamp: int
+
+class ItemApiAccountSpendingsResponse(_BaseModel):
+    result: ItemApiAccountSpendingsResponseResultModel12
+
+__all__ = ['ItemApiVasPricesResponse', 'CallsStatsDay', 'CallsStatsItem', 'ItemApiPostCallsStatsResponseResultModel1', 'ItemApiPostCallsStatsResponse', 'InfoVas', 'ItemApiGetItemInfoResponse', 'ItemApiPutItemVasResponse', 'ItemApiGetItemsInfoResponseMetaModel2', 'ItemApiGetItemsInfoResponseResourcesItemModel3CategoryModel4', 'ItemApiGetItemsInfoResponseResourcesItemModel3', 'ItemApiGetItemsInfoResponse', 'ItemApiUpdatePriceResponseResultModel5', 'ItemApiUpdatePriceResponse', 'ItemApiPutItemVasPackageV2Response', 'ApplyVasResp', 'ItemApiApplyVasResponse', 'StatisticsCountersItemModel7StatsItemModel8', 'StatisticsCountersItemModel7', 'StatisticsCounters', 'ItemApiItemStatsShallowResponseResultModel6', 'ItemApiItemStatsShallowResponse', 'ItemApiItemAnalyticsResponseResultModel9GroupingsItemModel10MetricsItemModel11', 'Groupings', 'ItemApiItemAnalyticsResponseResultModel9GroupingsItemModel10', 'ItemApiItemAnalyticsResponseResultModel9', 'ItemApiItemAnalyticsResponse', 'ItemApiAccountSpendingsResponseResultModel12GroupingsItemModel13SpendingsItemModel14', 'SpendingsGroupings', 'ItemApiAccountSpendingsResponseResultModel12GroupingsItemModel13', 'ItemApiAccountSpendingsResponseResultModel12', 'ItemApiAccountSpendingsResponse']

@@ -7,7 +7,7 @@ from pydantic import ValidationError
 
 from pyavitoapi.transport.errors import AvitoValidationError
 from pyavitoapi.transport.http import AvitoHttpTransport
-from pyavitoapi.generated_models.item import ItemApiApplyVasResponse, ItemApiGetItemInfoResponse, ItemApiGetItemsInfoResponse, ItemApiItemAnalyticsResponse, ItemApiItemStatsShallowResponse, ItemApiPostCallsStatsResponse, ItemApiPutItemVasPackageV2Response, ItemApiPutItemVasResponse, ItemApiUpdatePriceResponse, ItemApiVasPricesResponse
+from pyavitoapi.generated_models.item import ItemApiAccountSpendingsResponse, ItemApiApplyVasResponse, ItemApiGetItemInfoResponse, ItemApiGetItemsInfoResponse, ItemApiItemAnalyticsResponse, ItemApiItemStatsShallowResponse, ItemApiPostCallsStatsResponse, ItemApiPutItemVasPackageV2Response, ItemApiPutItemVasResponse, ItemApiUpdatePriceResponse, ItemApiVasPricesResponse
 
 
 class ItemApi:
@@ -343,6 +343,39 @@ class ItemApi:
                     "python_method": "item_analytics",
                     "http_method": "POST",
                     "path": "/stats/v2/accounts/{user_id}/items",
+                    "errors": exc.errors(),
+                },
+            ) from exc
+
+    async def account_spendings(
+        self,
+        *,
+        path_params: Optional[dict[str, Any]] = None,
+        query: Optional[dict[str, Any]] = None,
+        json_body: Optional[dict[str, Any]] = None,
+        headers: Optional[dict[str, str]] = None,
+    ) -> ItemApiAccountSpendingsResponse:
+        """Получение статистики расходов профиля"""
+        payload = await self._transport.request(
+            method="POST",
+            path_template="/stats/v2/accounts/{user_id}/spendings",
+            path_params=path_params,
+            query=query,
+            json_body=json_body,
+            headers=headers,
+        )
+        try:
+            return ItemApiAccountSpendingsResponse.model_validate(payload)
+        except ValidationError as exc:
+            raise AvitoValidationError(
+                "Response validation failed for item.account_spendings (POST /stats/v2/accounts/{user_id}/spendings)",
+                payload=payload,
+                details={
+                    "slug": "item",
+                    "operation_id": "accountSpendings",
+                    "python_method": "account_spendings",
+                    "http_method": "POST",
+                    "path": "/stats/v2/accounts/{user_id}/spendings",
                     "errors": exc.errors(),
                 },
             ) from exc

@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-02-25T08:46:30.723529+00:00",
+  "generated_at_utc": "2026-03-05T05:08:52.507832+00:00",
   "source_list_url": "https://developers.avito.ru/web/1/openapi/list",
   "slug_count": 23,
   "entries": [
@@ -88,15 +88,15 @@
       "title": "Объявления",
       "source": "https://developers.avito.ru/web/1/openapi/info/item",
       "raw_file": "specs/raw/item.json",
-      "sha256": "3be992f1669df7e581ee28684a1cdb156c5201cd38a78cc0f671638bb3264ccd",
-      "operations": 10
+      "sha256": "7b08b09d241a645727cd727fadd508014cdc755213815aabc77447afe9e9613c",
+      "operations": 11
     },
     {
       "slug": "job",
       "title": "Авито.Работа",
       "source": "https://developers.avito.ru/web/1/openapi/info/job",
       "raw_file": "specs/raw/job.json",
-      "sha256": "fbcaa2cc2f9210e8088219e4dc20de942c003eb12f3e00e695d3938d012bd834",
+      "sha256": "39f6ade485037723a083fa88fb4e4268759ca4c1fbed2fc3808a507ec1185132",
       "operations": 23
     },
     {

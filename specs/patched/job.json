@@ -2201,10 +2201,48 @@
             },
             "type": "object"
           },
+          "auto_renewal": {
+            "description": "Вакансия на автопродлении",
+            "example": true,
+            "nullable": true,
+            "type": "boolean"
+          },
+          "contacts": {
+            "description": "Информация о контактах в вакансии",
+            "nullable": true,
+            "properties": {
+              "email": {
+                "description": "Email контактного лица в вакансии",
+                "example": "av***@avito.ru",
+                "nullable": true,
+                "type": "string"
+              },
+              "name": {
+                "description": "Имя контактного лица в вакансии",
+                "example": "Иванов Иван Иванович",
+                "nullable": true,
+                "type": "string"
+              }
+            },
+            "type": "object"
+          },
           "description": {
             "description": "Описание вакансии",
             "example": "Удобное расположение в разных районах Санкт-Петербурга.\nОпыт не обязателен.Обучение.\nГрафик:2/2 5/2 3/3 (День,ночь)",
             "type": "string"
+          },
+          "hierarchy": {
+            "description": "Информация об иерархии аккаунтов",
+            "nullable": true,
+            "properties": {
+              "employee_id": {
+                "description": "Идентификатор сотрудника назначенного на Вакансию",
+                "example": 45523233,
+                "nullable": true,
+                "type": "integer"
+              }
+            },
+            "type": "object"
           },
           "id": {
             "description": "Идентификатор вакансии на сайте",

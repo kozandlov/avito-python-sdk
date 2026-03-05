@@ -1090,6 +1090,15 @@
       "response_status": "200",
       "response_model": "ItemApiItemAnalyticsResponse",
       "schema_kind": "ref"
+    },
+    {
+      "operation_id": "accountSpendings",
+      "python_method": "account_spendings",
+      "http_method": "POST",
+      "path": "/stats/v2/accounts/{user_id}/spendings",
+      "response_status": "200",
+      "response_model": "ItemApiAccountSpendingsResponse",
+      "schema_kind": "ref"
     }
   ],
   "job": [
