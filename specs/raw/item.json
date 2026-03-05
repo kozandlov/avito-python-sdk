@@ -686,6 +686,164 @@
         },
         "type": "object"
       },
+      "SpendingsGroupings": {
+        "description": "Группировка статистики расходов (по дням, неделям, месяцам)",
+        "enum": [
+          "day",
+          "week",
+          "month"
+        ],
+        "type": "string"
+      },
+      "SpendingsRequest": {
+        "properties": {
+          "dateFrom": {
+            "description": "Дата начала периода статистики расходов в формате YYYY-MM-DD",
+            "example": "2020-09-01",
+            "format": "date",
+            "type": "string"
+          },
+          "dateTo": {
+            "description": "Дата конца периода статистики расходов в формате YYYY-MM-DD",
+            "example": "2021-10-15",
+            "format": "date",
+            "type": "string"
+          },
+          "filter": {
+            "description": "Набор ограничений, по которым необходимо отфильтровать расходы",
+            "nullable": true,
+            "properties": {
+              "categoryIDs": {
+                "description": "Идентификаторы категорий</br> [ Справочник идентификаторов категорий ](https://www.avito.st/s/openapi/catalog-categories.xml)",
+                "example": [
+                  11,
+                  12
+                ],
+                "items": {
+                  "type": "integer"
+                },
+                "nullable": true,
+                "type": "array"
+              },
+              "itemIDs": {
+                "description": "Идентификаторы объявлений",
+                "example": [
+                  534353,
+                  534354
+                ],
+                "items": {
+                  "type": "integer"
+                },
+                "nullable": true,
+                "type": "array"
+              },
+              "locationIDs": {
+                "description": "Идентификаторы населенных пунктов",
+                "example": [
+                  554353,
+                  554353
+                ],
+                "items": {
+                  "type": "integer"
+                },
+                "nullable": true,
+                "type": "array"
+              }
+            },
+            "type": "object"
+          },
+          "grouping": {
+            "$ref": "#/components/schemas/SpendingsGroupings"
+          },
+          "spendingTypes": {
+            "description": "Набор необходимых типов расходов",
+            "example": [
+              "promotion",
+              "presence"
+            ],
+            "items": {
+              "description": "Тип расходов (all, promotion, presence, commission, rest)",
+              "type": "string"
+            },
+            "type": "array"
+          }
+        },
+        "required": [
+          "dateFrom",
+          "dateTo",
+          "spendingTypes",
+          "grouping"
+        ],
+        "type": "object"
+      },
+      "SpendingsResponse": {
+        "properties": {
+          "result": {
+            "properties": {
+              "groupings": {
+                "description": "Группировки расходов",
+                "items": {
+                  "properties": {
+                    "date": {
+                      "description": "Дата группировки в формате YYYY-MM-DD",
+                      "example": "2025-05-02",
+                      "type": "string"
+                    },
+                    "spendings": {
+                      "description": "Расходы",
+                      "items": {
+                        "properties": {
+                          "slug": {
+                            "description": "Слаг типа расходов (promotion, presence, commission, rest)",
+                            "example": "presence",
+                            "type": "string"
+                          },
+                          "value": {
+                            "description": "Сумма расходов в рублях",
+                            "example": 123.95,
+                            "format": "float",
+                            "type": "number"
+                          }
+                        },
+                        "required": [
+                          "slug",
+                          "value"
+                        ],
+                        "type": "object"
+                      },
+                      "type": "array"
+                    },
+                    "type": {
+                      "$ref": "#/components/schemas/SpendingsGroupings"
+                    }
+                  },
+                  "required": [
+                    "date",
+                    "type",
+                    "spendings"
+                  ],
+                  "type": "object"
+                },
+                "type": "array"
+              },
+              "timestamp": {
+                "description": "Временная метка ответа (UTC)",
+                "example": 1746133200,
+                "type": "integer"
+              }
+            },
+            "required": [
+              "groupings",
+              "timestamp"
+            ],
+            "type": "object"
+          }
+        },
+        "required": [
+          "result"
+        ],
+        "type": "object"
+      },
       "StatisticsCounters": {
         "items": {
           "properties": {
@@ -2215,6 +2373,112 @@
           }
         ],
         "summary": "Получение статистических показателей по профилю",
+        "tags": [
+          "Item"
+        ]
+      },
+      "x-rate-limiter": {
+        "default": 1
+      }
+    },
+    "/stats/v2/accounts/{user_id}/spendings": {
+      "parameters": [
+        {
+          "$ref": "#/components/parameters/userId"
+        },
+        {
+          "$ref": "#/components/parameters/authHeader"
+        },
+        {
+          "$ref": "#/components/parameters/applicationJsonHeader"
+        }
+      ],
+      "post": {
+        "description": "Получение статистики расходов профиля.\n\n**Внимание:** Глубина данных статистики такого запроса ограничена 270 днями.\n\n**Внимание:** Система позволяет делать не более одного запроса в минуту на данный метод.\n\n### Группировки расходов\nИспользуйте группировки, чтобы получать конкретную статистику. Доступные группировки:\n\n  - **day** — по дням;\n  - **week** — по неделям;\n  - **month** — по месяцам.\n\n\n### Доступные типы расходов\n\n  - **all** - Все расходы в копейках. Сколько всего денег вы потратили на объявления и прочие услуги.\n    - **promotion** - Расходы на продвижение в копейках. Сколько денег вы потратили на продвижение объявлений и услуги, которые влияют на внешний вид объявления.\n    - **presence** - Расходы на размещение и целевые действия в копейках. Сколько денег вы потратили на размещение объявлений и целевые действия с ними — просмотры, чаты, звонки и отклики.\n    - **commission** - Комиссия в копейках. Какую комиссию вы заплатили за заказы с Авито Доставкой, которые приняли покупатели, а также за бронирование жилья.\n    - **rest** - Остальные расходы в копейках. Сколько денег вы потратили на чат-ботов и услуги, которые система не смогла распознать.\n",
+        "operationId": "accountSpendings",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SpendingsRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SpendingsResponse"
+                }
+              }
+            },
+            "description": "Successful response"
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Неверный запрос"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Требуется аутентификация"
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Доступ запрещен"
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Слишком много запросов"
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Error response"
+          }
+        },
+        "security": [
+          {
+            "AuthorizationCode": [
+              "stats:read"
+            ]
+          },
+          {
+            "ClientCredentials": []
+          }
+        ],
+        "summary": "Получение статистики расходов профиля",
         "tags": [
           "Item"
         ]
