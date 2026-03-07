@@ -108,6 +108,49 @@
             "nullable": true,
             "type": "integer"
           },
+          "fees": {
+            "description": "Настройки доплат",
+            "nullable": true,
+            "properties": {
+              "cleaning": {
+                "description": "Доплата за уборку после выезда",
+                "nullable": true,
+                "properties": {
+                  "amount": {
+                    "description": "Сумма доплаты в рублях. Можно указать 0, если уборка включена в стоимость",
+                    "format": "int64",
+                    "type": "integer"
+                  }
+                },
+                "type": "object"
+              },
+              "pets": {
+                "description": "Доплата за проживание с питомцем",
+                "nullable": true,
+                "properties": {
+                  "allowed": {
+                    "description": "Разрешено ли размещение с питомцем",
+                    "type": "boolean"
+                  },
+                  "amount": {
+                    "description": "Стоимость проживания с питомцем в рублях",
+                    "format": "int64",
+                    "type": "integer"
+                  },
+                  "application": {
+                    "description": "Тип применения доплаты за питомца (за ночь, за бронь)",
+                    "enum": [
+                      "by_booking",
+                      "by_night"
+                    ],
+                    "type": "string"
+                  }
+                },
+                "type": "object"
+              }
+            },
+            "type": "object"
+          },
           "instant": {
             "description": "Параметры мгновенного бронирования",
             "nullable": true,
