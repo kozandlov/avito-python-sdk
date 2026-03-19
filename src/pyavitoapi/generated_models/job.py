@@ -8,10 +8,19 @@ from pydantic import BaseModel, ConfigDict, ValidationError, Field, RootModel
 class _BaseModel(BaseModel):
     model_config = ConfigDict(extra="forbid")
 
+class JobApiApplicationsApplyActionsResponseAppliesItemModel1(_BaseModel):
+    created_at: str = None
+    id: str = None
+    state: str = None
+    updated_at: str = None
+
+class JobApiApplicationsApplyActionsResponse(_BaseModel):
+    applies: list[JobApiApplicationsApplyActionsResponseAppliesItemModel1] = None
+
 class EducationLevel(RootModel[Literal['higher', 'unfinished-higher', 'secondary', 'special-secondary', None]]):
     pass
 
-class JobApiApplicationsGetByIdsResponseAppliesItemModel1ApplicantModel2DataModel3FullNameModel4(_BaseModel):
+class JobApiApplicationsGetByIdsResponseAppliesItemModel2ApplicantModel3DataModel4FullNameModel5(_BaseModel):
     first_name: str = None
     last_name: str = None
     patronymic: str | None = None
@@ -19,64 +28,64 @@ class JobApiApplicationsGetByIdsResponseAppliesItemModel1ApplicantModel2DataMode
 class Gender(RootModel[Literal['female', 'male', None]]):
     pass
 
-class JobApiApplicationsGetByIdsResponseAppliesItemModel1ApplicantModel2DataModel3(_BaseModel):
+class JobApiApplicationsGetByIdsResponseAppliesItemModel2ApplicantModel3DataModel4(_BaseModel):
     birthday: str | None = None
     citizenship: str | None = None
     education: EducationLevel = None
-    full_name: JobApiApplicationsGetByIdsResponseAppliesItemModel1ApplicantModel2DataModel3FullNameModel4 | None = None
+    full_name: JobApiApplicationsGetByIdsResponseAppliesItemModel2ApplicantModel3DataModel4FullNameModel5 | None = None
     gender: Gender = None
     name: str | None = None
 
-class JobApiApplicationsGetByIdsResponseAppliesItemModel1ApplicantModel2(_BaseModel):
-    data: JobApiApplicationsGetByIdsResponseAppliesItemModel1ApplicantModel2DataModel3 = None
+class JobApiApplicationsGetByIdsResponseAppliesItemModel2ApplicantModel3(_BaseModel):
+    data: JobApiApplicationsGetByIdsResponseAppliesItemModel2ApplicantModel3DataModel4 = None
     id: str = None
     resume_id: str | None = None
 
-class JobApiApplicationsGetByIdsResponseAppliesItemModel1ContactsModel5ChatModel6(_BaseModel):
+class JobApiApplicationsGetByIdsResponseAppliesItemModel2ContactsModel6ChatModel7(_BaseModel):
     value: str = None
 
-class JobApiApplicationsGetByIdsResponseAppliesItemModel1ContactsModel5PhonesItemModel7(_BaseModel):
+class JobApiApplicationsGetByIdsResponseAppliesItemModel2ContactsModel6PhonesItemModel8(_BaseModel):
     status: str | None = None
     value: str = None
 
-class JobApiApplicationsGetByIdsResponseAppliesItemModel1ContactsModel5(_BaseModel):
-    chat: JobApiApplicationsGetByIdsResponseAppliesItemModel1ContactsModel5ChatModel6 | None = None
-    phones: list[JobApiApplicationsGetByIdsResponseAppliesItemModel1ContactsModel5PhonesItemModel7] = None
+class JobApiApplicationsGetByIdsResponseAppliesItemModel2ContactsModel6(_BaseModel):
+    chat: JobApiApplicationsGetByIdsResponseAppliesItemModel2ContactsModel6ChatModel7 | None = None
+    phones: list[JobApiApplicationsGetByIdsResponseAppliesItemModel2ContactsModel6PhonesItemModel8] = None
 
 class EnrichedPropertyMatchingStatus(RootModel[Literal['no_criteria', 'matched', 'mismatched']]):
     pass
 
-class EnrichedPropertiesAgeModel8(_BaseModel):
+class EnrichedPropertiesAgeModel9(_BaseModel):
     matching_status: EnrichedPropertyMatchingStatus = None
     value: int | None = None
 
-class EnrichedPropertiesCitizenshipModel9(_BaseModel):
+class EnrichedPropertiesCitizenshipModel10(_BaseModel):
     matching_status: EnrichedPropertyMatchingStatus = None
     value: str | None = None
 
-class EnrichedPropertiesExperienceModel10(_BaseModel):
+class EnrichedPropertiesExperienceModel11(_BaseModel):
     matching_status: EnrichedPropertyMatchingStatus = None
     value: str | None = None
 
-class EnrichedPropertiesFullNameModel11(_BaseModel):
+class EnrichedPropertiesFullNameModel12(_BaseModel):
     matching_status: EnrichedPropertyMatchingStatus = None
     value: str | None = None
 
-class EnrichedPropertiesGenderModel12(_BaseModel):
+class EnrichedPropertiesGenderModel13(_BaseModel):
     matching_status: EnrichedPropertyMatchingStatus = None
     value: str | None = None
 
-class EnrichedPropertiesPhoneModel13(_BaseModel):
+class EnrichedPropertiesPhoneModel14(_BaseModel):
     matching_status: EnrichedPropertyMatchingStatus = None
     value: str | None = None
 
 class EnrichedProperties(_BaseModel):
-    age: EnrichedPropertiesAgeModel8 | None = None
-    citizenship: EnrichedPropertiesCitizenshipModel9 | None = None
-    experience: EnrichedPropertiesExperienceModel10 | None = None
-    full_name: EnrichedPropertiesFullNameModel11 | None = None
-    gender: EnrichedPropertiesGenderModel12 | None = None
-    phone: EnrichedPropertiesPhoneModel13 | None = None
+    age: EnrichedPropertiesAgeModel9 | None = None
+    citizenship: EnrichedPropertiesCitizenshipModel10 | None = None
+    experience: EnrichedPropertiesExperienceModel11 | None = None
+    full_name: EnrichedPropertiesFullNameModel12 | None = None
+    gender: EnrichedPropertiesGenderModel13 | None = None
+    phone: EnrichedPropertiesPhoneModel14 | None = None
     status: Literal['in_progress', 'not_completed', 'completed_no_criteria', 'completed_matched', 'completed_mismatched'] = None
 
 class PrevalidationAnswer(_BaseModel):
@@ -84,47 +93,56 @@ class PrevalidationAnswer(_BaseModel):
     value: str = None
     variable: str = None
 
-class JobApiApplicationsGetByIdsResponseAppliesItemModel1PrevalidationModel14(_BaseModel):
+class JobApiApplicationsGetByIdsResponseAppliesItemModel2PrevalidationModel15(_BaseModel):
     status: str = None
     summary: list[PrevalidationAnswer] | None = None
 
-class JobApiApplicationsGetByIdsResponseAppliesItemModel1PriceModel15(_BaseModel):
+class JobApiApplicationsGetByIdsResponseAppliesItemModel2PriceModel16(_BaseModel):
     bonus: int
     real: int
     total: int
 
-class JobApiApplicationsGetByIdsResponseAppliesItemModel1(_BaseModel):
-    applicant: JobApiApplicationsGetByIdsResponseAppliesItemModel1ApplicantModel2 = None
-    contacts: JobApiApplicationsGetByIdsResponseAppliesItemModel1ContactsModel5 = None
+class JobApiApplicationsGetByIdsResponseAppliesItemModel2(_BaseModel):
+    applicant: JobApiApplicationsGetByIdsResponseAppliesItemModel2ApplicantModel3 = None
+    contacts: JobApiApplicationsGetByIdsResponseAppliesItemModel2ContactsModel6 = None
     created_at: str = None
     employee_id: int | None = None
     enriched_properties: EnrichedProperties = None
     id: str = None
     is_viewed: bool = None
     negotiation_id: int | None = None
-    prevalidation: JobApiApplicationsGetByIdsResponseAppliesItemModel1PrevalidationModel14 | None = None
-    price: JobApiApplicationsGetByIdsResponseAppliesItemModel1PriceModel15 | None = None
+    prevalidation: JobApiApplicationsGetByIdsResponseAppliesItemModel2PrevalidationModel15 | None = None
+    price: JobApiApplicationsGetByIdsResponseAppliesItemModel2PriceModel16 | None = None
+    state: str = None
     type: Literal['by_phone', 'by_chat'] = None
     updated_at: str = None
     vacancy_id: int = None
 
 class JobApiApplicationsGetByIdsResponse(_BaseModel):
-    applies: list[JobApiApplicationsGetByIdsResponseAppliesItemModel1] = None
+    applies: list[JobApiApplicationsGetByIdsResponseAppliesItemModel2] = None
 
-class JobApiApplicationsGetIdsResponseAppliesItemModel16(_BaseModel):
+class JobApiApplicationsGetIdsResponseAppliesItemModel17(_BaseModel):
     created_at: str = None
     id: str = None
+    state: str = None
     updated_at: str = None
 
 class JobApiApplicationsGetIdsResponse(_BaseModel):
-    applies: list[JobApiApplicationsGetIdsResponseAppliesItemModel16] = None
+    applies: list[JobApiApplicationsGetIdsResponseAppliesItemModel17] = None
 
-class JobApiApplicationsSetIsViewedResponseAppliesItemModel17(_BaseModel):
+class JobApiApplicationsGetStatesResponseStatesItemModel18(_BaseModel):
+    description: str = None
+    slug: str = None
+
+class JobApiApplicationsGetStatesResponse(_BaseModel):
+    states: list[JobApiApplicationsGetStatesResponseStatesItemModel18] = None
+
+class JobApiApplicationsSetIsViewedResponseAppliesItemModel19(_BaseModel):
     id: str
     is_viewed: bool
 
 class JobApiApplicationsSetIsViewedResponse(_BaseModel):
-    applies: list[JobApiApplicationsSetIsViewedResponseAppliesItemModel17] = None
+    applies: list[JobApiApplicationsSetIsViewedResponseAppliesItemModel19] = None
 
 class JobApiApplicationsWebhookGetResponse(_BaseModel):
     secret: str
@@ -217,7 +235,7 @@ class ResumeContact(_BaseModel):
     type: Literal['e-mail', 'phone', 'chat_id'] = None
     value: str = None
 
-class JobApiResumeGetContactsResponseFullNameModel18(_BaseModel):
+class JobApiResumeGetContactsResponseFullNameModel20(_BaseModel):
     first_name: str = None
     last_name: str = None
     patronymic: str | None = None
@@ -225,7 +243,7 @@ class JobApiResumeGetContactsResponseFullNameModel18(_BaseModel):
 class JobApiResumeGetContactsResponse(_BaseModel):
     already_bought: bool = None
     contacts: list[ResumeContact] = None
-    full_name: JobApiResumeGetContactsResponseFullNameModel18 | None = None
+    full_name: JobApiResumeGetContactsResponseFullNameModel20 | None = None
     name: str = None
 
 class JobApiVacancyCreateResponse(_BaseModel):
@@ -233,23 +251,23 @@ class JobApiVacancyCreateResponse(_BaseModel):
     url: str = None
     uuid: str | None = None
 
-class JobApiResumeGetItemResponseParamsModel19EducationListItemModel20(_BaseModel):
+class JobApiResumeGetItemResponseParamsModel21EducationListItemModel22(_BaseModel):
     education_stop: str | None = None
     institution: str | None = None
     specialty: str | None = None
 
-class JobApiResumeGetItemResponseParamsModel19ExperienceListItemModel21(_BaseModel):
+class JobApiResumeGetItemResponseParamsModel21ExperienceListItemModel23(_BaseModel):
     company: str | None = None
     position: str | None = None
     responsibilities: str | None = None
     work_finish: str | None = None
     work_start: str | None = None
 
-class JobApiResumeGetItemResponseParamsModel19LanguageListItemModel22(_BaseModel):
+class JobApiResumeGetItemResponseParamsModel21LanguageListItemModel24(_BaseModel):
     language: str | None = None
     language_level: Literal['Начальный', 'Средний', 'Выше среднего', 'Свободное владение'] | None = None
 
-class JobApiResumeGetItemResponseParamsModel19(_BaseModel):
+class JobApiResumeGetItemResponseParamsModel21(_BaseModel):
     ability_to_business_trip: Literal['Не готов', 'Готов', 'Иногда'] | None = None
     address: str | None = None
     age: int | None = None
@@ -257,9 +275,9 @@ class JobApiResumeGetItemResponseParamsModel19(_BaseModel):
     driver_licence: Literal[True, False] | None = None
     driver_licence_category: list[Literal['a', 'b', 'be', 'c', 'ce', 'd', 'de', 'm', 'tm', 'tb']] | None = None
     education: Literal['Высшее', 'Незаконченное высшее', 'Среднее', 'Среднее специальное'] | None = None
-    education_list: list[JobApiResumeGetItemResponseParamsModel19EducationListItemModel20] | None = None
-    experience_list: list[JobApiResumeGetItemResponseParamsModel19ExperienceListItemModel21] | None = None
-    language_list: list[JobApiResumeGetItemResponseParamsModel19LanguageListItemModel22] | None = None
+    education_list: list[JobApiResumeGetItemResponseParamsModel21EducationListItemModel22] | None = None
+    experience_list: list[JobApiResumeGetItemResponseParamsModel21ExperienceListItemModel23] | None = None
+    language_list: list[JobApiResumeGetItemResponseParamsModel21LanguageListItemModel24] | None = None
     moving: Literal['Невозможен', 'Возможен'] | None = None
     nationality: str | None = None
     pol: Literal['Мужской', 'Женский'] | None = None
@@ -275,7 +293,7 @@ class JobApiResumeGetItemResponse(_BaseModel):
     id: int = None
     is_active: bool = None
     is_purchased: bool = None
-    params: JobApiResumeGetItemResponseParamsModel19 = None
+    params: JobApiResumeGetItemResponseParamsModel21 = None
     photos: list[Photo] | None = None
     salary: int | None = None
     start_time: str = None
@@ -288,12 +306,12 @@ class VacancySearchMeta(_BaseModel):
     pages: int = None
     per_page: int = None
 
-class SimplifiedVacancyAddressDetailsModel23(_BaseModel):
+class SimplifiedVacancyAddressDetailsModel25(_BaseModel):
     address: str = None
     city: str = None
 
 class SimplifiedVacancy(_BaseModel):
-    address_details: SimplifiedVacancyAddressDetailsModel23 = Field(default=None, alias='addressDetails')
+    address_details: SimplifiedVacancyAddressDetailsModel25 = Field(default=None, alias='addressDetails')
     business_area: str = Field(default=None, alias='businessArea')
     company_name: str = Field(default=None, alias='companyName')
     link: str = None
@@ -307,39 +325,39 @@ class JobApiSearchVacancyResponse(_BaseModel):
 class JobApiVacancyCreateV2Response(_BaseModel):
     id: str = None
 
-class Vacancy20AddressDetailsModel24CoordinatesModel25(_BaseModel):
+class Vacancy20AddressDetailsModel26CoordinatesModel27(_BaseModel):
     latitude: float = None
     longitude: float = None
 
-class Vacancy20AddressDetailsModel24(_BaseModel):
+class Vacancy20AddressDetailsModel26(_BaseModel):
     address: str = None
     city: str = None
-    coordinates: Vacancy20AddressDetailsModel24CoordinatesModel25 = None
+    coordinates: Vacancy20AddressDetailsModel26CoordinatesModel27 = None
     province: str = None
 
-class Vacancy20ContactsModel26(_BaseModel):
+class Vacancy20ContactsModel28(_BaseModel):
     email: str | None = None
     name: str | None = None
 
-class Vacancy20HierarchyModel27(_BaseModel):
+class Vacancy20HierarchyModel29(_BaseModel):
     employee_id: int | None = None
 
-class Vacancy20ParamsModel28CoordinatesModel29(_BaseModel):
+class Vacancy20ParamsModel30CoordinatesModel31(_BaseModel):
     latitude: float = None
     longitude: float = None
 
 class DrivingLicenseCategory(RootModel[list[Literal['A', 'AI', 'AII', 'AIII', 'AIV', 'B', 'B1', 'BE', 'C', 'C1', 'C1E', 'CE', 'D', 'D1', 'D1E', 'DE', 'E', 'F', 'Tm', 'Tb', 'M']]]):
     pass
 
-class Vacancy20ParamsModel28SalaryModel30(_BaseModel):
+class Vacancy20ParamsModel30SalaryModel32(_BaseModel):
     from_: int | None = Field(default=None, alias='from')
     to: int | None = None
 
-class Vacancy20ParamsModel28SalaryBaseRangeModel31(_BaseModel):
+class Vacancy20ParamsModel30SalaryBaseRangeModel33(_BaseModel):
     from_: int | None = Field(default=None, alias='from')
     to: int | None = None
 
-class Vacancy20ParamsModel28(_BaseModel):
+class Vacancy20ParamsModel30(_BaseModel):
     address: str | None = None
     administrator_organization_type: str | None = None
     age_preferences: list[Literal['Соискатели старше 45 лет', 'Соискатели от 14 лет', 'Соискатели от 16 лет', 'С нарушениями здоровья', 'Для студентов', 'Для пенсионеров']] | None = None
@@ -348,7 +366,7 @@ class Vacancy20ParamsModel28(_BaseModel):
     change: list[Literal['1 / 2', '1 / 3', '2 / 1', '2 / 2', '3 / 3', '3 / 2', '4 / 3', '5 / 2', '4 / 2', '6 / 1', 'Без выходных', 'Утренние', 'Дневные', 'Вечерние', 'Ночные', 'Плавающие выходные', 'Работа по выходным']] | None = None
     citizenship: list[str] | None = None
     construction_work_type: list[Literal['Малярные работы', 'Облицовка стен', 'Работы с плиткой', 'Монтаж и установка', 'Отделочные работы', 'Кровельные работы', 'Монтаж и настройка оборудования', 'Сварочные работы', 'Строительство фасадов', 'Формовка материалов', 'Бетонные и каменные работы', 'Ремонтные работы', 'Другие']] | None = None
-    coordinates: Vacancy20ParamsModel28CoordinatesModel29 | None = None
+    coordinates: Vacancy20ParamsModel30CoordinatesModel31 | None = None
     cuisine: list[Literal['Русская', 'Европейская', 'Кавказская', 'Итальянская', 'Японская', 'Турецкая', 'Другая']] | None = None
     delivery_method: list[Literal['На автомобиле', 'На велосипеде', 'На самокате', 'Пешком']] | None = None
     driving_experience: Literal['Нет опыта', 'Меньше года', '1-2 года', '3-5 лет', '6-10 лет', 'Больше 10 лет'] | None = None
@@ -371,9 +389,9 @@ class Vacancy20ParamsModel28(_BaseModel):
     registration_method: list[Literal['Трудовой договор', 'ГПХ с ИП', 'ГПХ с самозанятым', 'ГПХ с физическим лицом']] | None = None
     retail_equipment_type: list[Literal['Касса и POS-терминалы', 'Программы учёта товаров']] | None = None
     retail_shop_type: list[Literal['Гипермаркет или супермаркет', 'Продуктовый', 'Электроника и бытовая техника', 'Одежда и обувь', 'Парфюмерия и косметика', 'Строительство и хозтовары', 'Детские товары', 'Спортивные товары', 'Зоомагазин', 'Аптека', 'Другое']] | None = None
-    salary: Vacancy20ParamsModel28SalaryModel30 | None = None
+    salary: Vacancy20ParamsModel30SalaryModel32 | None = None
     salary_base_bonus: str | None = None
-    salary_base_range: Vacancy20ParamsModel28SalaryBaseRangeModel31 | None = None
+    salary_base_range: Vacancy20ParamsModel30SalaryBaseRangeModel33 | None = None
     schedule: Literal['5/2', '6/1', 'Вахта', 'Гибкий', 'Сменный', 'Полный день', 'Неполный день', 'Фиксированный', 'Удалённая работа'] | None = None
     shifts: list[str] | None = None
     taxes: Literal['До вычета налогов', 'На руки'] | None = None
@@ -386,14 +404,14 @@ class Vacancy20ParamsModel28(_BaseModel):
     worker_class: list[Literal['1', '2', '3', '4', '5 и выше', 'Не требуется']] | None = None
 
 class Vacancy20(_BaseModel):
-    address_details: Vacancy20AddressDetailsModel24 | None = Field(default=None, alias='addressDetails')
+    address_details: Vacancy20AddressDetailsModel26 | None = Field(default=None, alias='addressDetails')
     auto_renewal: bool | None = None
-    contacts: Vacancy20ContactsModel26 | None = None
+    contacts: Vacancy20ContactsModel28 | None = None
     description: str = None
-    hierarchy: Vacancy20HierarchyModel27 | None = None
+    hierarchy: Vacancy20HierarchyModel29 | None = None
     id: int = None
     is_active: bool = None
-    params: Vacancy20ParamsModel28 = None
+    params: Vacancy20ParamsModel30 = None
     salary: int | None = None
     start_time: str = None
     title: str = None
@@ -404,63 +422,63 @@ class Vacancy20(_BaseModel):
 class JobApiVacanciesGetByIdsResponse(RootModel[list[Vacancy20]]):
     pass
 
-class JobApiVacancyGetStatusesResponseItemModel32LastActionModel33ErrorModel34(_BaseModel):
+class JobApiVacancyGetStatusesResponseItemModel34LastActionModel35ErrorModel36(_BaseModel):
     code: int = None
     message: str = None
 
-class JobApiVacancyGetStatusesResponseItemModel32LastActionModel33(_BaseModel):
+class JobApiVacancyGetStatusesResponseItemModel34LastActionModel35(_BaseModel):
     datetime: str = None
-    error: JobApiVacancyGetStatusesResponseItemModel32LastActionModel33ErrorModel34 = None
+    error: JobApiVacancyGetStatusesResponseItemModel34LastActionModel35ErrorModel36 = None
     status: str = None
 
-class JobApiVacancyGetStatusesResponseItemModel32VacancyModel35(_BaseModel):
+class JobApiVacancyGetStatusesResponseItemModel34VacancyModel37(_BaseModel):
     id: int = None
     moderation_status: Literal['in_progress', 'allowed', 'blocked', 'rejected'] | None = None
     reasons: dict[str, Any] = None
     status: Literal['created', 'activated', 'archived', 'blocked', 'closed', 'expired', 'rejected', 'unblocked'] = None
     url: str = None
 
-class JobApiVacancyGetStatusesResponseItemModel32(_BaseModel):
+class JobApiVacancyGetStatusesResponseItemModel34(_BaseModel):
     id: str = None
-    last_action: JobApiVacancyGetStatusesResponseItemModel32LastActionModel33 = None
-    vacancy: JobApiVacancyGetStatusesResponseItemModel32VacancyModel35 = None
+    last_action: JobApiVacancyGetStatusesResponseItemModel34LastActionModel35 = None
+    vacancy: JobApiVacancyGetStatusesResponseItemModel34VacancyModel37 = None
 
-class JobApiVacancyGetStatusesResponse(RootModel[list[JobApiVacancyGetStatusesResponseItemModel32]]):
+class JobApiVacancyGetStatusesResponse(RootModel[list[JobApiVacancyGetStatusesResponseItemModel34]]):
     pass
 
 class JobApiVacancyUpdateV2Response(_BaseModel):
     id: str = None
 
-class JobApiVacancyGetItemResponseAddressDetailsModel36CoordinatesModel37(_BaseModel):
+class JobApiVacancyGetItemResponseAddressDetailsModel38CoordinatesModel39(_BaseModel):
     latitude: float = None
     longitude: float = None
 
-class JobApiVacancyGetItemResponseAddressDetailsModel36(_BaseModel):
+class JobApiVacancyGetItemResponseAddressDetailsModel38(_BaseModel):
     address: str = None
     city: str = None
-    coordinates: JobApiVacancyGetItemResponseAddressDetailsModel36CoordinatesModel37 = None
+    coordinates: JobApiVacancyGetItemResponseAddressDetailsModel38CoordinatesModel39 = None
     province: str = None
 
-class JobApiVacancyGetItemResponseContactsModel38(_BaseModel):
+class JobApiVacancyGetItemResponseContactsModel40(_BaseModel):
     email: str | None = None
     name: str | None = None
 
-class JobApiVacancyGetItemResponseHierarchyModel39(_BaseModel):
+class JobApiVacancyGetItemResponseHierarchyModel41(_BaseModel):
     employee_id: int | None = None
 
-class JobApiVacancyGetItemResponseParamsModel40CoordinatesModel41(_BaseModel):
+class JobApiVacancyGetItemResponseParamsModel42CoordinatesModel43(_BaseModel):
     latitude: float = None
     longitude: float = None
 
-class JobApiVacancyGetItemResponseParamsModel40SalaryModel42(_BaseModel):
+class JobApiVacancyGetItemResponseParamsModel42SalaryModel44(_BaseModel):
     from_: int | None = Field(default=None, alias='from')
     to: int | None = None
 
-class JobApiVacancyGetItemResponseParamsModel40SalaryBaseRangeModel43(_BaseModel):
+class JobApiVacancyGetItemResponseParamsModel42SalaryBaseRangeModel45(_BaseModel):
     from_: int | None = Field(default=None, alias='from')
     to: int | None = None
 
-class JobApiVacancyGetItemResponseParamsModel40(_BaseModel):
+class JobApiVacancyGetItemResponseParamsModel42(_BaseModel):
     address: str | None = None
     administrator_organization_type: str | None = None
     age_preferences: list[Literal['Соискатели старше 45 лет', 'Соискатели от 14 лет', 'Соискатели от 16 лет', 'С нарушениями здоровья', 'Для студентов', 'Для пенсионеров']] | None = None
@@ -469,7 +487,7 @@ class JobApiVacancyGetItemResponseParamsModel40(_BaseModel):
     change: list[Literal['1 / 2', '1 / 3', '2 / 1', '2 / 2', '3 / 3', '3 / 2', '4 / 3', '5 / 2', '4 / 2', '6 / 1', 'Без выходных', 'Утренние', 'Дневные', 'Вечерние', 'Ночные', 'Плавающие выходные', 'Работа по выходным']] | None = None
     citizenship: list[str] | None = None
     construction_work_type: list[Literal['Малярные работы', 'Облицовка стен', 'Работы с плиткой', 'Монтаж и установка', 'Отделочные работы', 'Кровельные работы', 'Монтаж и настройка оборудования', 'Сварочные работы', 'Строительство фасадов', 'Формовка материалов', 'Бетонные и каменные работы', 'Ремонтные работы', 'Другие']] | None = None
-    coordinates: JobApiVacancyGetItemResponseParamsModel40CoordinatesModel41 | None = None
+    coordinates: JobApiVacancyGetItemResponseParamsModel42CoordinatesModel43 | None = None
     cuisine: list[Literal['Русская', 'Европейская', 'Кавказская', 'Итальянская', 'Японская', 'Турецкая', 'Другая']] | None = None
     delivery_method: list[Literal['На автомобиле', 'На велосипеде', 'На самокате', 'Пешком']] | None = None
     driving_experience: Literal['Нет опыта', 'Меньше года', '1-2 года', '3-5 лет', '6-10 лет', 'Больше 10 лет'] | None = None
@@ -492,9 +510,9 @@ class JobApiVacancyGetItemResponseParamsModel40(_BaseModel):
     registration_method: list[Literal['Трудовой договор', 'ГПХ с ИП', 'ГПХ с самозанятым', 'ГПХ с физическим лицом']] | None = None
     retail_equipment_type: list[Literal['Касса и POS-терминалы', 'Программы учёта товаров']] | None = None
     retail_shop_type: list[Literal['Гипермаркет или супермаркет', 'Продуктовый', 'Электроника и бытовая техника', 'Одежда и обувь', 'Парфюмерия и косметика', 'Строительство и хозтовары', 'Детские товары', 'Спортивные товары', 'Зоомагазин', 'Аптека', 'Другое']] | None = None
-    salary: JobApiVacancyGetItemResponseParamsModel40SalaryModel42 | None = None
+    salary: JobApiVacancyGetItemResponseParamsModel42SalaryModel44 | None = None
     salary_base_bonus: str | None = None
-    salary_base_range: JobApiVacancyGetItemResponseParamsModel40SalaryBaseRangeModel43 | None = None
+    salary_base_range: JobApiVacancyGetItemResponseParamsModel42SalaryBaseRangeModel45 | None = None
     schedule: Literal['5/2', '6/1', 'Вахта', 'Гибкий', 'Сменный', 'Полный день', 'Неполный день', 'Фиксированный', 'Удалённая работа'] | None = None
     shifts: list[str] | None = None
     taxes: Literal['До вычета налогов', 'На руки'] | None = None
@@ -507,14 +525,14 @@ class JobApiVacancyGetItemResponseParamsModel40(_BaseModel):
     worker_class: list[Literal['1', '2', '3', '4', '5 и выше', 'Не требуется']] | None = None
 
 class JobApiVacancyGetItemResponse(_BaseModel):
-    address_details: JobApiVacancyGetItemResponseAddressDetailsModel36 | None = Field(default=None, alias='addressDetails')
+    address_details: JobApiVacancyGetItemResponseAddressDetailsModel38 | None = Field(default=None, alias='addressDetails')
     auto_renewal: bool | None = None
-    contacts: JobApiVacancyGetItemResponseContactsModel38 | None = None
+    contacts: JobApiVacancyGetItemResponseContactsModel40 | None = None
     description: str = None
-    hierarchy: JobApiVacancyGetItemResponseHierarchyModel39 | None = None
+    hierarchy: JobApiVacancyGetItemResponseHierarchyModel41 | None = None
     id: int = None
     is_active: bool = None
-    params: JobApiVacancyGetItemResponseParamsModel40 = None
+    params: JobApiVacancyGetItemResponseParamsModel42 = None
     salary: int | None = None
     start_time: str = None
     title: str = None
@@ -522,19 +540,19 @@ class JobApiVacancyGetItemResponse(_BaseModel):
     url: str = None
     uuid: str | None = None
 
-class JobApiGetDictsResponseItemModel44(_BaseModel):
+class JobApiGetDictsResponseItemModel46(_BaseModel):
     description: str = None
     id: str = None
 
-class JobApiGetDictsResponse(RootModel[list[JobApiGetDictsResponseItemModel44]]):
+class JobApiGetDictsResponse(RootModel[list[JobApiGetDictsResponseItemModel46]]):
     pass
 
-class JobApiGetDictByIdResponseItemModel45(_BaseModel):
+class JobApiGetDictByIdResponseItemModel47(_BaseModel):
     deprecated: bool = None
     id: int = None
     name: str = None
 
-class JobApiGetDictByIdResponse(RootModel[list[JobApiGetDictByIdResponseItemModel45]]):
+class JobApiGetDictByIdResponse(RootModel[list[JobApiGetDictByIdResponseItemModel47]]):
     pass
 
-__all__ = ['EducationLevel', 'JobApiApplicationsGetByIdsResponseAppliesItemModel1ApplicantModel2DataModel3FullNameModel4', 'Gender', 'JobApiApplicationsGetByIdsResponseAppliesItemModel1ApplicantModel2DataModel3', 'JobApiApplicationsGetByIdsResponseAppliesItemModel1ApplicantModel2', 'JobApiApplicationsGetByIdsResponseAppliesItemModel1ContactsModel5ChatModel6', 'JobApiApplicationsGetByIdsResponseAppliesItemModel1ContactsModel5PhonesItemModel7', 'JobApiApplicationsGetByIdsResponseAppliesItemModel1ContactsModel5', 'EnrichedPropertyMatchingStatus', 'EnrichedPropertiesAgeModel8', 'EnrichedPropertiesCitizenshipModel9', 'EnrichedPropertiesExperienceModel10', 'EnrichedPropertiesFullNameModel11', 'EnrichedPropertiesGenderModel12', 'EnrichedPropertiesPhoneModel13', 'EnrichedProperties', 'PrevalidationAnswer', 'JobApiApplicationsGetByIdsResponseAppliesItemModel1PrevalidationModel14', 'JobApiApplicationsGetByIdsResponseAppliesItemModel1PriceModel15', 'JobApiApplicationsGetByIdsResponseAppliesItemModel1', 'JobApiApplicationsGetByIdsResponse', 'JobApiApplicationsGetIdsResponseAppliesItemModel16', 'JobApiApplicationsGetIdsResponse', 'JobApiApplicationsSetIsViewedResponseAppliesItemModel17', 'JobApiApplicationsSetIsViewedResponse', 'JobApiApplicationsWebhookGetResponse', 'JobApiApplicationsWebhookPutResponse', 'JobApiApplicationsWebhookDeleteResponse', 'WebhookSubscribeRequestBody', 'JobApiApplicationsWebhooksGetResponse', 'ResumeSearchMeta', 'Coordinates', 'AddressDetails', 'DriverLicence', 'DriverLicenceCategory', 'DrivingExperience', 'Location', 'MedicalBook', 'Citizenship', 'OwnTransport', 'Specialization', 'SimplifiedResume', 'JobApiResumesGetResponse', 'ResumeContact', 'JobApiResumeGetContactsResponseFullNameModel18', 'JobApiResumeGetContactsResponse', 'JobApiVacancyCreateResponse', 'JobApiResumeGetItemResponseParamsModel19EducationListItemModel20', 'JobApiResumeGetItemResponseParamsModel19ExperienceListItemModel21', 'JobApiResumeGetItemResponseParamsModel19LanguageListItemModel22', 'JobApiResumeGetItemResponseParamsModel19', 'Photo', 'JobApiResumeGetItemResponse', 'VacancySearchMeta', 'SimplifiedVacancyAddressDetailsModel23', 'SimplifiedVacancy', 'JobApiSearchVacancyResponse', 'JobApiVacancyCreateV2Response', 'Vacancy20AddressDetailsModel24CoordinatesModel25', 'Vacancy20AddressDetailsModel24', 'Vacancy20ContactsModel26', 'Vacancy20HierarchyModel27', 'Vacancy20ParamsModel28CoordinatesModel29', 'DrivingLicenseCategory', 'Vacancy20ParamsModel28SalaryModel30', 'Vacancy20ParamsModel28SalaryBaseRangeModel31', 'Vacancy20ParamsModel28', 'Vacancy20', 'JobApiVacanciesGetByIdsResponse', 'JobApiVacancyGetStatusesResponseItemModel32LastActionModel33ErrorModel34', 'JobApiVacancyGetStatusesResponseItemModel32LastActionModel33', 'JobApiVacancyGetStatusesResponseItemModel32VacancyModel35', 'JobApiVacancyGetStatusesResponseItemModel32', 'JobApiVacancyGetStatusesResponse', 'JobApiVacancyUpdateV2Response', 'JobApiVacancyGetItemResponseAddressDetailsModel36CoordinatesModel37', 'JobApiVacancyGetItemResponseAddressDetailsModel36', 'JobApiVacancyGetItemResponseContactsModel38', 'JobApiVacancyGetItemResponseHierarchyModel39', 'JobApiVacancyGetItemResponseParamsModel40CoordinatesModel41', 'JobApiVacancyGetItemResponseParamsModel40SalaryModel42', 'JobApiVacancyGetItemResponseParamsModel40SalaryBaseRangeModel43', 'JobApiVacancyGetItemResponseParamsModel40', 'JobApiVacancyGetItemResponse', 'JobApiGetDictsResponseItemModel44', 'JobApiGetDictsResponse', 'JobApiGetDictByIdResponseItemModel45', 'JobApiGetDictByIdResponse']
+__all__ = ['JobApiApplicationsApplyActionsResponseAppliesItemModel1', 'JobApiApplicationsApplyActionsResponse', 'EducationLevel', 'JobApiApplicationsGetByIdsResponseAppliesItemModel2ApplicantModel3DataModel4FullNameModel5', 'Gender', 'JobApiApplicationsGetByIdsResponseAppliesItemModel2ApplicantModel3DataModel4', 'JobApiApplicationsGetByIdsResponseAppliesItemModel2ApplicantModel3', 'JobApiApplicationsGetByIdsResponseAppliesItemModel2ContactsModel6ChatModel7', 'JobApiApplicationsGetByIdsResponseAppliesItemModel2ContactsModel6PhonesItemModel8', 'JobApiApplicationsGetByIdsResponseAppliesItemModel2ContactsModel6', 'EnrichedPropertyMatchingStatus', 'EnrichedPropertiesAgeModel9', 'EnrichedPropertiesCitizenshipModel10', 'EnrichedPropertiesExperienceModel11', 'EnrichedPropertiesFullNameModel12', 'EnrichedPropertiesGenderModel13', 'EnrichedPropertiesPhoneModel14', 'EnrichedProperties', 'PrevalidationAnswer', 'JobApiApplicationsGetByIdsResponseAppliesItemModel2PrevalidationModel15', 'JobApiApplicationsGetByIdsResponseAppliesItemModel2PriceModel16', 'JobApiApplicationsGetByIdsResponseAppliesItemModel2', 'JobApiApplicationsGetByIdsResponse', 'JobApiApplicationsGetIdsResponseAppliesItemModel17', 'JobApiApplicationsGetIdsResponse', 'JobApiApplicationsGetStatesResponseStatesItemModel18', 'JobApiApplicationsGetStatesResponse', 'JobApiApplicationsSetIsViewedResponseAppliesItemModel19', 'JobApiApplicationsSetIsViewedResponse', 'JobApiApplicationsWebhookGetResponse', 'JobApiApplicationsWebhookPutResponse', 'JobApiApplicationsWebhookDeleteResponse', 'WebhookSubscribeRequestBody', 'JobApiApplicationsWebhooksGetResponse', 'ResumeSearchMeta', 'Coordinates', 'AddressDetails', 'DriverLicence', 'DriverLicenceCategory', 'DrivingExperience', 'Location', 'MedicalBook', 'Citizenship', 'OwnTransport', 'Specialization', 'SimplifiedResume', 'JobApiResumesGetResponse', 'ResumeContact', 'JobApiResumeGetContactsResponseFullNameModel20', 'JobApiResumeGetContactsResponse', 'JobApiVacancyCreateResponse', 'JobApiResumeGetItemResponseParamsModel21EducationListItemModel22', 'JobApiResumeGetItemResponseParamsModel21ExperienceListItemModel23', 'JobApiResumeGetItemResponseParamsModel21LanguageListItemModel24', 'JobApiResumeGetItemResponseParamsModel21', 'Photo', 'JobApiResumeGetItemResponse', 'VacancySearchMeta', 'SimplifiedVacancyAddressDetailsModel25', 'SimplifiedVacancy', 'JobApiSearchVacancyResponse', 'JobApiVacancyCreateV2Response', 'Vacancy20AddressDetailsModel26CoordinatesModel27', 'Vacancy20AddressDetailsModel26', 'Vacancy20ContactsModel28', 'Vacancy20HierarchyModel29', 'Vacancy20ParamsModel30CoordinatesModel31', 'DrivingLicenseCategory', 'Vacancy20ParamsModel30SalaryModel32', 'Vacancy20ParamsModel30SalaryBaseRangeModel33', 'Vacancy20ParamsModel30', 'Vacancy20', 'JobApiVacanciesGetByIdsResponse', 'JobApiVacancyGetStatusesResponseItemModel34LastActionModel35ErrorModel36', 'JobApiVacancyGetStatusesResponseItemModel34LastActionModel35', 'JobApiVacancyGetStatusesResponseItemModel34VacancyModel37', 'JobApiVacancyGetStatusesResponseItemModel34', 'JobApiVacancyGetStatusesResponse', 'JobApiVacancyUpdateV2Response', 'JobApiVacancyGetItemResponseAddressDetailsModel38CoordinatesModel39', 'JobApiVacancyGetItemResponseAddressDetailsModel38', 'JobApiVacancyGetItemResponseContactsModel40', 'JobApiVacancyGetItemResponseHierarchyModel41', 'JobApiVacancyGetItemResponseParamsModel42CoordinatesModel43', 'JobApiVacancyGetItemResponseParamsModel42SalaryModel44', 'JobApiVacancyGetItemResponseParamsModel42SalaryBaseRangeModel45', 'JobApiVacancyGetItemResponseParamsModel42', 'JobApiVacancyGetItemResponse', 'JobApiGetDictsResponseItemModel46', 'JobApiGetDictsResponse', 'JobApiGetDictByIdResponseItemModel47', 'JobApiGetDictByIdResponse']

@@ -1103,6 +1103,15 @@
   ],
   "job": [
     {
+      "operation_id": "applicationsApplyActions",
+      "python_method": "applications_apply_actions",
+      "http_method": "POST",
+      "path": "/job/v1/applications/apply_actions",
+      "response_status": "200",
+      "response_model": "JobApiApplicationsApplyActionsResponse",
+      "schema_kind": "ref"
+    },
+    {
       "operation_id": "applicationsGetByIds",
       "python_method": "applications_get_by_ids",
       "http_method": "POST",
@@ -1118,6 +1127,15 @@
       "path": "/job/v1/applications/get_ids",
       "response_status": "200",
       "response_model": "JobApiApplicationsGetIdsResponse",
+      "schema_kind": "ref"
+    },
+    {
+      "operation_id": "applicationsGetStates",
+      "python_method": "applications_get_states",
+      "http_method": "GET",
+      "path": "/job/v1/applications/get_states",
+      "response_status": "200",
+      "response_model": "JobApiApplicationsGetStatesResponse",
       "schema_kind": "ref"
     },
     {

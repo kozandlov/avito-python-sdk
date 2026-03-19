@@ -7,7 +7,7 @@ from pydantic import ValidationError
 
 from pyavitoapi.transport.errors import AvitoValidationError
 from pyavitoapi.transport.http import AvitoHttpTransport
-from pyavitoapi.generated_models.job import JobApiApplicationsGetByIdsResponse, JobApiApplicationsGetIdsResponse, JobApiApplicationsSetIsViewedResponse, JobApiApplicationsWebhookDeleteResponse, JobApiApplicationsWebhookGetResponse, JobApiApplicationsWebhookPutResponse, JobApiApplicationsWebhooksGetResponse, JobApiGetDictByIdResponse, JobApiGetDictsResponse, JobApiResumeGetContactsResponse, JobApiResumeGetItemResponse, JobApiResumesGetResponse, JobApiSearchVacancyResponse, JobApiVacanciesGetByIdsResponse, JobApiVacancyCreateResponse, JobApiVacancyCreateV2Response, JobApiVacancyGetItemResponse, JobApiVacancyGetStatusesResponse, JobApiVacancyUpdateV2Response
+from pyavitoapi.generated_models.job import JobApiApplicationsApplyActionsResponse, JobApiApplicationsGetByIdsResponse, JobApiApplicationsGetIdsResponse, JobApiApplicationsGetStatesResponse, JobApiApplicationsSetIsViewedResponse, JobApiApplicationsWebhookDeleteResponse, JobApiApplicationsWebhookGetResponse, JobApiApplicationsWebhookPutResponse, JobApiApplicationsWebhooksGetResponse, JobApiGetDictByIdResponse, JobApiGetDictsResponse, JobApiResumeGetContactsResponse, JobApiResumeGetItemResponse, JobApiResumesGetResponse, JobApiSearchVacancyResponse, JobApiVacanciesGetByIdsResponse, JobApiVacancyCreateResponse, JobApiVacancyCreateV2Response, JobApiVacancyGetItemResponse, JobApiVacancyGetStatusesResponse, JobApiVacancyUpdateV2Response
 
 
 class JobApi:
@@ -15,6 +15,40 @@ class JobApi:
 
     def __init__(self, transport: AvitoHttpTransport) -> None:
         self._transport = transport
+
+    async def applications_apply_actions(
+        self,
+        *,
+        path_params: Optional[dict[str, Any]] = None,
+        query: Optional[dict[str, Any]] = None,
+        json_body: Optional[dict[str, Any]] = None,
+        headers: Optional[dict[str, str]] = None,
+    ) -> JobApiApplicationsApplyActionsResponse:
+        """Батчевая смена статуса откликов
+"""
+        payload = await self._transport.request(
+            method="POST",
+            path_template="/job/v1/applications/apply_actions",
+            path_params=path_params,
+            query=query,
+            json_body=json_body,
+            headers=headers,
+        )
+        try:
+            return JobApiApplicationsApplyActionsResponse.model_validate(payload)
+        except ValidationError as exc:
+            raise AvitoValidationError(
+                "Response validation failed for job.applications_apply_actions (POST /job/v1/applications/apply_actions)",
+                payload=payload,
+                details={
+                    "slug": "job",
+                    "operation_id": "applicationsApplyActions",
+                    "python_method": "applications_apply_actions",
+                    "http_method": "POST",
+                    "path": "/job/v1/applications/apply_actions",
+                    "errors": exc.errors(),
+                },
+            ) from exc
 
     async def applications_get_by_ids(
         self,
@@ -80,6 +114,40 @@ class JobApi:
                     "python_method": "applications_get_ids",
                     "http_method": "GET",
                     "path": "/job/v1/applications/get_ids",
+                    "errors": exc.errors(),
+                },
+            ) from exc
+
+    async def applications_get_states(
+        self,
+        *,
+        path_params: Optional[dict[str, Any]] = None,
+        query: Optional[dict[str, Any]] = None,
+        json_body: Optional[dict[str, Any]] = None,
+        headers: Optional[dict[str, str]] = None,
+    ) -> JobApiApplicationsGetStatesResponse:
+        """Получение списка возможных статусов откликов
+"""
+        payload = await self._transport.request(
+            method="GET",
+            path_template="/job/v1/applications/get_states",
+            path_params=path_params,
+            query=query,
+            json_body=json_body,
+            headers=headers,
+        )
+        try:
+            return JobApiApplicationsGetStatesResponse.model_validate(payload)
+        except ValidationError as exc:
+            raise AvitoValidationError(
+                "Response validation failed for job.applications_get_states (GET /job/v1/applications/get_states)",
+                payload=payload,
+                details={
+                    "slug": "job",
+                    "operation_id": "applicationsGetStates",
+                    "python_method": "applications_get_states",
+                    "http_method": "GET",
+                    "path": "/job/v1/applications/get_states",
                     "errors": exc.errors(),
                 },
             ) from exc

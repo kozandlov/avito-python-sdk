@@ -161,6 +161,54 @@
         "nullable": true,
         "type": "boolean"
       },
+      "ApplicationsApplyActionsRequestBody": {
+        "properties": {
+          "action": {
+            "description": "Новый статус отклика, который нужно применить",
+            "example": "new",
+            "type": "string"
+          },
+          "ids": {
+            "description": "Список идентификаторов откликов, к которым нужно применить статус",
+            "items": {
+              "description": "Идентификатор отклика",
+              "example": "11102026de0ad1be10e2236f",
+              "type": "string"
+            },
+            "maxItems": 100,
+            "type": "array"
+          }
+        },
+        "required": [
+          "action",
+          "ids"
+        ],
+        "type": "object"
+      },
+      "ApplicationsGetStatesResult": {
+        "properties": {
+          "states": {
+            "description": "Список возможных статусов откликов",
+            "items": {
+              "properties": {
+                "description": {
+                  "description": "Человеко‑читаемое описание статуса",
+                  "example": "Новый отклик",
+                  "type": "string"
+                },
+                "slug": {
+                  "description": "Технический идентификатор статуса",
+                  "example": "new",
+                  "type": "string"
+                }
+              },
+              "type": "object"
+            },
+            "type": "array"
+          }
+        },
+        "type": "object"
+      },
       "ApplyProcessing": {
         "description": "Объект с настройкой обработки откликов на вакансию.\n\nДаёт возможность настроить отклики только с резюме.\n",
         "nullable": true,
@@ -366,11 +414,17 @@
         "description": "Контактная информация",
         "properties": {
           "email": {
-            "description": "Email (строка длиной от 0 до 255 символов)",
+            "description": "Email контактного лица по данному объявлению.\nУчитывается только при публикации вакансии от имени Сотрудника.\nЕсли не заполнено то при публикации от Сотрудника будет использована почта из Профиля Сотрудника.\n\nПри публикации от Компании или Пользователя будет использоваться почта из Профиля, переданное значение будет проигнорировано.\n",
+            "maxLength": 255,
+            "minLength": 1,
+            "nullable": true,
             "type": "string"
           },
           "name": {
-            "description": "Имя менеджера, контактного лица компании по данному объявлению (строка длиной до 30 символов)",
+            "description": "Имя менеджера, контактного лица по данному объявлению.\nУчитывается только при публикации вакансии от имени Сотрудника.\nЕсли не заполнено то при публикации от Сотрудника будет использовано \"Имя сотрудника, которое видят пользователи при просмотре объявления\".\n\nПри публикации от Компании или Пользователя не заполняется, переданное значение будет проигнорировано.\n",
+            "maxLength": 30,
+            "minLength": 1,
+            "nullable": true,
             "type": "string"
           },
           "phone": {
@@ -951,6 +1005,11 @@
                   ],
                   "type": "object"
                 },
+                "state": {
+                  "description": "Статус отклика",
+                  "example": "new",
+                  "type": "string"
+                },
                 "type": {
                   "description": "Тип отклика\n\nВозможные значения:\n - \"by_phone\" - отклик через просмотр телефона\n - \"by_chat\" - отклик через чат\n",
                   "enum": [
@@ -995,6 +1054,11 @@
                 "id": {
                   "description": "Идентификатор отклика",
                   "example": "11102026de0ad1be10e2236f",
+                  "type": "string"
+                },
+                "state": {
+                  "description": "Статус отклика",
+                  "example": "new",
                   "type": "string"
                 },
                 "updated_at": {
@@ -2213,13 +2277,13 @@
             "properties": {
               "email": {
                 "description": "Email контактного лица в вакансии",
-                "example": "av***@avito.ru",
+                "example": "ivalerevich@company.ru",
                 "nullable": true,
                 "type": "string"
               },
               "name": {
                 "description": "Имя контактного лица в вакансии",
-                "example": "Иванов Иван Иванович",
+                "example": "Игорь Валерьевич",
                 "nullable": true,
                 "type": "string"
               }
@@ -3687,8 +3751,18 @@
                 "description": "Возможность откликнуться на вакансию через сайт. Если передается apply_processing, то значение allow_messages будет игнорироваться и равно true",
                 "type": "boolean"
               },
+              "email": {
+                "description": "Email контактного лица по данному объявлению.\nУчитывается только при публикации вакансии от имени Сотрудника.\nЕсли не заполнено то при публикации от Сотрудника будет использована почта из Профиля Сотрудника.\n\nПри публикации от Компании или Пользователя будет использоваться почта из Профиля, переданное значение будет проигнорировано.\n",
+                "maxLength": 255,
+                "minLength": 1,
+                "nullable": true,
+                "type": "string"
+              },
               "name": {
-                "description": "Имя менеджера, контактного лица компании по данному объявлению (строка длиной до 30 символов)",
+                "description": "Имя менеджера, контактного лица по данному объявлению.\nУчитывается только при публикации вакансии от имени Сотрудника.\nЕсли не заполнено то при публикации от Сотрудника будет использовано \"Имя сотрудника, которое видят пользователи при просмотре объявления\".\n\nПри публикации от Компании или Пользователя не заполняется, переданное значение будет проигнорировано.\n",
+                "maxLength": 30,
+                "minLength": 1,
+                "nullable": true,
                 "type": "string"
               },
               "phone": {
@@ -4299,6 +4373,88 @@
   },
   "openapi": "3.0.0",
   "paths": {
+    "/job/v1/applications/apply_actions": {
+      "parameters": [
+        {
+          "$ref": "#/components/parameters/authHeader"
+        },
+        {
+          "description": "Сотрудник может менять статусы откликов для вакансий которые он разместил в рамках компании",
+          "in": "header",
+          "name": "X-Is-Employee",
+          "schema": {
+            "nullable": true,
+            "type": "boolean"
+          }
+        }
+      ],
+      "post": {
+        "description": "Переводит сразу несколько откликов в новый статус одним запросом. В запросе нужно передать целевой статус, а также список идентификаторов откликов, к которым он должен быть применён\nМаксимальный размер батча — не более 100 идентификаторов откликов в одном запросе\n",
+        "operationId": "applicationsApplyActions",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ApplicationsApplyActionsRequestBody"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetApplicationsIdsResult"
+                }
+              }
+            },
+            "description": "Успешный ответ",
+            "headers": {
+              "X-RateLimit-Limit": {
+                "$ref": "#/components/headers/X-RateLimit-Limit"
+              },
+              "X-RateLimit-Remaining": {
+                "$ref": "#/components/headers/X-RateLimit-Remaining"
+              }
+            }
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/tooManyRequestsError"
+                }
+              }
+            },
+            "description": "Превышено допустимое количество запросов",
+            "headers": {
+              "X-RateLimit-Limit": {
+                "$ref": "#/components/headers/X-RateLimit-Limit"
+              },
+              "X-RateLimit-Remaining": {
+                "$ref": "#/components/headers/X-RateLimit-Remaining"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "AuthorizationCode": [
+              "job:applications"
+            ]
+          },
+          {
+            "ClientCredentials": []
+          }
+        ],
+        "summary": "Батчевая смена статуса откликов\n",
+        "tags": [
+          "Job"
+        ]
+      }
+    },
     "/job/v1/applications/get_by_ids": {
       "parameters": [
         {
@@ -4428,6 +4584,15 @@
               "example": true,
               "type": "boolean"
             }
+          },
+          {
+            "description": "Статус отклика. Опциональный фильтр по текущему статусу отклика",
+            "in": "query",
+            "name": "state",
+            "schema": {
+              "example": "new",
+              "type": "string"
+            }
           }
         ],
         "responses": {
@@ -4489,6 +4654,140 @@
         },
         {
           "description": "Сотрудник может получить список его откликов для вакансий которые он разместил в рамках компании",
+          "in": "header",
+          "name": "X-Is-Employee",
+          "schema": {
+            "nullable": true,
+            "type": "boolean"
+          }
+        }
+      ]
+    },
+    "/job/v1/applications/get_states": {
+      "get": {
+        "description": "Возвращает список доступных статусов откликов и их описания\n",
+        "operationId": "applicationsGetStates",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApplicationsGetStatesResult"
+                }
+              }
+            },
+            "description": "Успешный ответ"
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BadRequest"
+                }
+              }
+            },
+            "description": "Ошибка в теле запроса"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/authError"
+                }
+              }
+            },
+            "description": "Требуется аутентификация"
+          },
+          "402": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PaymentError"
+                }
+              }
+            },
+            "description": "Ошибка оплаты"
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/forbiddenError"
+                }
+              }
+            },
+            "description": "Получение данных по откликам недоступно"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NotFoundError"
+                }
+              }
+            },
+            "description": "Данные по откликам не найдены"
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/tooManyRequestsError"
+                }
+              }
+            },
+            "description": "Превышено допустимое количество запросов",
+            "headers": {
+              "X-RateLimit-Limit": {
+                "$ref": "#/components/headers/X-RateLimit-Limit"
+              },
+              "X-RateLimit-Remaining": {
+                "$ref": "#/components/headers/X-RateLimit-Remaining"
+              }
+            }
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/serviceError"
+                }
+              }
+            },
+            "description": "Внутренняя ошибка метода API"
+          },
+          "503": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/serviceUnavailableError"
+                }
+              }
+            },
+            "description": "Метод API временно недоступен"
+          }
+        },
+        "security": [
+          {
+            "AuthorizationCode": [
+              "job:applications"
+            ]
+          },
+          {
+            "ClientCredentials": []
+          }
+        ],
+        "summary": "Получение списка возможных статусов откликов\n",
+        "tags": [
+          "Job"
+        ]
+      },
+      "parameters": [
+        {
+          "$ref": "#/components/parameters/authHeader"
+        },
+        {
+          "description": "Получение списка возможных статусов откликов",
           "in": "header",
           "name": "X-Is-Employee",
           "schema": {
@@ -5462,7 +5761,8 @@
                   "blr"
                 ],
                 "contacts": {
-                  "name": "менеджер",
+                  "email": "ivalerevich@company.ru",
+                  "name": "Игорь Валерьевич",
                   "phone": {
                     "city": "201",
                     "country": "+7",
@@ -5794,7 +6094,8 @@
                 },
                 "billing_type": "package",
                 "contacts": {
-                  "name": "менеджер",
+                  "email": "ivalerevich@company.ru",
+                  "name": "Игорь Валерьевич",
                   "phone": {
                     "city": "201",
                     "country": "+7",
@@ -6480,7 +6781,8 @@
                 ],
                 "contacts": {
                   "allow_messages": true,
-                  "name": "менеджер",
+                  "email": "ivalerevich@company.ru",
+                  "name": "Игорь Валерьевич",
                   "phone": "+72011001158"
                 },
                 "delivery_method": [
