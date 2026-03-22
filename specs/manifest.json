@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-03-19T04:53:26.762873+00:00",
+  "generated_at_utc": "2026-03-22T04:51:20.464781+00:00",
   "source_list_url": "https://developers.avito.ru/web/1/openapi/list",
   "slug_count": 23,
   "entries": [
@@ -96,7 +96,7 @@
       "title": "Авито.Работа",
       "source": "https://developers.avito.ru/web/1/openapi/info/job",
       "raw_file": "specs/raw/job.json",
-      "sha256": "dbc2ec6e5f9f143678ce3305e7ef9da6e290878995e7004e8d88e7d4e62be4c5",
+      "sha256": "ade17a8e83254d823f51eb152f6f4cae4beadf4524c2ff99c8966397adee3a5b",
       "operations": 25
     },
     {
@@ -104,7 +104,7 @@
       "title": "Мессенджер",
       "source": "https://developers.avito.ru/web/1/openapi/info/messenger",
       "raw_file": "specs/raw/messenger.json",
-      "sha256": "370f68d227af995ecb3b5531f4617bdc0d5372bd7b295e28fc2828ee5e2be21b",
+      "sha256": "3a59cc2969b302c8de98826eaee97f4600ac3ad2911981aabbf335f0a8e69d64",
       "operations": 13
     },
     {
