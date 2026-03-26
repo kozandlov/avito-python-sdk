@@ -6,7 +6,6 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
-from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
@@ -81,7 +80,6 @@ def main() -> None:
             )
 
     manifest = {
-        "generated_at_utc": datetime.now(timezone.utc).isoformat(),
         "source_list_url": LIST_URL,
         "slug_count": len(entries),
         "entries": sorted(entries, key=lambda x: x["slug"]),
