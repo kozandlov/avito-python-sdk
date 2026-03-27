@@ -39,7 +39,28 @@ jobs:
           pytest -q
           python -m build
 
+      - name: Check for meaningful changes
+        id: changes
+        shell: bash
+        run: |
+          changed_files="$(git status --porcelain | awk '{print $2}')"
+
+          if [ -z "$changed_files" ]; then
+            echo "has_meaningful_changes=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+
+          meaningful_files="$(printf '%s\n' "$changed_files" | grep -v '^specs/manifest\.json$' || true)"
+
+          if [ -n "$meaningful_files" ]; then
+            echo "has_meaningful_changes=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "has_meaningful_changes=false" >> "$GITHUB_OUTPUT"
+            echo "Only specs/manifest.json changed; skipping pull request creation."
+          fi
+
       - name: Create or update pull request
+        if: steps.changes.outputs.has_meaningful_changes == 'true'
         uses: peter-evans/create-pull-request@v6
         with:
           branch: bot/avito-openapi-sync
