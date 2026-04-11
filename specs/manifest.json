@@ -79,7 +79,7 @@
       "title": "Доставка",
       "source": "https://developers.avito.ru/web/1/openapi/info/delivery-sandbox",
       "raw_file": "specs/raw/delivery-sandbox.json",
-      "sha256": "7fafdf4bbf40d2abad1691398bc61da7f795d7feb91daea1841403ea04bbe046",
+      "sha256": "550d54afc9b47f3e1522cd31e7b6205482669ebb0c21ec74aed7a29b70da0f12",
       "operations": 31
     },
     {
@@ -95,7 +95,7 @@
       "title": "Авито.Работа",
       "source": "https://developers.avito.ru/web/1/openapi/info/job",
       "raw_file": "specs/raw/job.json",
-      "sha256": "ade17a8e83254d823f51eb152f6f4cae4beadf4524c2ff99c8966397adee3a5b",
+      "sha256": "e04c4d5710027e99a8569bc9e4358e800e58438f22defbf6e283afa3bc3346d8",
       "operations": 25
     },
     {
@@ -103,7 +103,7 @@
       "title": "Мессенджер",
       "source": "https://developers.avito.ru/web/1/openapi/info/messenger",
       "raw_file": "specs/raw/messenger.json",
-      "sha256": "3a59cc2969b302c8de98826eaee97f4600ac3ad2911981aabbf335f0a8e69d64",
+      "sha256": "ead5e70cb19e658ad42887a678648a3a6ec8da0f7a1b76f4ec0cde0d198352ac",
       "operations": 13
     },
     {

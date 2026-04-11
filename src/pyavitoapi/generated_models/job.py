@@ -113,6 +113,7 @@ class JobApiApplicationsGetByIdsResponseAppliesItemModel2(_BaseModel):
     negotiation_id: int | None = None
     prevalidation: JobApiApplicationsGetByIdsResponseAppliesItemModel2PrevalidationModel15 | None = None
     price: JobApiApplicationsGetByIdsResponseAppliesItemModel2PriceModel16 | None = None
+    source: Literal['sbc_cold_flow'] = None
     state: str = None
     type: Literal['by_phone', 'by_chat'] = None
     updated_at: str = None
