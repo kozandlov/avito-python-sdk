@@ -1005,6 +1005,14 @@
                   ],
                   "type": "object"
                 },
+                "source": {
+                  "description": "Источник отклика\n\nВозможные значения:\n - \"sbc_cold_flow\" - Отклик по приглашению из рассылки по холодной базе кандидатов\n",
+                  "enum": [
+                    "sbc_cold_flow"
+                  ],
+                  "example": "sbc_cold_flow",
+                  "type": "string"
+                },
                 "state": {
                   "description": "Статус отклика",
                   "example": "new",

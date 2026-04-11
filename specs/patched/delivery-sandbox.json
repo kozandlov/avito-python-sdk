@@ -4015,6 +4015,14 @@
             ]
           },
           "state": {
+            "description": "Статус задачи",
+            "enum": [
+              "processing",
+              "success",
+              "failed",
+              "pending_approval",
+              "declined"
+            ],
             "type": "string"
           },
           "taskId": {
@@ -4056,6 +4064,14 @@
                 "$ref": "#/components/schemas/TerminalsTaskResult"
               },
               "state": {
+                "description": "Статус задачи",
+                "enum": [
+                  "processing",
+                  "success",
+                  "failed",
+                  "pending_approval",
+                  "declined"
+                ],
                 "type": "string"
               },
               "taskId": {
@@ -5087,6 +5103,7 @@
         "type": "object"
       },
       "TerminalsTaskResult": {
+        "description": "Результат загрузки терминалов.\n\nПри статусе `success` заполняются поля `upserted`, `deleted`, `total`.\n\nПри статусе `pending_approval` заполняются поля `diff_added`, `diff_deleted`, `diff_modified`, `diff_critical`, `diff_total`\nс информацией об изменениях, которые требуют одобрения.\n",
         "properties": {
           "count": {
             "deprecated": true,
@@ -5095,6 +5112,31 @@
           },
           "deleted": {
             "description": "Количество удаленных терминалов",
+            "type": "string"
+          },
+          "diff_added": {
+            "description": "Количество добавленных терминалов (заполняется при статусе pending_approval)",
+            "nullable": true,
+            "type": "string"
+          },
+          "diff_critical": {
+            "description": "Количество критичных изменений (заполняется при статусе pending_approval)",
+            "nullable": true,
+            "type": "string"
+          },
+          "diff_deleted": {
+            "description": "Количество удалённых терминалов (заполняется при статусе pending_approval)",
+            "nullable": true,
+            "type": "string"
+          },
+          "diff_modified": {
+            "description": "Количество изменённых терминалов (заполняется при статусе pending_approval)",
+            "nullable": true,
+            "type": "string"
+          },
+          "diff_total": {
+            "description": "Общее количество терминалов (заполняется при статусе pending_approval)",
+            "nullable": true,
             "type": "string"
           },
           "total": {
@@ -5106,11 +5148,6 @@
             "type": "string"
           }
         },
-        "required": [
-          "upserted",
-          "deleted",
-          "total"
-        ],
         "title": "Загрузка терминалов",
         "type": "object"
       },
@@ -6371,7 +6408,7 @@
         }
       ],
       "post": {
-        "description": "Загрузить новые терминалы  \n\nДанные необходимо загружать по мере обновления данных о ПВЗ (как правило это 1-2 раза в сутки)\n\n### Описание ошибок\n| http code |   error code      |       error message                                       |\n|-----------|-------------------|-----------------------------------------------------------|\n|    200    | URL_PATH_INVALID  | Tariff id must be int url path                            |\n|    200    | TERMINALS_INVALID | Failed to convert terminals: {error description}          |\n|    200    | TERMINALS_INVALID | Failed to get terminals from request: {error decsription} |\n",
+        "description": "Загрузить новые терминалы\n\nДанные необходимо загружать по мере обновления данных о ПВЗ (как правило это 1-2 раза в сутки)\n\n### Система апрува терминалов\n\nПри загрузке терминалов система автоматически сравнивает новые данные с текущими в базе.\nЕсли процент критичных изменений превышает заданный порог — задача переходит в статус `pending_approval`\nи требует ручного одобрения.\n\n**Критичные изменения** (хотя бы одно из):\n- Добавление нового терминала\n- Удаление терминала\n- Изменение сервисов (приём/выдача/возврат)\n- Изменение ограничений (вес/размеры/стоимость)\n- Изменение расписания\n- Изменение тега (направления)\n- Сдвиг координат более чем на 100 метров\n\nФормула: `критичных / (существующих + добавленных) * 100% > порог`\n\nПри срабатывании апрува задача переходит в статус `pending_approval`, а в результате задачи\nвозвращаются поля с информацией об изменениях (`diff_added`, `diff_deleted`, `diff_modified`, `diff_critical`, `diff_total`).\n\n> Система апрува не затрагивает ABD-терминалы.\n\n### Описание ошибок\n| http code |   error code      |       error message                                       |\n|-----------|-------------------|-----------------------------------------------------------|\n|    200    | URL_PATH_INVALID  | Tariff id must be int url path                            |\n|    200    | TERMINALS_INVALID | Failed to convert terminals: {error description}          |\n|    200    | TERMINALS_INVALID | Failed to get terminals from request: {error decsription} |\n",
         "operationId": "AddTerminalsSandbox",
         "requestBody": {
           "content": {
@@ -6529,7 +6566,7 @@
     },
     "/delivery-sandbox/tasks/{task_id}": {
       "get": {
-        "description": "Получить информацию о задаче\n\nПримерное время выполнения задачи от 5 до 20 минут\n\n### Возможные статусы задачи\n Задача может быть в одном из трех статусов:\n  * processing - задача ждет очередь на выполнение или уже выполняется\n  * success -  задача успешно выполнена\n  * failed - задача завершилась с ошибкой или не смогда завершится по техническим причинам\n\n### Описание ошибок\n| http code |   error code       |       error message          |\n|-----------|--------------------|------------------------------|\n|    200    | URL_PATH_INVALID   | Task id must be int url path |\n|    200    | INVALID_ENTITY     | Empty provider               |\n|    500    | FAILED_TO_GET_TASK | Failed to get task           |\n",
+        "description": "Получить информацию о задаче\n\nПримерное время выполнения задачи от 5 до 20 минут\n\n### Возможные статусы задачи\n Задача может быть в одном из следующих статусов:\n  * `processing` - задача ждёт очередь на выполнение или уже выполняется\n  * `success` - задача успешно выполнена\n  * `failed` - задача завершилась с ошибкой или не смогла завершиться по техническим причинам\n  * `pending_approval` - загрузка терминалов приостановлена, процент критичных изменений превысил допустимый порог и требуется ручное одобрение\n  * `declined` - загрузка терминалов отклонена\n\n### Описание ошибок\n| http code |   error code       |       error message          |\n|-----------|--------------------|------------------------------|\n|    200    | URL_PATH_INVALID   | Task id must be int url path |\n|    200    | INVALID_ENTITY     | Empty provider               |\n|    500    | FAILED_TO_GET_TASK | Failed to get task           |\n",
         "operationId": "GetTask",
         "responses": {
           "200": {

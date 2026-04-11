@@ -258,9 +258,14 @@ class AreasCustomScheduleTaskResult(_BaseModel):
 
 class TerminalsTaskResult(_BaseModel):
     count: str = None
-    deleted: str
-    total: str
-    upserted: str
+    deleted: str = None
+    diff_added: str | None = None
+    diff_critical: str | None = None
+    diff_deleted: str | None = None
+    diff_modified: str | None = None
+    diff_total: str | None = None
+    total: str = None
+    upserted: str = None
 
 class TariffTaskResult(_BaseModel):
     tariff_id: str = Field(alias='tariffId')
@@ -274,7 +279,7 @@ class SortingCentersTagsTaskResult(_BaseModel):
 class GetTaskData(_BaseModel):
     errors: list[DeliveryError] | None = None
     result: AreasTaskResult | AreasCustomScheduleTaskResult | TerminalsTaskResult | TariffTaskResult | SortingCentersTaskResult | SortingCentersTagsTaskResult | None = None
-    state: str
+    state: Literal['processing', 'success', 'failed', 'pending_approval', 'declined']
     task_id: int = Field(alias='taskId')
 
 class DeliverySandboxApiGetTaskResponse(_BaseModel):
