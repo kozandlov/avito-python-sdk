@@ -79,7 +79,7 @@
       "title": "Доставка",
       "source": "https://developers.avito.ru/web/1/openapi/info/delivery-sandbox",
       "raw_file": "specs/raw/delivery-sandbox.json",
-      "sha256": "550d54afc9b47f3e1522cd31e7b6205482669ebb0c21ec74aed7a29b70da0f12",
+      "sha256": "81d06ef767346bbc446616b21af691b6c0bcd997dce378bbc215a7c871034183",
       "operations": 31
     },
     {

@@ -2473,6 +2473,10 @@
             "properties": {
               "delivery": {
                 "$ref": "#/components/schemas/CreateSandboxParcelUserDelivery"
+              },
+              "inn": {
+                "description": "ИНН пользователя, будет работать при tag - B2C.",
+                "type": "string"
               }
             },
             "type": "object"
@@ -3522,8 +3526,13 @@
             "type": "string"
           },
           "options": {
-            "description": "Дополнительные опции к статусу. На данный момент в опциях поддержана только передача возвратных номеров.\nЕсли номера `returnTrackingNumber` и `returnDispatchNumber` совпадают, то нужно присылать в них одинаковые значения.\n",
+            "description": "Дополнительные опции к статусу. На данный момент в опциях поддержана передача штрихкода посылки и возвратных номеров.\nЕсли номера `returnTrackingNumber` и `returnDispatchNumber` совпадают, то нужно присылать в них одинаковые значения.\n",
             "properties": {
+              "barcode": {
+                "description": "Штрихкод посылки.",
+                "title": "Штрихкод посылки",
+                "type": "string"
+              },
               "returnBarcode": {
                 "description": "Возвратный штрихкод посылки. Будет использоваться в кросс-доставке на возвратном потоке.",
                 "title": "Возвратный штрихкод",
