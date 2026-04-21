@@ -23,7 +23,7 @@
       "title": "Авторизация",
       "source": "https://developers.avito.ru/web/1/openapi/info/auth",
       "raw_file": "specs/raw/auth.json",
-      "sha256": "fffff1aff034290a0ecd3bf451173cfeff2679ac5205b669529feebc6506f5cd",
+      "sha256": "f3d491d6567bdef3c83a9e53dd35f6e3b44fbb34b990882d5d2f991f9ac4a191",
       "operations": 3
     },
     {
