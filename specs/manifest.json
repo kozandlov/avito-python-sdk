@@ -95,7 +95,7 @@
       "title": "Авито.Работа",
       "source": "https://developers.avito.ru/web/1/openapi/info/job",
       "raw_file": "specs/raw/job.json",
-      "sha256": "e04c4d5710027e99a8569bc9e4358e800e58438f22defbf6e283afa3bc3346d8",
+      "sha256": "8aebbf7ee10a122f1ceeaae600aa30579c8955538f6ee3a1e57c7c4836ce2c45",
       "operations": 25
     },
     {
