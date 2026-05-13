@@ -4557,10 +4557,19 @@
             "$ref": "#/components/parameters/authHeader"
           },
           {
-            "description": "Возвращать отклики с датой обновления от указанной даты",
+            "description": "Фильтр по дате обновления (от). Обязателен, если не указан updatedAtFrom. Формат YYYY-MM-DD.",
             "in": "query",
             "name": "updatedAtFrom",
-            "required": true,
+            "schema": {
+              "example": "2006-01-02",
+              "format": "YYYY-MM-DD",
+              "type": "string"
+            }
+          },
+          {
+            "description": "Фильтр по дате создания (от). Обязателен, если не указан createdAtFrom. Формат YYYY-MM-DD.",
+            "in": "query",
+            "name": "createdAtFrom",
             "schema": {
               "example": "2006-01-02",
               "format": "YYYY-MM-DD",
