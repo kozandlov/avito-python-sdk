@@ -25,6 +25,7 @@ class AccountsHierarchyApiGetEmployeesV1Response(RootModel[list[AccountsHierarch
     pass
 
 class AccountsHierarchyApiListCompanyPhonesV1ResponseResultModel2(_BaseModel):
+    cursor: str | None = None
     phones: list[str] = None
 
 class AccountsHierarchyApiListCompanyPhonesV1Response(_BaseModel):

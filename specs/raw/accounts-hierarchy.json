@@ -35,6 +35,11 @@
         "properties": {
           "result": {
             "properties": {
+              "cursor": {
+                "description": "Курсор следующей страницы. Если не вернулся, список закончился.",
+                "nullable": true,
+                "type": "string"
+              },
               "phones": {
                 "description": "массив номеров телефонов",
                 "items": {
@@ -708,6 +713,17 @@
       "get": {
         "description": "Для взаимодействия с иерархией аккаунтов необходимо приобрести тариф в [личном кабинете](https://www.avito.ru/paid-services/listing-fees).\n",
         "operationId": "listCompanyPhonesV1",
+        "parameters": [
+          {
+            "description": "Курсор для получения следующей страницы. Передается из предыдущего ответа.",
+            "in": "query",
+            "name": "cursor",
+            "schema": {
+              "nullable": true,
+              "type": "string"
+            }
+          }
+        ],
         "responses": {
           "200": {
             "content": {

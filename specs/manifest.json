@@ -7,7 +7,7 @@
       "title": "Иерархия Аккаунтов",
       "source": "https://developers.avito.ru/web/1/openapi/info/accounts-hierarchy",
       "raw_file": "specs/raw/accounts-hierarchy.json",
-      "sha256": "f6cf5f6ecfbe319c7ad0955d418654aa44ae3c717f768d30ad672f38e0ab5401",
+      "sha256": "b3cb9c2c15e99f3d9f7cfdb8d0625c6755fbda9ca91ae2264cff3f7ca6870d0e",
       "operations": 5
     },
     {
