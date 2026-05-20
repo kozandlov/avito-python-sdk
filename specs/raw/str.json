@@ -59,6 +59,35 @@
       }
     },
     "schemas": {
+      "AvitoBooking": {
+        "description": "Оплаченная на Авито бронь",
+        "properties": {
+          "avito_booking_id": {
+            "description": "Идентификатор бронирования на Авито",
+            "example": 11111,
+            "format": "int64",
+            "nullable": true,
+            "type": "integer"
+          },
+          "check_in": {
+            "description": "Дата заезда гостей",
+            "example": "2026-03-20",
+            "format": "date",
+            "type": "string"
+          },
+          "check_out": {
+            "description": "Дата выезда гостей",
+            "example": "2026-03-27",
+            "format": "date",
+            "type": "string"
+          }
+        },
+        "required": [
+          "check_in",
+          "check_out"
+        ],
+        "type": "object"
+      },
       "BaseParams": {
         "description": "Базовые параметры",
         "properties": {
@@ -232,6 +261,78 @@
         },
         "type": "object"
       },
+      "ConflictedInterval": {
+        "description": "Период, конфликтующий с оплаченными бронями на Авито",
+        "properties": {
+          "bookings": {
+            "description": "Список оплаченных броней на Авито, конфликтующих с периодом",
+            "items": {
+              "$ref": "#/components/schemas/AvitoBooking"
+            },
+            "type": "array"
+          },
+          "interval": {
+            "description": "Период аренды из запроса",
+            "properties": {
+              "date_end": {
+                "description": "Дата окончания периода аренды",
+                "example": "2026-04-01",
+                "format": "date",
+                "type": "string"
+              },
+              "date_start": {
+                "description": "Дата начала периода аренды",
+                "example": "2026-03-23",
+                "format": "date",
+                "type": "string"
+              }
+            },
+            "required": [
+              "date_start",
+              "date_end"
+            ],
+            "type": "object"
+          }
+        },
+        "required": [
+          "interval",
+          "bookings"
+        ],
+        "type": "object"
+      },
+      "DatesOverlapBookingError": {
+        "properties": {
+          "error": {
+            "properties": {
+              "code": {
+                "description": "Код ошибки",
+                "example": 409,
+                "format": "int32",
+                "type": "integer"
+              },
+              "conflicts": {
+                "description": "Список периодов, конфликтующих с оплаченными бронями на Авито",
+                "items": {
+                  "$ref": "#/components/schemas/ConflictedInterval"
+                },
+                "type": "array"
+              },
+              "message": {
+                "description": "Сообщение об ошибке",
+                "example": "error",
+                "type": "string"
+              }
+            },
+            "required": [
+              "code",
+              "message",
+              "conflicts"
+            ],
+            "type": "object"
+          }
+        },
+        "type": "object"
+      },
       "Error": {
         "properties": {
           "error": {
@@ -261,13 +362,13 @@
         "properties": {
           "date_from": {
             "description": "Дата начала периода, не в прошлом",
-            "example": "2018-05-01",
+            "example": "2026-05-01",
             "format": "date",
             "type": "string"
           },
           "date_to": {
             "description": "Дата конца периода (включительно), не в прошлом",
-            "example": "2018-05-09",
+            "example": "2026-05-09",
             "format": "date",
             "type": "string"
           },
@@ -321,13 +422,13 @@
                 },
                 "date_end": {
                   "description": "Дата окончания периода аренды, не в прошлом",
-                  "example": "2018-04-01",
+                  "example": "2026-04-01",
                   "format": "date",
                   "type": "string"
                 },
                 "date_start": {
                   "description": "Дата начала периода аренды, не в прошлом",
-                  "example": "2018-03-23",
+                  "example": "2026-03-23",
                   "format": "date",
                   "type": "string"
                 },
@@ -412,13 +513,13 @@
           },
           "check_in": {
             "description": "Дата заезда гостей",
-            "example": "2018-08-01",
+            "example": "2026-08-01",
             "format": "date",
             "type": "string"
           },
           "check_out": {
             "description": "Дата выезда гостей",
-            "example": "2018-08-04",
+            "example": "2026-08-04",
             "format": "date",
             "type": "string"
           },
@@ -593,17 +694,17 @@
                 "bookings": [
                   {
                     "comment": "Комментарий",
-                    "date_end": "2018-03-24",
-                    "date_start": "2018-03-23"
+                    "date_end": "2026-03-24",
+                    "date_start": "2026-03-23"
                   },
                   {
-                    "date_end": "2018-03-25",
-                    "date_start": "2018-03-24",
+                    "date_end": "2026-03-25",
+                    "date_start": "2026-03-24",
                     "type": "manual"
                   },
                   {
-                    "date_end": "2018-03-26",
-                    "date_start": "2018-03-25",
+                    "date_end": "2026-03-26",
+                    "date_start": "2026-03-25",
                     "type": "booking"
                   }
                 ],
@@ -614,7 +715,7 @@
               }
             }
           },
-          "description": "Последний день брони доступен для пользователя (открытый конец),\nтак, бронь в один день занимается промежутком в два дня.\nПромежутки не должны пересекаться (допустимо совпадение конца одной брони и начала второй в силу открытости).\nПри пересечении любого интервала с оплаченной бронью на Авито, будет возвращена ошибка.  Ни один из интервалов в запросе не будет закрыт.\n"
+          "description": "Последний день брони доступен для пользователя (открытый конец),\nтак, бронь в один день занимается промежутком в два дня.\nПромежутки не должны пересекаться (допустимо совпадение конца одной брони и начала второй в силу открытости).\nПри пересечении любого интервала с оплаченной бронью на Авито, будет возвращена ошибка.  Закрыты будут только интервалы без пересечений.\n"
         },
         "responses": {
           "200": {
@@ -670,7 +771,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Error"
+                  "$ref": "#/components/schemas/DatesOverlapBookingError"
                 }
               }
             },
@@ -825,7 +926,7 @@
           "name": "date_start",
           "required": true,
           "schema": {
-            "example": "2018-01-01",
+            "example": "2026-01-01",
             "format": "date",
             "type": "string"
           }
@@ -836,7 +937,7 @@
           "name": "date_end",
           "required": true,
           "schema": {
-            "example": "2018-05-01",
+            "example": "2026-05-01",
             "format": "date",
             "type": "string"
           }
@@ -876,15 +977,15 @@
               "example": {
                 "prices": [
                   {
-                    "date_from": "2018-06-02",
-                    "date_to": "2018-06-14",
+                    "date_from": "2026-06-02",
+                    "date_to": "2026-06-14",
                     "extra_guest_fee": 500,
                     "minimal_duration": 1,
                     "night_price": 1500
                   },
                   {
-                    "date_from": "2018-06-15",
-                    "date_to": "2018-06-15",
+                    "date_from": "2026-06-15",
+                    "date_to": "2026-06-15",
                     "extra_guest_fee": 1000,
                     "minimal_duration": 7,
                     "night_price": 5000

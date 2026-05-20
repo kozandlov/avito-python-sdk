@@ -63,7 +63,7 @@
       "title": "CPA Авито",
       "source": "https://developers.avito.ru/web/1/openapi/info/cpa",
       "raw_file": "specs/raw/cpa.json",
-      "sha256": "05e6aa65f14445c4d29b9dc96366838f08569b5a115238723837e257d85bfe2e",
+      "sha256": "51907c9d6b001df04e67fb370488b3dbeaf857a25042d4ff1f3e14242ba08672",
       "operations": 11
     },
     {
@@ -159,7 +159,7 @@
       "title": "Краткосрочная аренда",
       "source": "https://developers.avito.ru/web/1/openapi/info/str",
       "raw_file": "specs/raw/str.json",
-      "sha256": "e2b1401f650a494e076a8468bb4e7897e29e246acb23b791b279c01f19b6ba83",
+      "sha256": "a726f7ba5069e06d137fdcc80c4610acb5cbd7f41476b073973c84fe8c7cb53f",
       "operations": 5
     },
     {
