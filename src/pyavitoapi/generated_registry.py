@@ -5,6 +5,7 @@ from __future__ import annotations
 from typing import Any
 
 from pyavitoapi.generated.accounts_hierarchy import AccountsHierarchyApi
+from pyavitoapi.generated.ads import AdsApi
 from pyavitoapi.generated.auction import AuctionApi
 from pyavitoapi.generated.auth import AuthApi
 from pyavitoapi.generated.autoload import AutoloadApi
@@ -30,6 +31,7 @@ from pyavitoapi.generated.user import UserApi
 
 REGISTRY: dict[str, type[Any]] = {
     "accounts-hierarchy": AccountsHierarchyApi,
+    "ads": AdsApi,
     "auction": AuctionApi,
     "auth": AuthApi,
     "autoload": AutoloadApi,

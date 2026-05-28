@@ -2,6 +2,7 @@
 
 __all__ = [
     "accounts_hierarchy",
+    "ads",
     "auction",
     "auth",
     "autoload",
