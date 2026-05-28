@@ -10,6 +10,24 @@
       "schema_kind": "object"
     },
     {
+      "operation_id": "checkAhUserV2",
+      "python_method": "check_ah_user_v2",
+      "http_method": "GET",
+      "path": "/checkAhUserV2",
+      "response_status": "200",
+      "response_model": "AccountsHierarchyApiCheckAhUserV2Response",
+      "schema_kind": "object"
+    },
+    {
+      "operation_id": "getAhInfoV1",
+      "python_method": "get_ah_info_v1",
+      "http_method": "GET",
+      "path": "/getAhInfoV1",
+      "response_status": "200",
+      "response_model": "AccountsHierarchyApiGetAhInfoV1Response",
+      "schema_kind": "object"
+    },
+    {
       "operation_id": "getEmployeesV1",
       "python_method": "get_employees_v1",
       "http_method": "GET",
@@ -43,6 +61,224 @@
       "path": "/listItemsByEmployeeIdV1",
       "response_status": "200",
       "response_model": "AccountsHierarchyApiListItemsByEmployeeIdV1Response",
+      "schema_kind": "ref"
+    }
+  ],
+  "ads": [
+    {
+      "operation_id": "V1GetAccountByID",
+      "python_method": "v1_get_account_by_id",
+      "http_method": "GET",
+      "path": "/ads/v1/account/{accountID}",
+      "response_status": "200",
+      "response_model": "AdsApiV1GetAccountByIdResponse",
+      "schema_kind": "ref"
+    },
+    {
+      "operation_id": "V1CreateAccount",
+      "python_method": "v1_create_account",
+      "http_method": "POST",
+      "path": "/ads/v1/account/{accountID}",
+      "response_status": "200",
+      "response_model": "AdsApiV1CreateAccountResponse",
+      "schema_kind": "ref"
+    },
+    {
+      "operation_id": "V1AddUser",
+      "python_method": "v1_add_user",
+      "http_method": "POST",
+      "path": "/ads/v1/account/{accountID}/add-user",
+      "response_status": "200",
+      "response_model": "AdsApiV1AddUserResponse",
+      "schema_kind": "ref"
+    },
+    {
+      "operation_id": "V1GetAdvertisersList",
+      "python_method": "v1_get_advertisers_list",
+      "http_method": "POST",
+      "path": "/ads/v1/account/{accountID}/advertisers",
+      "response_status": "200",
+      "response_model": "AdsApiV1GetAdvertisersListResponse",
+      "schema_kind": "ref"
+    },
+    {
+      "operation_id": "V1GetAccountBalanceByID",
+      "python_method": "v1_get_account_balance_by_id",
+      "http_method": "GET",
+      "path": "/ads/v1/account/{accountID}/balance",
+      "response_status": "200",
+      "response_model": "AdsApiV1GetAccountBalanceByIdResponse",
+      "schema_kind": "ref"
+    },
+    {
+      "operation_id": "V1TransferBonus",
+      "python_method": "v1_transfer_bonus",
+      "http_method": "POST",
+      "path": "/ads/v1/account/{accountID}/bonus-transfer",
+      "response_status": "200",
+      "response_model": "AdsApiV1TransferBonusResponse",
+      "schema_kind": "ref"
+    },
+    {
+      "operation_id": "V1GetCampaignsList",
+      "python_method": "v1_get_campaigns_list",
+      "http_method": "POST",
+      "path": "/ads/v1/account/{accountID}/campaigns",
+      "response_status": "200",
+      "response_model": "AdsApiV1GetCampaignsListResponse",
+      "schema_kind": "ref"
+    },
+    {
+      "operation_id": "V1GetCreativesStatistic",
+      "python_method": "v1_get_creatives_statistic",
+      "http_method": "POST",
+      "path": "/ads/v1/account/{accountID}/campaigns/{campaignID}/creatives/stats",
+      "response_status": "200",
+      "response_model": "AdsApiV1GetCreativesStatisticResponse",
+      "schema_kind": "ref"
+    },
+    {
+      "operation_id": "V1GetGroupsStatistic",
+      "python_method": "v1_get_groups_statistic",
+      "http_method": "POST",
+      "path": "/ads/v1/account/{accountID}/campaigns/{campaignID}/groups/stats",
+      "response_status": "200",
+      "response_model": "AdsApiV1GetGroupsStatisticResponse",
+      "schema_kind": "ref"
+    },
+    {
+      "operation_id": "V1GetCampaignStatistic",
+      "python_method": "v1_get_campaign_statistic",
+      "http_method": "POST",
+      "path": "/ads/v1/account/{accountID}/campaigns/{campaignID}/stats",
+      "response_status": "200",
+      "response_model": "AdsApiV1GetCampaignStatisticResponse",
+      "schema_kind": "ref"
+    },
+    {
+      "operation_id": "V1GetChildAccountsList",
+      "python_method": "v1_get_child_accounts_list",
+      "http_method": "GET",
+      "path": "/ads/v1/account/{accountID}/children",
+      "response_status": "200",
+      "response_model": "AdsApiV1GetChildAccountsListResponse",
+      "schema_kind": "ref"
+    },
+    {
+      "operation_id": "V1GetChildAccountsWithBalancesList",
+      "python_method": "v1_get_child_accounts_with_balances_list",
+      "http_method": "GET",
+      "path": "/ads/v1/account/{accountID}/children-with-balances",
+      "response_status": "200",
+      "response_model": "AdsApiV1GetChildAccountsWithBalancesListResponse",
+      "schema_kind": "ref"
+    },
+    {
+      "operation_id": "V1GetContractsList",
+      "python_method": "v1_get_contracts_list",
+      "http_method": "POST",
+      "path": "/ads/v1/account/{accountID}/contracts",
+      "response_status": "200",
+      "response_model": "AdsApiV1GetContractsListResponse",
+      "schema_kind": "ref"
+    },
+    {
+      "operation_id": "V1CreateAdvertiser",
+      "python_method": "v1_create_advertiser",
+      "http_method": "POST",
+      "path": "/ads/v1/account/{accountID}/create-advertiser",
+      "response_status": "200",
+      "response_model": "AdsApiV1CreateAdvertiserResponse",
+      "schema_kind": "ref"
+    },
+    {
+      "operation_id": "V1CreateContract",
+      "python_method": "v1_create_contract",
+      "http_method": "POST",
+      "path": "/ads/v1/account/{accountID}/create-contract",
+      "response_status": "200",
+      "response_model": "AdsApiV1CreateContractResponse",
+      "schema_kind": "ref"
+    },
+    {
+      "operation_id": "V1CreateNonPayerAccount",
+      "python_method": "v1_create_non_payer_account",
+      "http_method": "POST",
+      "path": "/ads/v1/account/{accountID}/create-nonpayer-child-account",
+      "response_status": "200",
+      "response_model": "AdsApiV1CreateNonPayerAccountResponse",
+      "schema_kind": "ref"
+    },
+    {
+      "operation_id": "V1GetCreativesList",
+      "python_method": "v1_get_creatives_list",
+      "http_method": "POST",
+      "path": "/ads/v1/account/{accountID}/creatives",
+      "response_status": "200",
+      "response_model": "AdsApiV1GetCreativesListResponse",
+      "schema_kind": "ref"
+    },
+    {
+      "operation_id": "V1DeleteUser",
+      "python_method": "v1_delete_user",
+      "http_method": "DELETE",
+      "path": "/ads/v1/account/{accountID}/delete-user/{userID}",
+      "response_status": "200",
+      "response_model": "AdsApiV1DeleteUserResponse",
+      "schema_kind": "ref"
+    },
+    {
+      "operation_id": "V1TransferFunds",
+      "python_method": "v1_transfer_funds",
+      "http_method": "POST",
+      "path": "/ads/v1/account/{accountID}/funds-transfer",
+      "response_status": "200",
+      "response_model": "AdsApiV1TransferFundsResponse",
+      "schema_kind": "ref"
+    },
+    {
+      "operation_id": "V1ChangeBudget",
+      "python_method": "v1_change_budget",
+      "http_method": "POST",
+      "path": "/ads/v1/account/{accountID}/group/{groupID}/change-budget",
+      "response_status": "200",
+      "response_model": "AdsApiV1ChangeBudgetResponse",
+      "schema_kind": "ref"
+    },
+    {
+      "operation_id": "V1ChangePrice",
+      "python_method": "v1_change_price",
+      "http_method": "POST",
+      "path": "/ads/v1/account/{accountID}/group/{groupID}/change-price",
+      "response_status": "200",
+      "response_model": "AdsApiV1ChangePriceResponse",
+      "schema_kind": "ref"
+    },
+    {
+      "operation_id": "V1GetGroupsList",
+      "python_method": "v1_get_groups_list",
+      "http_method": "POST",
+      "path": "/ads/v1/account/{accountID}/groups",
+      "response_status": "200",
+      "response_model": "AdsApiV1GetGroupsListResponse",
+      "schema_kind": "ref"
+    },
+    {
+      "operation_id": "V1SetUserRole",
+      "python_method": "v1_set_user_role",
+      "http_method": "POST",
+      "path": "/ads/v1/account/{accountID}/set-user-role",
+      "response_status": "200",
+      "response_model": "AdsApiV1SetUserRoleResponse",
+      "schema_kind": "ref"
+    },
+    {
+      "operation_id": "V1GetUsersListByAccount",
+      "python_method": "v1_get_users_list_by_account",
+      "http_method": "GET",
+      "path": "/ads/v1/account/{accountID}/users",
+      "response_status": "200",
+      "response_model": "AdsApiV1GetUsersListByAccountResponse",
       "schema_kind": "ref"
     }
   ],

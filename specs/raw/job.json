@@ -156,7 +156,6 @@
         "type": "object"
       },
       "AllowCalls": {
-        "default": true,
         "description": "Разрешены ли звонки по вакансии.",
         "nullable": true,
         "type": "boolean"
@@ -214,6 +213,7 @@
         "nullable": true,
         "properties": {
           "additional_questions": {
+            "deprecated": true,
             "description": "*DEPRECATED* Заполнение поля не влияет на вакансию.  \nМассив со списком дополнительных вопросов, которые задаст ассистент Авито.\n\n  - `experience` - вопрос про опыт работы. \nВ качестве критерия будет использоваться значение поля `experience`.  В результатах опроса ассистент отметит, достаточно у кандидата опыта или нет. \n\n  - `citizenship` - вопрос про гражданство.\nВ качестве критерия будет использоваться значение поля `citizenship`, если оно заполнено.\n\n  - `age` - вопрос про возраст.\nВ качестве критерия будет использоваться значение поля `age`, если оно заполнено.\n",
             "items": {
               "enum": [
@@ -223,10 +223,11 @@
               ],
               "type": "string"
             },
+            "nullable": true,
             "type": "array"
           },
           "apply_type": {
-            "description": "Принимает два значения:\n\n  - `with_assistant` *DEPRECATED* - Указание данного значения не влияет на вакансию.\nОбработка отклика с помощью ассистента Авито. После отклика на вакансию  ассистент Авито предложит кандидату ответить на несколько вопросов — результаты придут в чат. ФИО и номер телефона ассистент спросит в любом случае. Остальные вопросы можно настроить  в поле `additional_questions`.\n\n  - `only_with_resume` - на вакансию смогут откликаться только кандидаты с резюме. Если у кандидата нет резюме, \nАвито поможет создать его и откликнуться на вакансию\n",
+            "description": "Принимает два значения:\n\n  - `with_assistant` - на вакансию смогут откликнуться кандидаты с резюме и без.\n  - `only_with_resume` - на вакансию смогут откликаться только кандидаты с резюме. Если у кандидата нет резюме,\nАвито поможет создать его и откликнуться на вакансию\n",
             "enum": [
               "only_with_resume",
               "with_assistant"
@@ -383,6 +384,32 @@
         },
         "nullable": true,
         "type": "array"
+      },
+      "ConflictError": {
+        "properties": {
+          "error": {
+            "properties": {
+              "message": {
+                "example": "Обнаружен конфликт версий вакансии. Выполните запрос повторно.",
+                "title": "Текст ошибки",
+                "type": "string"
+              },
+              "payload": {
+                "additionalProperties": true,
+                "nullable": true,
+                "title": "Доп.данные об ошибке (если имеются)",
+                "type": "object"
+              },
+              "slug": {
+                "example": "conflict",
+                "title": "Кодовое название ошибки",
+                "type": "string"
+              }
+            },
+            "type": "object"
+          }
+        },
+        "type": "object"
       },
       "ConstructionWorkType": {
         "description": "С какими видами строительных или ремонтных работ предстоит столкнуться кандидату\n<br>\nВозможные значения элементов массива:\n  - \"paintingWorks\" - Малярные работы;\n  - \"wallCovering\" - Облицовка стен;\n  - \"tileWork\" - Работы с плиткой;\n  - \"mountingAndInstallation\" - Монтаж и установка;\n  - \"finishingWork\" - Отделочные работы;\n  - \"roofing\" - Кровельные работы;\n  - \"installationAndConfigurationOfEquipment\" - Монтаж и настройка оборудования;\n  - \"weldingWork\" - Сварочные работы;\n  - \"constructionOfFacades\" - Строительство фасадов;\n  - \"formingMaterials\" - Формовка материалов;\n  - \"concreteAndStoneWorks\" - Бетонные и каменные работы;\n  - \"repairWork\" - Ремонтные работы;\n  - \"other\" - Другие.\n",
@@ -2174,6 +2201,7 @@
                 "address",
                 "administrator_organization_type",
                 "age_preferences",
+                "applies_filter",
                 "bonuses",
                 "business_area",
                 "change",
@@ -2243,12 +2271,18 @@
                 "example": "Санкт-Петербург, Пушкин, Малая улица, 12",
                 "type": "string"
               },
+              "area": {
+                "description": "Район",
+                "nullable": true,
+                "type": "string"
+              },
               "city": {
                 "description": "Город",
                 "example": "Пушкин",
                 "type": "string"
               },
               "coordinates": {
+                "description": "Координаты",
                 "properties": {
                   "latitude": {
                     "description": "Широта",
@@ -2283,6 +2317,14 @@
             "description": "Информация о контактах в вакансии",
             "nullable": true,
             "properties": {
+              "allow_calls": {
+                "description": "Возможность позвонить по номеру из вакансии",
+                "type": "boolean"
+              },
+              "allow_messages": {
+                "description": "Возможность откликнуться на вакансию через сайт",
+                "type": "boolean"
+              },
               "email": {
                 "description": "Email контактного лица в вакансии",
                 "example": "ivalerevich@company.ru",
@@ -4388,12 +4430,23 @@
           "$ref": "#/components/parameters/authHeader"
         },
         {
-          "description": "Сотрудник может менять статусы откликов для вакансий которые он разместил в рамках компании",
+          "deprecated": true,
+          "description": "Устаревший заголовок, используйте X-Employee-Of. Сотрудник может менять статусы откликов для вакансий которые он разместил в рамках компании.\n",
           "in": "header",
           "name": "X-Is-Employee",
           "schema": {
             "nullable": true,
             "type": "boolean"
+          }
+        },
+        {
+          "description": "Идентификатор компании, от имени которой работает сотрудник. Сотрудник может менять статусы откликов для вакансий которые он разместил в рамках компании.\n",
+          "in": "header",
+          "name": "X-Employee-Of",
+          "schema": {
+            "minimum": 1,
+            "nullable": true,
+            "type": "integer"
           }
         }
       ],
@@ -4470,12 +4523,23 @@
           "$ref": "#/components/parameters/authHeader"
         },
         {
-          "description": "Сотрудник может получить информацию по откликам для вакансий которые он разместил в рамках компании",
+          "deprecated": true,
+          "description": "Устаревший заголовок, используйте X-Employee-Of. Сотрудник может получить информацию по откликам для вакансий которые он разместил в рамках компании.\n",
           "in": "header",
           "name": "X-Is-Employee",
           "schema": {
             "nullable": true,
             "type": "boolean"
+          }
+        },
+        {
+          "description": "Идентификатор компании, от имени которой работает сотрудник. Сотрудник может получить информацию по откликам для вакансий которые он разместил в рамках компании.\n",
+          "in": "header",
+          "name": "X-Employee-Of",
+          "schema": {
+            "minimum": 1,
+            "nullable": true,
+            "type": "integer"
           }
         }
       ],
@@ -4671,12 +4735,23 @@
           "$ref": "#/components/parameters/authHeader"
         },
         {
-          "description": "Сотрудник может получить список его откликов для вакансий которые он разместил в рамках компании",
+          "deprecated": true,
+          "description": "Устаревший заголовок, используйте X-Employee-Of. Сотрудник может получить список его откликов для вакансий которые он разместил в рамках компании.\n",
           "in": "header",
           "name": "X-Is-Employee",
           "schema": {
             "nullable": true,
             "type": "boolean"
+          }
+        },
+        {
+          "description": "Идентификатор компании, от имени которой работает сотрудник. Сотрудник может получить список его откликов для вакансий которые он разместил в рамках компании.\n",
+          "in": "header",
+          "name": "X-Employee-Of",
+          "schema": {
+            "minimum": 1,
+            "nullable": true,
+            "type": "integer"
           }
         }
       ]
@@ -4805,12 +4880,23 @@
           "$ref": "#/components/parameters/authHeader"
         },
         {
-          "description": "Получение списка возможных статусов откликов",
+          "deprecated": true,
+          "description": "Устаревший заголовок, используйте X-Employee-Of. Получение списка возможных статусов откликов.\n",
           "in": "header",
           "name": "X-Is-Employee",
           "schema": {
             "nullable": true,
             "type": "boolean"
+          }
+        },
+        {
+          "description": "Идентификатор компании, от имени которой работает сотрудник. Получение списка возможных статусов откликов.\n",
+          "in": "header",
+          "name": "X-Employee-Of",
+          "schema": {
+            "minimum": 1,
+            "nullable": true,
+            "type": "integer"
           }
         }
       ]
@@ -4821,12 +4907,23 @@
           "$ref": "#/components/parameters/authHeader"
         },
         {
-          "description": "Предоставляет возможность менять статус отклика от имени сотрудника",
+          "deprecated": true,
+          "description": "Устаревший заголовок, используйте X-Employee-Of. Предоставляет возможность менять статус отклика от имени сотрудника.\n",
           "in": "header",
           "name": "X-Is-Employee",
           "schema": {
             "nullable": true,
             "type": "boolean"
+          }
+        },
+        {
+          "description": "Идентификатор компании, от имени которой работает сотрудник. Предоставляет возможность менять статус отклика от имени сотрудника.\n",
+          "in": "header",
+          "name": "X-Employee-Of",
+          "schema": {
+            "minimum": 1,
+            "nullable": true,
+            "type": "integer"
           }
         }
       ],
@@ -5174,12 +5271,23 @@
           "$ref": "#/components/parameters/authHeader"
         },
         {
-          "description": "Включает привилегии компании для сотрудника",
+          "deprecated": true,
+          "description": "Устаревший заголовок, используйте X-Employee-Of. Включает привилегии компании для сотрудника.\n",
           "in": "header",
           "name": "X-Is-Employee",
           "schema": {
             "nullable": true,
             "type": "boolean"
+          }
+        },
+        {
+          "description": "Идентификатор компании, от имени которой работает сотрудник. Включает привилегии компании для сотрудника.\n",
+          "in": "header",
+          "name": "X-Employee-Of",
+          "schema": {
+            "minimum": 1,
+            "nullable": true,
+            "type": "integer"
           }
         },
         {
@@ -5702,12 +5810,23 @@
           "$ref": "#/components/parameters/authHeader"
         },
         {
-          "description": "Сотрудник компании может получить информацию о резюме приобретенных компанией",
+          "deprecated": true,
+          "description": "Устаревший заголовок, используйте X-Employee-Of. Сотрудник компании может получить информацию о резюме приобретенных компанией.\n",
           "in": "header",
           "name": "X-Is-Employee",
           "schema": {
             "nullable": true,
             "type": "boolean"
+          }
+        },
+        {
+          "description": "Идентификатор компании, от имени которой работает сотрудник. Сотрудник компании может получить информацию о резюме приобретенных компанией.\n",
+          "in": "header",
+          "name": "X-Employee-Of",
+          "schema": {
+            "minimum": 1,
+            "nullable": true,
+            "type": "integer"
           }
         },
         {
@@ -5738,12 +5857,23 @@
           "$ref": "#/components/parameters/authHeader"
         },
         {
-          "description": "Вакансия будет публиковаться от имени сотрудника компании, к которой он привязан.",
+          "deprecated": true,
+          "description": "Устаревший заголовок, используйте X-Employee-Of. Вакансия будет публиковаться от имени сотрудника компании, к которой он привязан.\n",
           "in": "header",
           "name": "X-Is-Employee",
           "schema": {
             "nullable": true,
             "type": "boolean"
+          }
+        },
+        {
+          "description": "Идентификатор компании, от имени которой работает сотрудник. Вакансия будет публиковаться от имени сотрудника компании, к которой он привязан.\n",
+          "in": "header",
+          "name": "X-Employee-Of",
+          "schema": {
+            "minimum": 1,
+            "nullable": true,
+            "type": "integer"
           }
         }
       ],
@@ -5943,12 +6073,23 @@
           "$ref": "#/components/parameters/pathVacancyId"
         },
         {
-          "description": "Сотрудник компании может остановить публикацию только для своих вакансий",
+          "deprecated": true,
+          "description": "Устаревший заголовок, используйте X-Employee-Of. Сотрудник компании может остановить публикацию только для своих вакансий.\n",
           "in": "header",
           "name": "X-Is-Employee",
           "schema": {
             "nullable": true,
             "type": "boolean"
+          }
+        },
+        {
+          "description": "Идентификатор компании, от имени которой работает сотрудник. Сотрудник компании может остановить публикацию только для своих вакансий.\n",
+          "in": "header",
+          "name": "X-Employee-Of",
+          "schema": {
+            "minimum": 1,
+            "nullable": true,
+            "type": "integer"
           }
         }
       ],
@@ -6085,12 +6226,23 @@
           "$ref": "#/components/parameters/pathVacancyId"
         },
         {
-          "description": "Сотрудник компании может редактировать только свои вакансии.",
+          "deprecated": true,
+          "description": "Устаревший заголовок, используйте X-Employee-Of. Сотрудник компании может редактировать только свои вакансии.\n",
           "in": "header",
           "name": "X-Is-Employee",
           "schema": {
             "nullable": true,
             "type": "boolean"
+          }
+        },
+        {
+          "description": "Идентификатор компании, от имени которой работает сотрудник. Сотрудник компании может редактировать только свои вакансии.\n",
+          "in": "header",
+          "name": "X-Employee-Of",
+          "schema": {
+            "minimum": 1,
+            "nullable": true,
+            "type": "integer"
           }
         }
       ],
@@ -6193,6 +6345,16 @@
             },
             "description": "Редактируемая вакансия не найдена"
           },
+          "409": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConflictError"
+                }
+              }
+            },
+            "description": "Конфликт при редактировании вакансии"
+          },
           "429": {
             "content": {
               "application/json": {
@@ -6257,12 +6419,23 @@
           "$ref": "#/components/parameters/pathVacancyId"
         },
         {
-          "description": "Сотрудник компании может реактивировать только свою вакансию",
+          "deprecated": true,
+          "description": "Устаревший заголовок, используйте X-Employee-Of. Сотрудник компании может реактивировать только свою вакансию.\n",
           "in": "header",
           "name": "X-Is-Employee",
           "schema": {
             "nullable": true,
             "type": "boolean"
+          }
+        },
+        {
+          "description": "Идентификатор компании, от имени которой работает сотрудник. Сотрудник компании может реактивировать только свою вакансию.\n",
+          "in": "header",
+          "name": "X-Employee-Of",
+          "schema": {
+            "minimum": 1,
+            "nullable": true,
+            "type": "integer"
           }
         }
       ],
@@ -6495,12 +6668,23 @@
           "$ref": "#/components/parameters/authHeader"
         },
         {
-          "description": "Включает привилегии компании для сотрудника, получает доступ к резюме от имени компании",
+          "deprecated": true,
+          "description": "Устаревший заголовок, используйте X-Employee-Of. Включает привилегии компании для сотрудника, получает доступ к резюме от имени компании.\n",
           "in": "header",
           "name": "X-Is-Employee",
           "schema": {
             "nullable": true,
             "type": "boolean"
+          }
+        },
+        {
+          "description": "Идентификатор компании, от имени которой работает сотрудник. Включает привилегии компании для сотрудника, получает доступ к резюме от имени компании.\n",
+          "in": "header",
+          "name": "X-Employee-Of",
+          "schema": {
+            "minimum": 1,
+            "nullable": true,
+            "type": "integer"
           }
         },
         {
@@ -6762,12 +6946,23 @@
             "$ref": "#/components/parameters/authHeader"
           },
           {
-            "description": "Вакансия будет публиковаться от имени сотрудника компании, к которой он привязан.",
+            "deprecated": true,
+            "description": "Устаревший заголовок, используйте X-Employee-Of. Вакансия будет публиковаться от имени сотрудника компании, к которой он привязан.\n",
             "in": "header",
             "name": "X-Is-Employee",
             "schema": {
               "nullable": true,
               "type": "boolean"
+            }
+          },
+          {
+            "description": "Идентификатор компании, от имени которой работает сотрудник. Вакансия будет публиковаться от имени сотрудника компании, к которой он привязан.\n",
+            "in": "header",
+            "name": "X-Employee-Of",
+            "schema": {
+              "minimum": 1,
+              "nullable": true,
+              "type": "integer"
             }
           }
         ],
@@ -6948,12 +7143,23 @@
           "$ref": "#/components/parameters/authHeader"
         },
         {
-          "description": "Сотрудник компании получает информацию по вакансиям, которую он опубликовал для компании",
+          "deprecated": true,
+          "description": "Устаревший заголовок, используйте X-Employee-Of. Сотрудник компании получает информацию по вакансиям, которую он опубликовал для компании.\n",
           "in": "header",
           "name": "X-Is-Employee",
           "schema": {
             "nullable": true,
             "type": "boolean"
+          }
+        },
+        {
+          "description": "Идентификатор компании, от имени которой работает сотрудник. Сотрудник компании получает информацию по вакансиям, которую он опубликовал для компании.\n",
+          "in": "header",
+          "name": "X-Employee-Of",
+          "schema": {
+            "minimum": 1,
+            "nullable": true,
+            "type": "integer"
           }
         }
       ],
@@ -7103,12 +7309,23 @@
           "$ref": "#/components/parameters/authHeader"
         },
         {
-          "description": "Сотрудник компании получает информацию о статусе публикации вакансии, которую он опубликовал для компании",
+          "deprecated": true,
+          "description": "Устаревший заголовок, используйте X-Employee-Of. Сотрудник компании получает информацию о статусе публикации вакансии, которую он опубликовал для компании.\n",
           "in": "header",
           "name": "X-Is-Employee",
           "schema": {
             "nullable": true,
             "type": "boolean"
+          }
+        },
+        {
+          "description": "Идентификатор компании, от имени которой работает сотрудник. Сотрудник компании получает информацию о статусе публикации вакансии, которую он опубликовал для компании.\n",
+          "in": "header",
+          "name": "X-Employee-Of",
+          "schema": {
+            "minimum": 1,
+            "nullable": true,
+            "type": "integer"
           }
         }
       ],
@@ -7230,12 +7447,23 @@
           "$ref": "#/components/parameters/pathVacancyUUID"
         },
         {
-          "description": "Сотрудник компании может редактировать только свои вакансии.",
+          "deprecated": true,
+          "description": "Устаревший заголовок, используйте X-Employee-Of. Сотрудник компании может редактировать только свои вакансии.\n",
           "in": "header",
           "name": "X-Is-Employee",
           "schema": {
             "nullable": true,
             "type": "boolean"
+          }
+        },
+        {
+          "description": "Идентификатор компании, от имени которой работает сотрудник. Сотрудник компании может редактировать только свои вакансии.\n",
+          "in": "header",
+          "name": "X-Employee-Of",
+          "schema": {
+            "minimum": 1,
+            "nullable": true,
+            "type": "integer"
           }
         }
       ],
@@ -7513,12 +7741,23 @@
           "$ref": "#/components/parameters/authHeader"
         },
         {
-          "description": "Сотрудник компании получает информацию по вакансии, которую он опубликовал для компании",
+          "deprecated": true,
+          "description": "Устаревший заголовок, используйте X-Employee-Of. Сотрудник компании получает информацию по вакансии, которую он опубликовал для компании.\n",
           "in": "header",
           "name": "X-Is-Employee",
           "schema": {
             "nullable": true,
             "type": "boolean"
+          }
+        },
+        {
+          "description": "Идентификатор компании, от имени которой работает сотрудник. Сотрудник компании получает информацию по вакансии, которую он опубликовал для компании.\n",
+          "in": "header",
+          "name": "X-Employee-Of",
+          "schema": {
+            "minimum": 1,
+            "nullable": true,
+            "type": "integer"
           }
         },
         {
@@ -7558,6 +7797,7 @@
               "address",
               "administrator_organization_type",
               "age_preferences",
+              "applies_filter",
               "bonuses",
               "business_area",
               "change",
@@ -7621,12 +7861,23 @@
           "$ref": "#/components/parameters/pathVacancyUUID"
         },
         {
-          "description": "Включает привилегии компании для сотрудника, позволяет включать автопродление вакансий принадлежащих сотруднику опубликованных от имени компании",
+          "deprecated": true,
+          "description": "Устаревший заголовок, используйте X-Employee-Of. Включает привилегии компании для сотрудника, позволяет включать автопродление вакансий принадлежащих сотруднику опубликованных от имени компании.\n",
           "in": "header",
           "name": "X-Is-Employee",
           "schema": {
             "nullable": true,
             "type": "boolean"
+          }
+        },
+        {
+          "description": "Идентификатор компании, от имени которой работает сотрудник. Включает привилегии компании для сотрудника, позволяет включать автопродление вакансий принадлежащих сотруднику опубликованных от имени компании.\n",
+          "in": "header",
+          "name": "X-Employee-Of",
+          "schema": {
+            "minimum": 1,
+            "nullable": true,
+            "type": "integer"
           }
         }
       ],
@@ -7777,12 +8028,23 @@
           "$ref": "#/components/parameters/authHeader"
         },
         {
-          "description": "Включает привилегии компании для сотрудника",
+          "deprecated": true,
+          "description": "Устаревший заголовок, используйте X-Employee-Of. Включает привилегии компании для сотрудника.\n",
           "in": "header",
           "name": "X-Is-Employee",
           "schema": {
             "nullable": true,
             "type": "boolean"
+          }
+        },
+        {
+          "description": "Идентификатор компании, от имени которой работает сотрудник. Включает привилегии компании для сотрудника.\n",
+          "in": "header",
+          "name": "X-Employee-Of",
+          "schema": {
+            "minimum": 1,
+            "nullable": true,
+            "type": "integer"
           }
         }
       ]
@@ -7855,12 +8117,23 @@
           "$ref": "#/components/parameters/pathDictionaryId"
         },
         {
-          "description": "Включает привилегии компании для сотрудника",
+          "deprecated": true,
+          "description": "Устаревший заголовок, используйте X-Employee-Of. Включает привилегии компании для сотрудника.\n",
           "in": "header",
           "name": "X-Is-Employee",
           "schema": {
             "nullable": true,
             "type": "boolean"
+          }
+        },
+        {
+          "description": "Идентификатор компании, от имени которой работает сотрудник. Включает привилегии компании для сотрудника.\n",
+          "in": "header",
+          "name": "X-Employee-Of",
+          "schema": {
+            "minimum": 1,
+            "nullable": true,
+            "type": "integer"
           }
         }
       ]

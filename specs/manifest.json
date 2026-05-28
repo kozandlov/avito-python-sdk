@@ -1,14 +1,22 @@
 {
   "source_list_url": "https://developers.avito.ru/web/1/openapi/list",
-  "slug_count": 23,
+  "slug_count": 24,
   "entries": [
     {
       "slug": "accounts-hierarchy",
       "title": "Иерархия Аккаунтов",
       "source": "https://developers.avito.ru/web/1/openapi/info/accounts-hierarchy",
       "raw_file": "specs/raw/accounts-hierarchy.json",
-      "sha256": "b3cb9c2c15e99f3d9f7cfdb8d0625c6755fbda9ca91ae2264cff3f7ca6870d0e",
-      "operations": 5
+      "sha256": "2bc72101f46102032539f9d55238d58e49605fc853a9302e7ddc36e8315fe26e",
+      "operations": 7
+    },
+    {
+      "slug": "ads",
+      "title": "Авито Реклама",
+      "source": "https://developers.avito.ru/web/1/openapi/info/ads",
+      "raw_file": "specs/raw/ads.json",
+      "sha256": "5c8d29ebea46ef67bd1a9f55ad2bf19b1862f71944ccee2365434580190c8cc7",
+      "operations": 24
     },
     {
       "slug": "auction",
@@ -95,7 +103,7 @@
       "title": "Авито.Работа",
       "source": "https://developers.avito.ru/web/1/openapi/info/job",
       "raw_file": "specs/raw/job.json",
-      "sha256": "bc2288c0a5d6fec7615c2b165edaeb3545aa80fbc0d343ee2f8115db7b24954c",
+      "sha256": "feb8b93377235eb5e2bc28bdcef3b5748e570b8fe7f28fdcb6f65e6e596c7eed",
       "operations": 25
     },
     {
@@ -119,7 +127,7 @@
       "title": "Продвижение",
       "source": "https://developers.avito.ru/web/1/openapi/info/promotion",
       "raw_file": "specs/raw/promotion.json",
-      "sha256": "a3b9571c613a71469e1ee8fd38010e3e1bfdac8600172589bce465e38d085cda",
+      "sha256": "15b78593ac145aec592c8753cbf5b4c99965e825993afdce85ce445ed73042b3",
       "operations": 7
     },
     {
