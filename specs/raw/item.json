@@ -793,6 +793,30 @@
                       "description": "Расходы",
                       "items": {
                         "properties": {
+                          "services": {
+                            "description": "Детализация по услугам",
+                            "items": {
+                              "properties": {
+                                "slug": {
+                                  "description": "Слаг услуги",
+                                  "example": "vas_highlight",
+                                  "type": "string"
+                                },
+                                "value": {
+                                  "description": "Сумма расходов в рублях",
+                                  "example": 123.95,
+                                  "format": "float",
+                                  "type": "number"
+                                }
+                              },
+                              "required": [
+                                "slug",
+                                "value"
+                              ],
+                              "type": "object"
+                            },
+                            "type": "array"
+                          },
                           "slug": {
                             "description": "Слаг типа расходов (promotion, presence, commission, rest)",
                             "example": "presence",

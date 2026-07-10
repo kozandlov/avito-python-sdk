@@ -1235,6 +1235,64 @@
         ],
         "type": "object"
       },
+      "ItemMessageV4": {
+        "description": "Сообщение по объявлению (ошибка, предупреждение, информационное сообщение)",
+        "properties": {
+          "code": {
+            "description": "Код сообщения",
+            "type": "integer"
+          },
+          "description": {
+            "description": "Описание сообщения",
+            "type": "string"
+          },
+          "title": {
+            "description": "Название сообщения",
+            "type": "string"
+          },
+          "type": {
+            "description": "Тип сообщения\n- `error` — критическая ошибка, объявление не редактируется/не публикуется\n- `warning` — некритическая ошибка\n- `alarm` — предупреждение, не влияющее на загрузку\n- `info` — информационное сообщение\n",
+            "enum": [
+              "error",
+              "warning",
+              "alarm",
+              "info"
+            ],
+            "type": "string"
+          },
+          "updated_at": {
+            "description": "Дата актуальности сообщения",
+            "format": "date-time",
+            "type": "string"
+          }
+        },
+        "required": [
+          "code",
+          "title",
+          "description",
+          "type",
+          "updated_at"
+        ],
+        "type": "object"
+      },
+      "ItemSectionV4": {
+        "description": "Раздел отчёта, в котором находится объявление",
+        "properties": {
+          "slug": {
+            "description": "ID раздела",
+            "type": "string"
+          },
+          "title": {
+            "description": "Название раздела",
+            "type": "string"
+          }
+        },
+        "required": [
+          "slug",
+          "title"
+        ],
+        "type": "object"
+      },
       "MetaAutoload": {
         "properties": {
           "page": {
@@ -1297,6 +1355,34 @@
             "type": "integer"
           }
         },
+        "type": "object"
+      },
+      "PaginationMetaV4": {
+        "description": "Данные пагинации",
+        "properties": {
+          "page": {
+            "description": "Номер страницы",
+            "type": "integer"
+          },
+          "pages": {
+            "description": "Общее количество страниц",
+            "type": "integer"
+          },
+          "perPage": {
+            "description": "Количество ресурсов на странице",
+            "type": "integer"
+          },
+          "total": {
+            "description": "Общее количество ресурсов",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "perPage",
+          "page",
+          "pages",
+          "total"
+        ],
         "type": "object"
       },
       "ReportAutoload": {
@@ -2060,6 +2146,226 @@
         },
         "type": "array"
       },
+      "SectionStatsV4": {
+        "description": "Дерево разделов загрузки с количеством объявлений в каждом разделе.\nСтруктура трёхуровневая: корень (общий итог) → разделы → подразделы.\n\nУ корня значения `title=\"Обработано объявлений\"`, `slug=\"sections_stats\"`.\nСами разделы и их `count` зависят от содержимого загрузки.\n\nДля раздела `successful` подкатегории не возвращаются — поле `sections`\nвсегда содержит пустой массив. Для остальных разделов (например, `error`)\nподкатегории возвращаются.\n",
+        "properties": {
+          "count": {
+            "description": "Общее количество объявлений",
+            "type": "integer"
+          },
+          "sections": {
+            "description": "Разделы второго уровня",
+            "items": {
+              "properties": {
+                "count": {
+                  "description": "Количество объявлений в разделе",
+                  "type": "integer"
+                },
+                "sections": {
+                  "description": "Подразделы (третий уровень)",
+                  "items": {
+                    "properties": {
+                      "count": {
+                        "description": "Количество объявлений в подразделе",
+                        "type": "integer"
+                      },
+                      "slug": {
+                        "description": "ID подраздела",
+                        "type": "string"
+                      },
+                      "title": {
+                        "description": "Название подраздела",
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "title",
+                      "slug",
+                      "count"
+                    ],
+                    "type": "object"
+                  },
+                  "type": "array"
+                },
+                "slug": {
+                  "description": "ID раздела",
+                  "type": "string"
+                },
+                "title": {
+                  "description": "Название раздела",
+                  "type": "string"
+                }
+              },
+              "required": [
+                "title",
+                "slug",
+                "count",
+                "sections"
+              ],
+              "type": "object"
+            },
+            "type": "array"
+          },
+          "slug": {
+            "description": "ID корневого узла",
+            "type": "string"
+          },
+          "title": {
+            "description": "Название корневого узла",
+            "type": "string"
+          }
+        },
+        "required": [
+          "title",
+          "slug",
+          "count",
+          "sections"
+        ],
+        "type": "object"
+      },
+      "UploadAutoloadV4": {
+        "properties": {
+          "events": {
+            "description": "События, относящиеся ко всей загрузке",
+            "items": {
+              "$ref": "#/components/schemas/UploadEventV4"
+            },
+            "type": "array"
+          },
+          "feed_urls": {
+            "description": "Список файлов, которые входили в загрузку",
+            "items": {
+              "properties": {
+                "name": {
+                  "description": "Название файла",
+                  "type": "string"
+                },
+                "url": {
+                  "description": "Ссылка на копию файла на момент начала загрузки",
+                  "type": "string"
+                }
+              },
+              "required": [
+                "name",
+                "url"
+              ],
+              "type": "object"
+            },
+            "type": "array"
+          },
+          "source": {
+            "description": "Источник загрузки.\n- `Email` — загрузка файла по почте\n- `Url` — загрузка файла по ссылке\n- `Web` — загрузка файла вручную в профиле Авито\n- `OpenAPI` — загрузка по API через [метод `upload`](#operation/upload)\n",
+            "nullable": true,
+            "type": "string"
+          },
+          "started_at": {
+            "description": "Время загрузки",
+            "format": "date-time",
+            "nullable": true,
+            "type": "string"
+          },
+          "stats": {
+            "$ref": "#/components/schemas/SectionStatsV4"
+          },
+          "status": {
+            "description": "Статус загрузки.\n- `processing` — загрузка в процессе\n- `success` — загрузка завершилась без ошибок\n- `success_warning` — загрузка завершилась, в части объявлений есть ошибки\n- `error` — загрузка завершилась с ошибкой\n",
+            "nullable": true,
+            "type": "string"
+          },
+          "upload_id": {
+            "description": "Идентификатор загрузки",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "upload_id",
+          "stats",
+          "events",
+          "feed_urls"
+        ],
+        "type": "object"
+      },
+      "UploadEventV4": {
+        "description": "Событие загрузки (ошибка или предупреждение, относящееся ко всей загрузке)",
+        "properties": {
+          "code": {
+            "description": "Код события",
+            "type": "integer"
+          },
+          "description": {
+            "description": "Описание события",
+            "type": "string"
+          },
+          "type": {
+            "description": "Тип события",
+            "type": "string"
+          }
+        },
+        "required": [
+          "code",
+          "type",
+          "description"
+        ],
+        "type": "object"
+      },
+      "UploadItemAutoloadV4": {
+        "properties": {
+          "ad_id": {
+            "description": "Идентификатор объявления из файла ([параметр Id](https://www.avito.ru/autoload/documentation/templates/66940?fileFormat=xml#field-Id))\n",
+            "type": "string"
+          },
+          "avito_date_end": {
+            "description": "Дата окончания оплаченного периода размещения",
+            "format": "date-time",
+            "nullable": true,
+            "type": "string"
+          },
+          "avito_id": {
+            "description": "Идентификатор объявления на Авито",
+            "nullable": true,
+            "type": "integer"
+          },
+          "avito_status": {
+            "description": "Статус объявления на Авито\n- `active` — объявление активно\n- `old` — срок размещения объявления истёк\n- `blocked` — объявление заблокировано\n- `rejected` — объявление отклонено для исправления нарушений\n- `archived` — объявление находится в архиве\n- `removed` — объявление удалено навсегда\n",
+            "enum": [
+              "active",
+              "old",
+              "blocked",
+              "rejected",
+              "archived",
+              "removed"
+            ],
+            "nullable": true,
+            "type": "string"
+          },
+          "feed_name": {
+            "description": "Название файла, из которого было взято объявление",
+            "nullable": true,
+            "type": "string"
+          },
+          "messages": {
+            "description": "Сообщения по объявлению (ошибки, предупреждения)",
+            "items": {
+              "$ref": "#/components/schemas/ItemMessageV4"
+            },
+            "type": "array"
+          },
+          "section": {
+            "$ref": "#/components/schemas/ItemSectionV4"
+          },
+          "url": {
+            "description": "Ссылка на объявление на Авито",
+            "nullable": true,
+            "type": "string"
+          }
+        },
+        "required": [
+          "ad_id",
+          "section",
+          "messages"
+        ],
+        "type": "object"
+      },
       "UpsertProfileIn": {
         "properties": {
           "agreement": {
@@ -2809,7 +3115,8 @@
     },
     "/autoload/v2/reports": {
       "get": {
-        "description": "По запросу вы получите список отчётов автозагрузки.\nОни будут отсортированы в порядке убывания: самый свежий отчёт — в начале списка.\n\n📝 [Напишите нам](https://docs.google.com/forms/d/e/1FAIpQLSdfTHlP6PKtOb08fxD7BaJ0VjtkaLXoRAswhF9gnKvrEyY16g/viewform?usp=sf_link),\nесли в методе вам не хватает каких-либо данных.\n",
+        "deprecated": true,
+        "description": "По запросу вы получите список отчётов автозагрузки.\nОни будут отсортированы в порядке убывания: самый свежий отчёт — в начале списка.\n\n📝 [Напишите нам](https://docs.google.com/forms/d/e/1FAIpQLSdfTHlP6PKtOb08fxD7BaJ0VjtkaLXoRAswhF9gnKvrEyY16g/viewform?usp=sf_link),\nесли в методе вам не хватает каких-либо данных.\n\nМетод будет отключен 08.03.2027. С 08.09.2026 метод начнёт возвращать меньше данных. Подробнее читайте в [плане миграции](https://developers.avito.ru/api-catalog/autoload/documentation#migration-v4).\n",
         "operationId": "getReportsV2",
         "parameters": [
           {
@@ -2884,7 +3191,7 @@
             "description": "Информация об ошибке"
           }
         },
-        "summary": "Список отчётов автозагрузки",
+        "summary": "Список отчётов автозагрузки (deprecated)",
         "tags": [
           "Autoload"
         ]
@@ -2892,7 +3199,8 @@
     },
     "/autoload/v2/reports/items": {
       "get": {
-        "description": "По запросу API отдаст данные по конкретным объявлениям.\n\n📝 [Напишите нам](https://docs.google.com/forms/d/e/1FAIpQLSdfTHlP6PKtOb08fxD7BaJ0VjtkaLXoRAswhF9gnKvrEyY16g/viewform?usp=sf_link),\nесли в методе вам не хватает каких-либо данных.\n",
+        "deprecated": true,
+        "description": "По запросу API отдаст данные по конкретным объявлениям.\n\n📝 [Напишите нам](https://docs.google.com/forms/d/e/1FAIpQLSdfTHlP6PKtOb08fxD7BaJ0VjtkaLXoRAswhF9gnKvrEyY16g/viewform?usp=sf_link),\nесли в методе вам не хватает каких-либо данных.\n\nМетод будет отключен 08.03.2027. С 08.09.2026 метод начнёт возвращать меньше данных. Подробнее читайте в [плане миграции](https://developers.avito.ru/api-catalog/autoload/documentation#migration-v4).\n",
         "operationId": "getAutoloadItemsInfoV2",
         "parameters": [
           {
@@ -2942,7 +3250,7 @@
             "description": "Информация об ошибке"
           }
         },
-        "summary": "Объявления по ID в автозагрузке",
+        "summary": "Объявления по ID в автозагрузке (deprecated)",
         "tags": [
           "Autoload"
         ]
@@ -2951,7 +3259,7 @@
     "/autoload/v2/reports/last_completed_report": {
       "get": {
         "deprecated": true,
-        "description": "Метод возвращает сводную статистику с результатами последней завершённой выгрузки.\nНапример, сколько объявлений было в файле и сколько из них было опубликовано с ошибками или без.\n\n📝 [Напишите нам](https://docs.google.com/forms/d/e/1FAIpQLSdfTHlP6PKtOb08fxD7BaJ0VjtkaLXoRAswhF9gnKvrEyY16g/viewform?usp=sf_link),\nесли в методе вам не хватает каких-либо данных.\n\nС 23.12.2024 вместо поля feed_url используйте поле feeds_urls. В нём содержится название файла и ссылка на него. [Новая версия](https://developers.avito.ru/api-catalog/autoload/documentation#operation/getLastCompletedReportV3)\n",
+        "description": "Метод возвращает сводную статистику с результатами последней завершённой выгрузки.\nНапример, сколько объявлений было в файле и сколько из них было опубликовано с ошибками или без.\n\n📝 [Напишите нам](https://docs.google.com/forms/d/e/1FAIpQLSdfTHlP6PKtOb08fxD7BaJ0VjtkaLXoRAswhF9gnKvrEyY16g/viewform?usp=sf_link),\nесли в методе вам не хватает каких-либо данных.\n\nС 23.12.2024 вместо поля feed_url используйте поле feeds_urls. В нём содержится название файла и ссылка на него.\n\nМетод будет отключен 08.03.2027. С 08.09.2026 метод начнёт возвращать меньше данных. Подробнее читайте в [плане миграции](https://developers.avito.ru/api-catalog/autoload/documentation#migration-v4).\n",
         "operationId": "getLastCompletedReport",
         "parameters": [
           {
@@ -2989,7 +3297,7 @@
     "/autoload/v2/reports/{report_id}": {
       "get": {
         "deprecated": true,
-        "description": "Метод возвращает сводную статистику с результатами конкретной выгрузки — по ID отчёта.\nНапример, сколько объявлений было в файле и сколько из них было опубликовано с ошибками или без.\n\n📝 [Напишите нам](https://docs.google.com/forms/d/e/1FAIpQLSdfTHlP6PKtOb08fxD7BaJ0VjtkaLXoRAswhF9gnKvrEyY16g/viewform?usp=sf_link),\nесли в методе вам не хватает каких-либо данных.\n\nС 23.12.2024 вместо поля feed_url используйте поле feeds_urls. В нём содержится название файла и ссылка на него. [Новая версия](https://developers.avito.ru/api-catalog/autoload/documentation#operation/getReportByIdV3)\n",
+        "description": "Метод возвращает сводную статистику с результатами конкретной выгрузки — по ID отчёта.\nНапример, сколько объявлений было в файле и сколько из них было опубликовано с ошибками или без.\n\n📝 [Напишите нам](https://docs.google.com/forms/d/e/1FAIpQLSdfTHlP6PKtOb08fxD7BaJ0VjtkaLXoRAswhF9gnKvrEyY16g/viewform?usp=sf_link),\nесли в методе вам не хватает каких-либо данных.\n\nС 23.12.2024 вместо поля feed_url используйте поле feeds_urls. В нём содержится название файла и ссылка на него.\n\nМетод будет отключен 08.03.2027. С 08.09.2026 метод начнёт возвращать меньше данных. Подробнее читайте в [плане миграции](https://developers.avito.ru/api-catalog/autoload/documentation#migration-v4).\n",
         "operationId": "getReportByIdV2",
         "parameters": [
           {
@@ -3035,7 +3343,8 @@
     },
     "/autoload/v2/reports/{report_id}/items": {
       "get": {
-        "description": "С помощью этого метода можно получить результаты обработки каждого объявления в конкретной выгрузке.\n\n📝 [Напишите нам](https://docs.google.com/forms/d/e/1FAIpQLSdfTHlP6PKtOb08fxD7BaJ0VjtkaLXoRAswhF9gnKvrEyY16g/viewform?usp=sf_link),\nесли в методе вам не хватает каких-либо данных.\n\nС 23.12.2024 добавляется поле feed_name. В нём содержится название файла.\n",
+        "deprecated": true,
+        "description": "С помощью этого метода можно получить результаты обработки каждого объявления в конкретной выгрузке.\n\n📝 [Напишите нам](https://docs.google.com/forms/d/e/1FAIpQLSdfTHlP6PKtOb08fxD7BaJ0VjtkaLXoRAswhF9gnKvrEyY16g/viewform?usp=sf_link),\nесли в методе вам не хватает каких-либо данных.\n\nС 23.12.2024 добавляется поле feed_name. В нём содержится название файла.\n\nМетод будет отключен 08.03.2027. С 08.09.2026 метод начнёт возвращать меньше данных. Подробнее читайте в [плане миграции](https://developers.avito.ru/api-catalog/autoload/documentation#migration-v4).\n",
         "operationId": "getReportItemsById",
         "parameters": [
           {
@@ -3125,7 +3434,7 @@
             "description": "Информация об ошибке"
           }
         },
-        "summary": "Все объявления из конкретной выгрузки",
+        "summary": "Все объявления из конкретной выгрузки (deprecated)",
         "tags": [
           "Autoload"
         ]
@@ -3133,7 +3442,8 @@
     },
     "/autoload/v2/reports/{report_id}/items/fees": {
       "get": {
-        "description": "С помощью этого метода можно получить информацию о списаниях за размещение каждого объявления в конкретной выгрузке.\n\n📝 [Напишите нам](https://docs.google.com/forms/d/e/1FAIpQLSdfTHlP6PKtOb08fxD7BaJ0VjtkaLXoRAswhF9gnKvrEyY16g/viewform?usp=sf_link),\nесли в методе вам не хватает каких-либо данных.\n",
+        "deprecated": true,
+        "description": "С помощью этого метода можно получить информацию о списаниях за размещение каждого объявления в конкретной выгрузке.\n\n📝 [Напишите нам](https://docs.google.com/forms/d/e/1FAIpQLSdfTHlP6PKtOb08fxD7BaJ0VjtkaLXoRAswhF9gnKvrEyY16g/viewform?usp=sf_link),\nесли в методе вам не хватает каких-либо данных.\n\nМетод будет отключен 08.03.2027. С 08.09.2026 метод начнёт возвращать меньше данных. Подробнее читайте в [плане миграции](https://developers.avito.ru/api-catalog/autoload/documentation#migration-v4).\n",
         "operationId": "getReportItemsFeesById",
         "parameters": [
           {
@@ -3242,7 +3552,7 @@
             "description": "Информация об ошибке"
           }
         },
-        "summary": "Списания за объявления в конкретной выгрузке",
+        "summary": "Списания за объявления в конкретной выгрузке (deprecated)",
         "tags": [
           "Autoload"
         ]
@@ -3250,7 +3560,8 @@
     },
     "/autoload/v3/reports/last_completed_report": {
       "get": {
-        "description": "Метод возвращает сводную статистику с результатами последней завершённой выгрузки.\nНапример, сколько объявлений было в файле и сколько из них было опубликовано с ошибками или без.\n\n📝 [Напишите нам](https://docs.google.com/forms/d/e/1FAIpQLSdfTHlP6PKtOb08fxD7BaJ0VjtkaLXoRAswhF9gnKvrEyY16g/viewform?usp=sf_link),\nесли в методе вам не хватает каких-либо данных.\n\nС 23.12.2024 вместо поля feed_url используйте поле feeds_urls. В нём содержится название файла и ссылка на него.\n",
+        "deprecated": true,
+        "description": "Метод возвращает сводную статистику с результатами последней завершённой выгрузки.\nНапример, сколько объявлений было в файле и сколько из них было опубликовано с ошибками или без.\n\n📝 [Напишите нам](https://docs.google.com/forms/d/e/1FAIpQLSdfTHlP6PKtOb08fxD7BaJ0VjtkaLXoRAswhF9gnKvrEyY16g/viewform?usp=sf_link),\nесли в методе вам не хватает каких-либо данных.\n\nС 23.12.2024 вместо поля feed_url используйте поле feeds_urls. В нём содержится название файла и ссылка на него.\n\nМетод будет отключен 08.03.2027. С 08.09.2026 метод начнёт возвращать меньше данных. Подробнее читайте в [плане миграции](https://developers.avito.ru/api-catalog/autoload/documentation#migration-v4).\n",
         "operationId": "getLastCompletedReportV3",
         "parameters": [
           {
@@ -3279,7 +3590,7 @@
             "description": "Информация об ошибке"
           }
         },
-        "summary": "Статистика по последней выгрузке",
+        "summary": "Статистика по последней выгрузке (deprecated)",
         "tags": [
           "Autoload"
         ]
@@ -3287,7 +3598,8 @@
     },
     "/autoload/v3/reports/{report_id}": {
       "get": {
-        "description": "Метод возвращает сводную статистику с результатами конкретной выгрузки — по ID отчёта.\nНапример, сколько объявлений было в файле и сколько из них было опубликовано с ошибками или без.\n\n📝 [Напишите нам](https://docs.google.com/forms/d/e/1FAIpQLSdfTHlP6PKtOb08fxD7BaJ0VjtkaLXoRAswhF9gnKvrEyY16g/viewform?usp=sf_link),\nесли в методе вам не хватает каких-либо данных.\n\nС 23.12.2024 вместо поля feed_url используйте поле feeds_urls. В нём содержится название файла и ссылка на него.\n",
+        "deprecated": true,
+        "description": "Метод возвращает сводную статистику с результатами конкретной выгрузки — по ID отчёта.\nНапример, сколько объявлений было в файле и сколько из них было опубликовано с ошибками или без.\n\n📝 [Напишите нам](https://docs.google.com/forms/d/e/1FAIpQLSdfTHlP6PKtOb08fxD7BaJ0VjtkaLXoRAswhF9gnKvrEyY16g/viewform?usp=sf_link),\nесли в методе вам не хватает каких-либо данных.\n\nС 23.12.2024 вместо поля feed_url используйте поле feeds_urls. В нём содержится название файла и ссылка на него.\n\nМетод будет отключен 08.03.2027. С 08.09.2026 метод начнёт возвращать меньше данных. Подробнее читайте в [плане миграции](https://developers.avito.ru/api-catalog/autoload/documentation#migration-v4).\n",
         "operationId": "getReportByIdV3",
         "parameters": [
           {
@@ -3325,7 +3637,854 @@
             "description": "Информация об ошибке"
           }
         },
-        "summary": "Статистика по конкретной выгрузке",
+        "summary": "Статистика по конкретной выгрузке (deprecated)",
+        "tags": [
+          "Autoload"
+        ]
+      }
+    },
+    "/autoload/v4/uploads": {
+      "get": {
+        "description": "Возвращает список загрузок. Самая свежая загрузка — в начале списка.\n",
+        "operationId": "getUploads",
+        "parameters": [
+          {
+            "description": "Количество загрузок на странице\n",
+            "in": "query",
+            "name": "perPage",
+            "schema": {
+              "default": 10,
+              "maximum": 50,
+              "minimum": 1,
+              "type": "integer"
+            }
+          },
+          {
+            "description": "Номер страницы\n",
+            "in": "query",
+            "name": "page",
+            "schema": {
+              "default": 1,
+              "minimum": 1,
+              "type": "integer"
+            }
+          },
+          {
+            "description": "Фильтр по дате загрузки «от» (от такой-то даты).\nФормат значения: RFC3339\n",
+            "example": "2026-05-20T10:00:00Z",
+            "in": "query",
+            "name": "dateFrom",
+            "schema": {
+              "format": "date-time",
+              "type": "string"
+            }
+          },
+          {
+            "description": "Фильтр по дате загрузки «до» (до такой-то даты).\nФормат значения: RFC3339\n",
+            "example": "2026-05-27T10:00:00Z",
+            "in": "query",
+            "name": "dateTo",
+            "schema": {
+              "format": "date-time",
+              "type": "string"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "example": {
+                  "meta": {
+                    "page": 1,
+                    "pages": 5,
+                    "perPage": 10,
+                    "total": 47
+                  },
+                  "uploads": [
+                    {
+                      "events": [],
+                      "feed_urls": [
+                        {
+                          "name": "файл 1",
+                          "url": "https://www.avito.ru/"
+                        }
+                      ],
+                      "source": "OpenAPI",
+                      "started_at": "2026-05-27T08:42:00+03:00",
+                      "stats": {
+                        "count": 0,
+                        "sections": [],
+                        "slug": "sections_stats",
+                        "title": "Обработано объявлений"
+                      },
+                      "status": "processing",
+                      "upload_id": 1234567890
+                    },
+                    {
+                      "events": [
+                        {
+                          "code": 600,
+                          "description": "В ваших файлах суммарно слишком много объявлений — автозагрузка обработает только 100000 из них.",
+                          "type": "warning"
+                        }
+                      ],
+                      "feed_urls": [
+                        {
+                          "name": "файл 1",
+                          "url": "https://www.avito.ru/"
+                        }
+                      ],
+                      "source": "OpenAPI",
+                      "started_at": "2026-05-20T10:15:30+03:00",
+                      "stats": {
+                        "count": 3,
+                        "sections": [
+                          {
+                            "count": 1,
+                            "sections": [
+                              {
+                                "count": 1,
+                                "slug": "error_params",
+                                "title": "Ошибки описания"
+                              }
+                            ],
+                            "slug": "error",
+                            "title": "Не удалось опубликовать"
+                          },
+                          {
+                            "count": 2,
+                            "sections": [],
+                            "slug": "successful",
+                            "title": "Успешно опубликовано"
+                          }
+                        ],
+                        "slug": "sections_stats",
+                        "title": "Обработано объявлений"
+                      },
+                      "status": "success_warning",
+                      "upload_id": 1234567889
+                    }
+                  ]
+                },
+                "schema": {
+                  "properties": {
+                    "meta": {
+                      "$ref": "#/components/schemas/PaginationMetaV4"
+                    },
+                    "uploads": {
+                      "description": "Список загрузок",
+                      "items": {
+                        "$ref": "#/components/schemas/UploadAutoloadV4"
+                      },
+                      "type": "array"
+                    }
+                  },
+                  "required": [
+                    "uploads",
+                    "meta"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Успешный ответ"
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FieldErrorV2"
+                }
+              }
+            },
+            "description": "Невалидные параметры запроса"
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FieldErrorV2"
+                }
+              }
+            },
+            "description": "Доступ запрещён"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FieldErrorV2"
+                }
+              }
+            },
+            "description": "Загрузка не найдена"
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FieldErrorV2"
+                }
+              }
+            },
+            "description": "Превышен лимит запросов"
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FieldErrorV2"
+                }
+              }
+            },
+            "description": "Внутренняя ошибка метода API"
+          },
+          "503": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FieldErrorV2"
+                }
+              }
+            },
+            "description": "Метод API временно недоступен"
+          }
+        },
+        "summary": "История загрузок",
+        "tags": [
+          "Autoload"
+        ]
+      }
+    },
+    "/autoload/v4/uploads/current": {
+      "get": {
+        "description": "Возвращает текущую загрузку пользователя, т.е. последнюю загрузку, которая обработала хотя бы одно объявление фида. Подходит, когда нужны самые актуальные данные. Но эти данные могут меняться в процессе загрузки - для получения стабильных данных лучше использовать метод [последней завершённой загрузки](#operation/getLastSuccessfulUpload).\nЕсли подходящей загрузки нет — возвращается ответ `404`.\n",
+        "operationId": "getCurrentUpload",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/authHeader"
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "example": {
+                  "events": [
+                    {
+                      "code": 600,
+                      "description": "В ваших файлах суммарно слишком много объявлений — автозагрузка обработает только 100000 из них.",
+                      "type": "warning"
+                    }
+                  ],
+                  "feed_urls": [
+                    {
+                      "name": "файл 1",
+                      "url": "https://www.avito.ru/"
+                    }
+                  ],
+                  "source": "OpenAPI",
+                  "started_at": "2026-05-20T10:15:30+03:00",
+                  "stats": {
+                    "count": 3,
+                    "sections": [
+                      {
+                        "count": 1,
+                        "sections": [
+                          {
+                            "count": 1,
+                            "slug": "error_params",
+                            "title": "Ошибки описания"
+                          }
+                        ],
+                        "slug": "error",
+                        "title": "Не удалось опубликовать"
+                      },
+                      {
+                        "count": 2,
+                        "sections": [],
+                        "slug": "successful",
+                        "title": "Успешно опубликовано"
+                      }
+                    ],
+                    "slug": "sections_stats",
+                    "title": "Обработано объявлений"
+                  },
+                  "status": "success_warning",
+                  "upload_id": 1234567890
+                },
+                "schema": {
+                  "$ref": "#/components/schemas/UploadAutoloadV4"
+                }
+              }
+            },
+            "description": "Успешный ответ"
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FieldErrorV2"
+                }
+              }
+            },
+            "description": "Невалидные параметры запроса"
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FieldErrorV2"
+                }
+              }
+            },
+            "description": "Доступ запрещён"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FieldErrorV2"
+                }
+              }
+            },
+            "description": "Загрузка не найдена"
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FieldErrorV2"
+                }
+              }
+            },
+            "description": "Превышен лимит запросов"
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FieldErrorV2"
+                }
+              }
+            },
+            "description": "Внутренняя ошибка метода API"
+          },
+          "503": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FieldErrorV2"
+                }
+              }
+            },
+            "description": "Метод API временно недоступен"
+          }
+        },
+        "summary": "Текущая загрузка",
+        "tags": [
+          "Autoload"
+        ]
+      }
+    },
+    "/autoload/v4/uploads/current/items": {
+      "get": {
+        "description": "Возвращает объявления [текущей загрузки](#operation/getCurrentUpload).\n\nЕсли подходящей загрузки нет — возвращается ответ `404`.\n",
+        "operationId": "getCurrentUploadItems",
+        "parameters": [
+          {
+            "description": "Поиск по одному или нескольким [идентификаторам объявлений из файла](https://www.avito.ru/autoload/documentation/templates/66940?fileFormat=xml#field-Id),\nперечисленным через «,» или «|».\nБез параметра — возвращаются все объявления с пагинацией.\n",
+            "in": "query",
+            "name": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Фильтр по разделам отчёта. Формат значения: строка со slug разделов,\nперечисленными через запятую.\n",
+            "in": "query",
+            "name": "sections",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Количество объявлений на странице\n",
+            "in": "query",
+            "name": "perPage",
+            "schema": {
+              "default": 20,
+              "maximum": 100,
+              "minimum": 1,
+              "type": "integer"
+            }
+          },
+          {
+            "description": "Номер страницы\n",
+            "in": "query",
+            "name": "page",
+            "schema": {
+              "default": 1,
+              "minimum": 1,
+              "type": "integer"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "example": {
+                  "items": [
+                    {
+                      "ad_id": "ad1",
+                      "avito_date_end": "2026-12-31T23:59:59+03:00",
+                      "avito_id": 777,
+                      "avito_status": "active",
+                      "feed_name": "файл 1",
+                      "messages": [],
+                      "section": {
+                        "slug": "success_activated",
+                        "title": "Активировано"
+                      },
+                      "url": "https://www.avito.ru/"
+                    },
+                    {
+                      "ad_id": "ad2",
+                      "avito_date_end": null,
+                      "avito_id": null,
+                      "avito_status": null,
+                      "feed_name": "файл 1",
+                      "messages": [
+                        {
+                          "code": 4012,
+                          "description": "Для объявлений категории «Недвижимость» поле price обязательно.",
+                          "title": "Не указана цена",
+                          "type": "error",
+                          "updated_at": "2026-05-20T10:15:25+03:00"
+                        }
+                      ],
+                      "section": {
+                        "slug": "error_params",
+                        "title": "Ошибки описания"
+                      },
+                      "url": null
+                    }
+                  ],
+                  "meta": {
+                    "page": 1,
+                    "pages": 73,
+                    "perPage": 20,
+                    "total": 1450
+                  }
+                },
+                "schema": {
+                  "properties": {
+                    "items": {
+                      "description": "Список объявлений",
+                      "items": {
+                        "$ref": "#/components/schemas/UploadItemAutoloadV4"
+                      },
+                      "type": "array"
+                    },
+                    "meta": {
+                      "$ref": "#/components/schemas/PaginationMetaV4"
+                    }
+                  },
+                  "required": [
+                    "items",
+                    "meta"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Успешный ответ"
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FieldErrorV2"
+                }
+              }
+            },
+            "description": "Невалидные параметры запроса"
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FieldErrorV2"
+                }
+              }
+            },
+            "description": "Доступ запрещён"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FieldErrorV2"
+                }
+              }
+            },
+            "description": "Загрузка не найдена"
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FieldErrorV2"
+                }
+              }
+            },
+            "description": "Превышен лимит запросов"
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FieldErrorV2"
+                }
+              }
+            },
+            "description": "Внутренняя ошибка метода API"
+          },
+          "503": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FieldErrorV2"
+                }
+              }
+            },
+            "description": "Метод API временно недоступен"
+          }
+        },
+        "summary": "Объявления текущей загрузки",
+        "tags": [
+          "Autoload"
+        ]
+      }
+    },
+    "/autoload/v4/uploads/last_successful": {
+      "get": {
+        "description": "Возвращает последнюю успешно завершённую загрузку, т.е. загрузку, которая обработала все объявления фида. Для самой последней загрузки возможны задержки при определении того, что загрузка завершена — в таком случае смотрите актуальные данные в методе [текущей загрузки](#operation/getCurrentUpload).\n\nЕсли подходящей загрузки нет — возвращается ответ `404`.\n",
+        "operationId": "getLastSuccessfulUpload",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/authHeader"
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "example": {
+                  "events": [
+                    {
+                      "code": 600,
+                      "description": "В ваших файлах суммарно слишком много объявлений — автозагрузка обработает только 100000 из них.",
+                      "type": "warning"
+                    }
+                  ],
+                  "feed_urls": [
+                    {
+                      "name": "файл 1",
+                      "url": "https://www.avito.ru/"
+                    }
+                  ],
+                  "source": "OpenAPI",
+                  "started_at": "2026-05-20T10:15:30+03:00",
+                  "stats": {
+                    "count": 3,
+                    "sections": [
+                      {
+                        "count": 1,
+                        "sections": [
+                          {
+                            "count": 1,
+                            "slug": "error_params",
+                            "title": "Ошибки описания"
+                          }
+                        ],
+                        "slug": "error",
+                        "title": "Не удалось опубликовать"
+                      },
+                      {
+                        "count": 2,
+                        "sections": [],
+                        "slug": "successful",
+                        "title": "Успешно опубликовано"
+                      }
+                    ],
+                    "slug": "sections_stats",
+                    "title": "Обработано объявлений"
+                  },
+                  "status": "success_warning",
+                  "upload_id": 1234567890
+                },
+                "schema": {
+                  "$ref": "#/components/schemas/UploadAutoloadV4"
+                }
+              }
+            },
+            "description": "Успешный ответ"
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FieldErrorV2"
+                }
+              }
+            },
+            "description": "Невалидные параметры запроса"
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FieldErrorV2"
+                }
+              }
+            },
+            "description": "Доступ запрещён"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FieldErrorV2"
+                }
+              }
+            },
+            "description": "Загрузка не найдена"
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FieldErrorV2"
+                }
+              }
+            },
+            "description": "Превышен лимит запросов"
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FieldErrorV2"
+                }
+              }
+            },
+            "description": "Внутренняя ошибка метода API"
+          },
+          "503": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FieldErrorV2"
+                }
+              }
+            },
+            "description": "Метод API временно недоступен"
+          }
+        },
+        "summary": "Последняя успешно завершённая загрузка",
+        "tags": [
+          "Autoload"
+        ]
+      }
+    },
+    "/autoload/v4/uploads/last_successful/items": {
+      "get": {
+        "description": "Возвращает объявления [последней успешно завершённой загрузки](#operation/getLastSuccessfulUpload).\n\nЕсли подходящей загрузки нет — возвращается ответ `404`.\n",
+        "operationId": "getLastSuccessfulUploadItems",
+        "parameters": [
+          {
+            "description": "Поиск по одному или нескольким [идентификаторам объявлений из файла](https://www.avito.ru/autoload/documentation/templates/66940?fileFormat=xml#field-Id),\nперечисленным через «,» или «|».\nБез параметра — возвращаются все объявления с пагинацией.\n",
+            "in": "query",
+            "name": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Фильтр по разделам отчёта. Формат значения: строка со slug разделов,\nперечисленными через запятую.\n",
+            "in": "query",
+            "name": "sections",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Количество объявлений на странице\n",
+            "in": "query",
+            "name": "perPage",
+            "schema": {
+              "default": 20,
+              "maximum": 100,
+              "minimum": 1,
+              "type": "integer"
+            }
+          },
+          {
+            "description": "Номер страницы\n",
+            "in": "query",
+            "name": "page",
+            "schema": {
+              "default": 1,
+              "minimum": 1,
+              "type": "integer"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "example": {
+                  "items": [
+                    {
+                      "ad_id": "ad1",
+                      "avito_date_end": "2026-12-31T23:59:59+03:00",
+                      "avito_id": 777,
+                      "avito_status": "active",
+                      "feed_name": "файл 1",
+                      "messages": [],
+                      "section": {
+                        "slug": "success_activated",
+                        "title": "Активировано"
+                      },
+                      "url": "https://www.avito.ru/"
+                    },
+                    {
+                      "ad_id": "ad2",
+                      "avito_date_end": null,
+                      "avito_id": null,
+                      "avito_status": null,
+                      "feed_name": "файл 1",
+                      "messages": [
+                        {
+                          "code": 4012,
+                          "description": "Для объявлений категории «Недвижимость» поле price обязательно.",
+                          "title": "Не указана цена",
+                          "type": "error",
+                          "updated_at": "2026-05-20T10:15:25+03:00"
+                        }
+                      ],
+                      "section": {
+                        "slug": "error_params",
+                        "title": "Ошибки описания"
+                      },
+                      "url": null
+                    }
+                  ],
+                  "meta": {
+                    "page": 1,
+                    "pages": 73,
+                    "perPage": 20,
+                    "total": 1450
+                  }
+                },
+                "schema": {
+                  "properties": {
+                    "items": {
+                      "description": "Список объявлений",
+                      "items": {
+                        "$ref": "#/components/schemas/UploadItemAutoloadV4"
+                      },
+                      "type": "array"
+                    },
+                    "meta": {
+                      "$ref": "#/components/schemas/PaginationMetaV4"
+                    }
+                  },
+                  "required": [
+                    "items",
+                    "meta"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Успешный ответ"
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FieldErrorV2"
+                }
+              }
+            },
+            "description": "Невалидные параметры запроса"
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FieldErrorV2"
+                }
+              }
+            },
+            "description": "Доступ запрещён"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FieldErrorV2"
+                }
+              }
+            },
+            "description": "Загрузка не найдена"
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FieldErrorV2"
+                }
+              }
+            },
+            "description": "Превышен лимит запросов"
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FieldErrorV2"
+                }
+              }
+            },
+            "description": "Внутренняя ошибка метода API"
+          },
+          "503": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FieldErrorV2"
+                }
+              }
+            },
+            "description": "Метод API временно недоступен"
+          }
+        },
+        "summary": "Объявления последней успешно завершённой загрузки",
         "tags": [
           "Autoload"
         ]

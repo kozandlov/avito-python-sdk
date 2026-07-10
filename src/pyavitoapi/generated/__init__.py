@@ -1,11 +1,13 @@
 """Generated Avito API modules."""
 
 from .accounts_hierarchy import AccountsHierarchyApi
+from .ads import AdsApi
 from .auction import AuctionApi
 from .auth import AuthApi
 from .autoload import AutoloadApi
 from .autostrategy import AutostrategyApi
 from .autoteka import AutotekaApi
+from .avito_promo import AvitoPromoApi
 from .calltracking import CalltrackingApi
 from .cpa import CpaApi
 from .cpxpromo import CpxpromoApi
@@ -26,11 +28,13 @@ from .user import UserApi
 
 __all__ = [
     "AccountsHierarchyApi",
+    "AdsApi",
     "AuctionApi",
     "AuthApi",
     "AutoloadApi",
     "AutostrategyApi",
     "AutotekaApi",
+    "AvitoPromoApi",
     "CalltrackingApi",
     "CpaApi",
     "CpxpromoApi",

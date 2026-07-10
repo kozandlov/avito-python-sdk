@@ -11,8 +11,19 @@
           "type": "string"
         }
       },
+      "XEmployeeOf": {
+        "description": "Идентификатор компании, от имени которой работает сотрудник",
+        "in": "header",
+        "name": "X-Employee-Of",
+        "schema": {
+          "minimum": 1,
+          "nullable": true,
+          "type": "integer"
+        }
+      },
       "XIsEmployee": {
-        "description": "Пользователь работает от имени сотрудника компании (boolean, \"true\"\\\\\"false\")",
+        "deprecated": true,
+        "description": "Устаревший заголовок, используйте X-Employee-Of. Пользователь работает от имени сотрудника компании (boolean, \"true\"\\\\\"false\").\n",
         "in": "header",
         "name": "X-Is-Employee",
         "schema": {
@@ -752,6 +763,9 @@
         },
         {
           "$ref": "#/components/parameters/XIsEmployee"
+        },
+        {
+          "$ref": "#/components/parameters/XEmployeeOf"
         }
       ],
       "post": {
@@ -861,6 +875,9 @@
         },
         {
           "$ref": "#/components/parameters/XIsEmployee"
+        },
+        {
+          "$ref": "#/components/parameters/XEmployeeOf"
         }
       ],
       "put": {
@@ -980,6 +997,9 @@
         },
         {
           "$ref": "#/components/parameters/XIsEmployee"
+        },
+        {
+          "$ref": "#/components/parameters/XEmployeeOf"
         }
       ],
       "post": {
@@ -1176,6 +1196,9 @@
         },
         {
           "$ref": "#/components/parameters/XIsEmployee"
+        },
+        {
+          "$ref": "#/components/parameters/XEmployeeOf"
         }
       ],
       "post": {
@@ -1285,6 +1308,9 @@
         },
         {
           "$ref": "#/components/parameters/XIsEmployee"
+        },
+        {
+          "$ref": "#/components/parameters/XEmployeeOf"
         }
       ],
       "post": {
@@ -1384,6 +1410,9 @@
         },
         {
           "$ref": "#/components/parameters/XIsEmployee"
+        },
+        {
+          "$ref": "#/components/parameters/XEmployeeOf"
         }
       ],
       "post": {

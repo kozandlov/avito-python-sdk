@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from typing import Any, Literal
-from pydantic import BaseModel, ConfigDict, ValidationError, RootModel
+from pydantic import BaseModel, ConfigDict, ValidationError, Field, RootModel
 
 class _BaseModel(BaseModel):
     model_config = ConfigDict(extra="forbid")
@@ -410,4 +410,104 @@ class AutoloadApiGetReportByIdV3Response(_BaseModel):
     started_at: str
     status: Literal['processing', 'success', 'success_warning', 'error']
 
-__all__ = ['ExportScheduleItemModel1', 'ExportSchedule', 'AutoloadApiGetProfileResponse', 'APFieldsNodeAlert', 'FieldValue', 'APIDependencyPair', 'APIDependency', 'FieldValueRange', 'FieldWarning', 'APIFieldContent', 'ChildAPIField', 'APIField', 'APIFieldsNode', 'AutoloadApiUserDocsNodeFieldsResponse', 'APICategoryNode', 'AutoloadApiUserDocsTreeResponse', 'AutoloadApiGetAdIdsByAvitoIdsResponseItemsItemModel2', 'AutoloadApiGetAdIdsByAvitoIdsResponse', 'AutoloadApiGetAvitoIdsByAdIdsResponseItemsItemModel3', 'AutoloadApiGetAvitoIdsByAdIdsResponse', 'FeedsDataItemModel4', 'FeedsData', 'AutoloadApiGetProfileV2Response', 'MetaReportsAutoloadV2', 'ReportShortAutoloadV2ItemModel5', 'ReportShortAutoloadV2', 'AutoloadApiGetReportsV2Response', 'ItemInfoAutoloadV2FeeInfoModel6', 'ItemInfoError', 'ItemInfoAutoloadV2SectionModel7', 'ItemInfoAutoloadV2', 'AutoloadApiGetAutoloadItemsInfoV2Response', 'AutoloadApiGetLastCompletedReportResponseEventsItemModel8', 'AutoloadApiGetLastCompletedReportResponseListingFeesModel9PackagesItemModel10', 'AutoloadApiGetLastCompletedReportResponseListingFeesModel9SingleModel11', 'AutoloadApiGetLastCompletedReportResponseListingFeesModel9', 'AutoloadApiGetLastCompletedReportResponseSectionStatsModel12SectionsItemModel13SectionsItemModel14', 'AutoloadApiGetLastCompletedReportResponseSectionStatsModel12SectionsItemModel13', 'AutoloadApiGetLastCompletedReportResponseSectionStatsModel12', 'AutoloadApiGetLastCompletedReportResponse', 'AutoloadApiGetReportByIdV2ResponseEventsItemModel15', 'AutoloadApiGetReportByIdV2ResponseListingFeesModel16PackagesItemModel17', 'AutoloadApiGetReportByIdV2ResponseListingFeesModel16SingleModel18', 'AutoloadApiGetReportByIdV2ResponseListingFeesModel16', 'AutoloadApiGetReportByIdV2ResponseSectionStatsModel19SectionsItemModel20SectionsItemModel21', 'AutoloadApiGetReportByIdV2ResponseSectionStatsModel19SectionsItemModel20', 'AutoloadApiGetReportByIdV2ResponseSectionStatsModel19', 'AutoloadApiGetReportByIdV2Response', 'ItemInfoVas', 'ItemInfoReportAutoloadV2SectionModel22', 'ItemInfoReportAutoloadV2', 'MetaReportItemsAutoloadV2', 'AutoloadApiGetReportItemsByIdResponse', 'ItemFeesInfoReportAutoloadV2', 'AutoloadApiGetReportItemsFeesByIdResponseMetaModel23', 'AutoloadApiGetReportItemsFeesByIdResponse', 'AutoloadApiGetLastCompletedReportV3ResponseEventsItemModel24', 'AutoloadApiGetLastCompletedReportV3ResponseFeedsUrlsItemModel25', 'AutoloadApiGetLastCompletedReportV3ResponseListingFeesModel26PackagesItemModel27', 'AutoloadApiGetLastCompletedReportV3ResponseListingFeesModel26SingleModel28', 'AutoloadApiGetLastCompletedReportV3ResponseListingFeesModel26', 'AutoloadApiGetLastCompletedReportV3ResponseSectionStatsModel29SectionsItemModel30SectionsItemModel31', 'AutoloadApiGetLastCompletedReportV3ResponseSectionStatsModel29SectionsItemModel30', 'AutoloadApiGetLastCompletedReportV3ResponseSectionStatsModel29', 'AutoloadApiGetLastCompletedReportV3Response', 'AutoloadApiGetReportByIdV3ResponseEventsItemModel32', 'AutoloadApiGetReportByIdV3ResponseFeedsUrlsItemModel33', 'AutoloadApiGetReportByIdV3ResponseListingFeesModel34PackagesItemModel35', 'AutoloadApiGetReportByIdV3ResponseListingFeesModel34SingleModel36', 'AutoloadApiGetReportByIdV3ResponseListingFeesModel34', 'AutoloadApiGetReportByIdV3ResponseSectionStatsModel37SectionsItemModel38SectionsItemModel39', 'AutoloadApiGetReportByIdV3ResponseSectionStatsModel37SectionsItemModel38', 'AutoloadApiGetReportByIdV3ResponseSectionStatsModel37', 'AutoloadApiGetReportByIdV3Response']
+class PaginationMetaV4(_BaseModel):
+    page: int
+    pages: int
+    per_page: int = Field(alias='perPage')
+    total: int
+
+class UploadEventV4(_BaseModel):
+    code: int
+    description: str
+    type: str
+
+class UploadAutoloadV4FeedUrlsItemModel40(_BaseModel):
+    name: str
+    url: str
+
+class SectionStatsV4SectionsItemModel41SectionsItemModel42(_BaseModel):
+    count: int
+    slug: str
+    title: str
+
+class SectionStatsV4SectionsItemModel41(_BaseModel):
+    count: int
+    sections: list[SectionStatsV4SectionsItemModel41SectionsItemModel42]
+    slug: str
+    title: str
+
+class SectionStatsV4(_BaseModel):
+    count: int
+    sections: list[SectionStatsV4SectionsItemModel41]
+    slug: str
+    title: str
+
+class UploadAutoloadV4(_BaseModel):
+    events: list[UploadEventV4]
+    feed_urls: list[UploadAutoloadV4FeedUrlsItemModel40]
+    source: str | None = None
+    started_at: str | None = None
+    stats: SectionStatsV4
+    status: str | None = None
+    upload_id: int
+
+class AutoloadApiGetUploadsResponse(_BaseModel):
+    meta: PaginationMetaV4
+    uploads: list[UploadAutoloadV4]
+
+class AutoloadApiGetCurrentUploadResponseFeedUrlsItemModel43(_BaseModel):
+    name: str
+    url: str
+
+class AutoloadApiGetCurrentUploadResponse(_BaseModel):
+    events: list[UploadEventV4]
+    feed_urls: list[AutoloadApiGetCurrentUploadResponseFeedUrlsItemModel43]
+    source: str | None = None
+    started_at: str | None = None
+    stats: SectionStatsV4
+    status: str | None = None
+    upload_id: int
+
+class ItemMessageV4(_BaseModel):
+    code: int
+    description: str
+    title: str
+    type: Literal['error', 'warning', 'alarm', 'info']
+    updated_at: str
+
+class ItemSectionV4(_BaseModel):
+    slug: str
+    title: str
+
+class UploadItemAutoloadV4(_BaseModel):
+    ad_id: str
+    avito_date_end: str | None = None
+    avito_id: int | None = None
+    avito_status: Literal['active', 'old', 'blocked', 'rejected', 'archived', 'removed'] | None = None
+    feed_name: str | None = None
+    messages: list[ItemMessageV4]
+    section: ItemSectionV4
+    url: str | None = None
+
+class AutoloadApiGetCurrentUploadItemsResponse(_BaseModel):
+    items: list[UploadItemAutoloadV4]
+    meta: PaginationMetaV4
+
+class AutoloadApiGetLastSuccessfulUploadResponseFeedUrlsItemModel44(_BaseModel):
+    name: str
+    url: str
+
+class AutoloadApiGetLastSuccessfulUploadResponse(_BaseModel):
+    events: list[UploadEventV4]
+    feed_urls: list[AutoloadApiGetLastSuccessfulUploadResponseFeedUrlsItemModel44]
+    source: str | None = None
+    started_at: str | None = None
+    stats: SectionStatsV4
+    status: str | None = None
+    upload_id: int
+
+class AutoloadApiGetLastSuccessfulUploadItemsResponse(_BaseModel):
+    items: list[UploadItemAutoloadV4]
+    meta: PaginationMetaV4
+
+__all__ = ['ExportScheduleItemModel1', 'ExportSchedule', 'AutoloadApiGetProfileResponse', 'APFieldsNodeAlert', 'FieldValue', 'APIDependencyPair', 'APIDependency', 'FieldValueRange', 'FieldWarning', 'APIFieldContent', 'ChildAPIField', 'APIField', 'APIFieldsNode', 'AutoloadApiUserDocsNodeFieldsResponse', 'APICategoryNode', 'AutoloadApiUserDocsTreeResponse', 'AutoloadApiGetAdIdsByAvitoIdsResponseItemsItemModel2', 'AutoloadApiGetAdIdsByAvitoIdsResponse', 'AutoloadApiGetAvitoIdsByAdIdsResponseItemsItemModel3', 'AutoloadApiGetAvitoIdsByAdIdsResponse', 'FeedsDataItemModel4', 'FeedsData', 'AutoloadApiGetProfileV2Response', 'MetaReportsAutoloadV2', 'ReportShortAutoloadV2ItemModel5', 'ReportShortAutoloadV2', 'AutoloadApiGetReportsV2Response', 'ItemInfoAutoloadV2FeeInfoModel6', 'ItemInfoError', 'ItemInfoAutoloadV2SectionModel7', 'ItemInfoAutoloadV2', 'AutoloadApiGetAutoloadItemsInfoV2Response', 'AutoloadApiGetLastCompletedReportResponseEventsItemModel8', 'AutoloadApiGetLastCompletedReportResponseListingFeesModel9PackagesItemModel10', 'AutoloadApiGetLastCompletedReportResponseListingFeesModel9SingleModel11', 'AutoloadApiGetLastCompletedReportResponseListingFeesModel9', 'AutoloadApiGetLastCompletedReportResponseSectionStatsModel12SectionsItemModel13SectionsItemModel14', 'AutoloadApiGetLastCompletedReportResponseSectionStatsModel12SectionsItemModel13', 'AutoloadApiGetLastCompletedReportResponseSectionStatsModel12', 'AutoloadApiGetLastCompletedReportResponse', 'AutoloadApiGetReportByIdV2ResponseEventsItemModel15', 'AutoloadApiGetReportByIdV2ResponseListingFeesModel16PackagesItemModel17', 'AutoloadApiGetReportByIdV2ResponseListingFeesModel16SingleModel18', 'AutoloadApiGetReportByIdV2ResponseListingFeesModel16', 'AutoloadApiGetReportByIdV2ResponseSectionStatsModel19SectionsItemModel20SectionsItemModel21', 'AutoloadApiGetReportByIdV2ResponseSectionStatsModel19SectionsItemModel20', 'AutoloadApiGetReportByIdV2ResponseSectionStatsModel19', 'AutoloadApiGetReportByIdV2Response', 'ItemInfoVas', 'ItemInfoReportAutoloadV2SectionModel22', 'ItemInfoReportAutoloadV2', 'MetaReportItemsAutoloadV2', 'AutoloadApiGetReportItemsByIdResponse', 'ItemFeesInfoReportAutoloadV2', 'AutoloadApiGetReportItemsFeesByIdResponseMetaModel23', 'AutoloadApiGetReportItemsFeesByIdResponse', 'AutoloadApiGetLastCompletedReportV3ResponseEventsItemModel24', 'AutoloadApiGetLastCompletedReportV3ResponseFeedsUrlsItemModel25', 'AutoloadApiGetLastCompletedReportV3ResponseListingFeesModel26PackagesItemModel27', 'AutoloadApiGetLastCompletedReportV3ResponseListingFeesModel26SingleModel28', 'AutoloadApiGetLastCompletedReportV3ResponseListingFeesModel26', 'AutoloadApiGetLastCompletedReportV3ResponseSectionStatsModel29SectionsItemModel30SectionsItemModel31', 'AutoloadApiGetLastCompletedReportV3ResponseSectionStatsModel29SectionsItemModel30', 'AutoloadApiGetLastCompletedReportV3ResponseSectionStatsModel29', 'AutoloadApiGetLastCompletedReportV3Response', 'AutoloadApiGetReportByIdV3ResponseEventsItemModel32', 'AutoloadApiGetReportByIdV3ResponseFeedsUrlsItemModel33', 'AutoloadApiGetReportByIdV3ResponseListingFeesModel34PackagesItemModel35', 'AutoloadApiGetReportByIdV3ResponseListingFeesModel34SingleModel36', 'AutoloadApiGetReportByIdV3ResponseListingFeesModel34', 'AutoloadApiGetReportByIdV3ResponseSectionStatsModel37SectionsItemModel38SectionsItemModel39', 'AutoloadApiGetReportByIdV3ResponseSectionStatsModel37SectionsItemModel38', 'AutoloadApiGetReportByIdV3ResponseSectionStatsModel37', 'AutoloadApiGetReportByIdV3Response', 'PaginationMetaV4', 'UploadEventV4', 'UploadAutoloadV4FeedUrlsItemModel40', 'SectionStatsV4SectionsItemModel41SectionsItemModel42', 'SectionStatsV4SectionsItemModel41', 'SectionStatsV4', 'UploadAutoloadV4', 'AutoloadApiGetUploadsResponse', 'AutoloadApiGetCurrentUploadResponseFeedUrlsItemModel43', 'AutoloadApiGetCurrentUploadResponse', 'ItemMessageV4', 'ItemSectionV4', 'UploadItemAutoloadV4', 'AutoloadApiGetCurrentUploadItemsResponse', 'AutoloadApiGetLastSuccessfulUploadResponseFeedUrlsItemModel44', 'AutoloadApiGetLastSuccessfulUploadResponse', 'AutoloadApiGetLastSuccessfulUploadItemsResponse']
