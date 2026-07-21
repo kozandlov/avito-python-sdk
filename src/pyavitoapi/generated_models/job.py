@@ -332,11 +332,14 @@ class Vacancy20AddressDetailsModel26CoordinatesModel27(_BaseModel):
 
 class Vacancy20AddressDetailsModel26(_BaseModel):
     address: str = None
+    area: str | None = None
     city: str = None
     coordinates: Vacancy20AddressDetailsModel26CoordinatesModel27 = None
     province: str = None
 
 class Vacancy20ContactsModel28(_BaseModel):
+    allow_calls: bool = None
+    allow_messages: bool = None
     email: str | None = None
     name: str | None = None
 
@@ -456,11 +459,14 @@ class JobApiVacancyGetItemResponseAddressDetailsModel38CoordinatesModel39(_BaseM
 
 class JobApiVacancyGetItemResponseAddressDetailsModel38(_BaseModel):
     address: str = None
+    area: str | None = None
     city: str = None
     coordinates: JobApiVacancyGetItemResponseAddressDetailsModel38CoordinatesModel39 = None
     province: str = None
 
 class JobApiVacancyGetItemResponseContactsModel40(_BaseModel):
+    allow_calls: bool = None
+    allow_messages: bool = None
     email: str | None = None
     name: str | None = None
 

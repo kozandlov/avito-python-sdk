@@ -327,6 +327,7 @@ class Epts(_BaseModel):
     customs_clearance: str = Field(alias='customsClearance')
     customs_restrictions: str = Field(alias='customsRestrictions')
     last_action: str = Field(alias='lastAction')
+    number: str | None = None
     other_restrictions: str = Field(alias='otherRestrictions')
     recycling_fee: str = Field(alias='recyclingFee')
     status: str

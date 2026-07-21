@@ -7,7 +7,7 @@ from pydantic import ValidationError
 
 from pyavitoapi.transport.errors import AvitoValidationError
 from pyavitoapi.transport.http import AvitoHttpTransport
-from pyavitoapi.generated_models.autoload import AutoloadApiGetAdIdsByAvitoIdsResponse, AutoloadApiGetAutoloadItemsInfoV2Response, AutoloadApiGetAvitoIdsByAdIdsResponse, AutoloadApiGetLastCompletedReportResponse, AutoloadApiGetLastCompletedReportV3Response, AutoloadApiGetProfileResponse, AutoloadApiGetProfileV2Response, AutoloadApiGetReportByIdV2Response, AutoloadApiGetReportByIdV3Response, AutoloadApiGetReportItemsByIdResponse, AutoloadApiGetReportItemsFeesByIdResponse, AutoloadApiGetReportsV2Response, AutoloadApiUserDocsNodeFieldsResponse, AutoloadApiUserDocsTreeResponse
+from pyavitoapi.generated_models.autoload import AutoloadApiGetAdIdsByAvitoIdsResponse, AutoloadApiGetAutoloadItemsInfoV2Response, AutoloadApiGetAvitoIdsByAdIdsResponse, AutoloadApiGetCurrentUploadItemsResponse, AutoloadApiGetCurrentUploadResponse, AutoloadApiGetLastCompletedReportResponse, AutoloadApiGetLastCompletedReportV3Response, AutoloadApiGetLastSuccessfulUploadItemsResponse, AutoloadApiGetLastSuccessfulUploadResponse, AutoloadApiGetProfileResponse, AutoloadApiGetProfileV2Response, AutoloadApiGetReportByIdV2Response, AutoloadApiGetReportByIdV3Response, AutoloadApiGetReportItemsByIdResponse, AutoloadApiGetReportItemsFeesByIdResponse, AutoloadApiGetReportsV2Response, AutoloadApiGetUploadsResponse, AutoloadApiUserDocsNodeFieldsResponse, AutoloadApiUserDocsTreeResponse
 
 
 class AutoloadApi:
@@ -279,7 +279,7 @@ class AutoloadApi:
         json_body: Optional[dict[str, Any]] = None,
         headers: Optional[dict[str, str]] = None,
     ) -> AutoloadApiGetReportsV2Response:
-        """Список отчётов автозагрузки"""
+        """Список отчётов автозагрузки (deprecated)"""
         payload = await self._transport.request(
             method="GET",
             path_template="/autoload/v2/reports",
@@ -312,7 +312,7 @@ class AutoloadApi:
         json_body: Optional[dict[str, Any]] = None,
         headers: Optional[dict[str, str]] = None,
     ) -> AutoloadApiGetAutoloadItemsInfoV2Response:
-        """Объявления по ID в автозагрузке"""
+        """Объявления по ID в автозагрузке (deprecated)"""
         payload = await self._transport.request(
             method="GET",
             path_template="/autoload/v2/reports/items",
@@ -411,7 +411,7 @@ class AutoloadApi:
         json_body: Optional[dict[str, Any]] = None,
         headers: Optional[dict[str, str]] = None,
     ) -> AutoloadApiGetReportItemsByIdResponse:
-        """Все объявления из конкретной выгрузки"""
+        """Все объявления из конкретной выгрузки (deprecated)"""
         payload = await self._transport.request(
             method="GET",
             path_template="/autoload/v2/reports/{report_id}/items",
@@ -444,7 +444,7 @@ class AutoloadApi:
         json_body: Optional[dict[str, Any]] = None,
         headers: Optional[dict[str, str]] = None,
     ) -> AutoloadApiGetReportItemsFeesByIdResponse:
-        """Списания за объявления в конкретной выгрузке"""
+        """Списания за объявления в конкретной выгрузке (deprecated)"""
         payload = await self._transport.request(
             method="GET",
             path_template="/autoload/v2/reports/{report_id}/items/fees",
@@ -477,7 +477,7 @@ class AutoloadApi:
         json_body: Optional[dict[str, Any]] = None,
         headers: Optional[dict[str, str]] = None,
     ) -> AutoloadApiGetLastCompletedReportV3Response:
-        """Статистика по последней выгрузке"""
+        """Статистика по последней выгрузке (deprecated)"""
         payload = await self._transport.request(
             method="GET",
             path_template="/autoload/v3/reports/last_completed_report",
@@ -510,7 +510,7 @@ class AutoloadApi:
         json_body: Optional[dict[str, Any]] = None,
         headers: Optional[dict[str, str]] = None,
     ) -> AutoloadApiGetReportByIdV3Response:
-        """Статистика по конкретной выгрузке"""
+        """Статистика по конкретной выгрузке (deprecated)"""
         payload = await self._transport.request(
             method="GET",
             path_template="/autoload/v3/reports/{report_id}",
@@ -531,6 +531,171 @@ class AutoloadApi:
                     "python_method": "get_report_by_id_v3",
                     "http_method": "GET",
                     "path": "/autoload/v3/reports/{report_id}",
+                    "errors": exc.errors(),
+                },
+            ) from exc
+
+    async def get_uploads(
+        self,
+        *,
+        path_params: Optional[dict[str, Any]] = None,
+        query: Optional[dict[str, Any]] = None,
+        json_body: Optional[dict[str, Any]] = None,
+        headers: Optional[dict[str, str]] = None,
+    ) -> AutoloadApiGetUploadsResponse:
+        """История загрузок"""
+        payload = await self._transport.request(
+            method="GET",
+            path_template="/autoload/v4/uploads",
+            path_params=path_params,
+            query=query,
+            json_body=json_body,
+            headers=headers,
+        )
+        try:
+            return AutoloadApiGetUploadsResponse.model_validate(payload)
+        except ValidationError as exc:
+            raise AvitoValidationError(
+                "Response validation failed for autoload.get_uploads (GET /autoload/v4/uploads)",
+                payload=payload,
+                details={
+                    "slug": "autoload",
+                    "operation_id": "getUploads",
+                    "python_method": "get_uploads",
+                    "http_method": "GET",
+                    "path": "/autoload/v4/uploads",
+                    "errors": exc.errors(),
+                },
+            ) from exc
+
+    async def get_current_upload(
+        self,
+        *,
+        path_params: Optional[dict[str, Any]] = None,
+        query: Optional[dict[str, Any]] = None,
+        json_body: Optional[dict[str, Any]] = None,
+        headers: Optional[dict[str, str]] = None,
+    ) -> AutoloadApiGetCurrentUploadResponse:
+        """Текущая загрузка"""
+        payload = await self._transport.request(
+            method="GET",
+            path_template="/autoload/v4/uploads/current",
+            path_params=path_params,
+            query=query,
+            json_body=json_body,
+            headers=headers,
+        )
+        try:
+            return AutoloadApiGetCurrentUploadResponse.model_validate(payload)
+        except ValidationError as exc:
+            raise AvitoValidationError(
+                "Response validation failed for autoload.get_current_upload (GET /autoload/v4/uploads/current)",
+                payload=payload,
+                details={
+                    "slug": "autoload",
+                    "operation_id": "getCurrentUpload",
+                    "python_method": "get_current_upload",
+                    "http_method": "GET",
+                    "path": "/autoload/v4/uploads/current",
+                    "errors": exc.errors(),
+                },
+            ) from exc
+
+    async def get_current_upload_items(
+        self,
+        *,
+        path_params: Optional[dict[str, Any]] = None,
+        query: Optional[dict[str, Any]] = None,
+        json_body: Optional[dict[str, Any]] = None,
+        headers: Optional[dict[str, str]] = None,
+    ) -> AutoloadApiGetCurrentUploadItemsResponse:
+        """Объявления текущей загрузки"""
+        payload = await self._transport.request(
+            method="GET",
+            path_template="/autoload/v4/uploads/current/items",
+            path_params=path_params,
+            query=query,
+            json_body=json_body,
+            headers=headers,
+        )
+        try:
+            return AutoloadApiGetCurrentUploadItemsResponse.model_validate(payload)
+        except ValidationError as exc:
+            raise AvitoValidationError(
+                "Response validation failed for autoload.get_current_upload_items (GET /autoload/v4/uploads/current/items)",
+                payload=payload,
+                details={
+                    "slug": "autoload",
+                    "operation_id": "getCurrentUploadItems",
+                    "python_method": "get_current_upload_items",
+                    "http_method": "GET",
+                    "path": "/autoload/v4/uploads/current/items",
+                    "errors": exc.errors(),
+                },
+            ) from exc
+
+    async def get_last_successful_upload(
+        self,
+        *,
+        path_params: Optional[dict[str, Any]] = None,
+        query: Optional[dict[str, Any]] = None,
+        json_body: Optional[dict[str, Any]] = None,
+        headers: Optional[dict[str, str]] = None,
+    ) -> AutoloadApiGetLastSuccessfulUploadResponse:
+        """Последняя успешно завершённая загрузка"""
+        payload = await self._transport.request(
+            method="GET",
+            path_template="/autoload/v4/uploads/last_successful",
+            path_params=path_params,
+            query=query,
+            json_body=json_body,
+            headers=headers,
+        )
+        try:
+            return AutoloadApiGetLastSuccessfulUploadResponse.model_validate(payload)
+        except ValidationError as exc:
+            raise AvitoValidationError(
+                "Response validation failed for autoload.get_last_successful_upload (GET /autoload/v4/uploads/last_successful)",
+                payload=payload,
+                details={
+                    "slug": "autoload",
+                    "operation_id": "getLastSuccessfulUpload",
+                    "python_method": "get_last_successful_upload",
+                    "http_method": "GET",
+                    "path": "/autoload/v4/uploads/last_successful",
+                    "errors": exc.errors(),
+                },
+            ) from exc
+
+    async def get_last_successful_upload_items(
+        self,
+        *,
+        path_params: Optional[dict[str, Any]] = None,
+        query: Optional[dict[str, Any]] = None,
+        json_body: Optional[dict[str, Any]] = None,
+        headers: Optional[dict[str, str]] = None,
+    ) -> AutoloadApiGetLastSuccessfulUploadItemsResponse:
+        """Объявления последней успешно завершённой загрузки"""
+        payload = await self._transport.request(
+            method="GET",
+            path_template="/autoload/v4/uploads/last_successful/items",
+            path_params=path_params,
+            query=query,
+            json_body=json_body,
+            headers=headers,
+        )
+        try:
+            return AutoloadApiGetLastSuccessfulUploadItemsResponse.model_validate(payload)
+        except ValidationError as exc:
+            raise AvitoValidationError(
+                "Response validation failed for autoload.get_last_successful_upload_items (GET /autoload/v4/uploads/last_successful/items)",
+                payload=payload,
+                details={
+                    "slug": "autoload",
+                    "operation_id": "getLastSuccessfulUploadItems",
+                    "python_method": "get_last_successful_upload_items",
+                    "http_method": "GET",
+                    "path": "/autoload/v4/uploads/last_successful/items",
                     "errors": exc.errors(),
                 },
             ) from exc

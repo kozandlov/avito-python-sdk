@@ -2,11 +2,13 @@
 
 __all__ = [
     "accounts_hierarchy",
+    "ads",
     "auction",
     "auth",
     "autoload",
     "autostrategy",
     "autoteka",
+    "avito_promo",
     "calltracking",
     "cpa",
     "cpxpromo",

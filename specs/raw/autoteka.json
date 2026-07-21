@@ -293,7 +293,8 @@
             "type": "number"
           },
           "imvUrl": {
-            "description": "Ссылка на страницу Авито IMV вида https://www.avito.ru/au-imv-info/2963331288",
+            "deprecated": true,
+            "description": "Поле больше не заполняется. Ссылка на страницу Авито IMV вида https://www.avito.ru/au-imv-info/2963331288",
             "example": "https://www.avito.ru/au-imv-info/2963331288",
             "nullable": true,
             "type": "string"
@@ -950,6 +951,12 @@
           "lastAction": {
             "description": "Последнее регистрационное действие",
             "example": "РФ - Постановка на регистрационный учет (02.06.2021)",
+            "type": "string"
+          },
+          "number": {
+            "description": "Номер ЭПТС",
+            "example": 123456789,
+            "nullable": true,
             "type": "string"
           },
           "otherRestrictions": {
@@ -6986,7 +6993,7 @@
         "description": "Информация об использовании в такси",
         "properties": {
           "dateFrom": {
-            "description": "Дата начала действия разрешения в UnixTime",
+            "description": "Дата начала действия разрешения в UnixTime, если 0 - дата неизвестна",
             "example": 1566507600,
             "type": "integer"
           },
@@ -8963,6 +8970,14 @@
         "tags": [
           "Report"
         ]
+      },
+      "x-gateway": {
+        "timeouts": {
+          "connect": "200ms",
+          "envoy": "5.0s",
+          "read": "5s",
+          "send": "5s"
+        }
       }
     },
     "/autoteka/v1/scoring/by-vehicle-id": {
@@ -9259,6 +9274,14 @@
         "tags": [
           "Evaluation"
         ]
+      },
+      "x-gateway": {
+        "timeouts": {
+          "connect": "200ms",
+          "envoy": "5.0s",
+          "read": "5s",
+          "send": "5s"
+        }
       }
     },
     "/autoteka/v1/specifications/by-vehicle-id": {
@@ -9343,6 +9366,14 @@
         "tags": [
           "Evaluation"
         ]
+      },
+      "x-gateway": {
+        "timeouts": {
+          "connect": "200ms",
+          "envoy": "5.0s",
+          "read": "5s",
+          "send": "5s"
+        }
       }
     },
     "/autoteka/v1/specifications/specification/{specificationID}": {
@@ -9866,6 +9897,14 @@
         "tags": [
           "Evaluation"
         ]
+      },
+      "x-gateway": {
+        "timeouts": {
+          "connect": "200ms",
+          "envoy": "5.0s",
+          "read": "5s",
+          "send": "5s"
+        }
       }
     },
     "/token": {
