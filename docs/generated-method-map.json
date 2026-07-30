@@ -1508,8 +1508,8 @@
       "http_method": "POST",
       "path": "/job/v1/applications/apply_actions",
       "response_status": "200",
-      "response_model": "JobApiApplicationsApplyActionsResponse",
-      "schema_kind": "ref"
+      "response_model": "None",
+      "schema_kind": "none"
     },
     {
       "operation_id": "applicationsGetByIds",

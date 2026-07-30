@@ -15,7 +15,7 @@
       "title": "Авито Реклама",
       "source": "https://developers.avito.ru/web/1/openapi/info/ads",
       "raw_file": "specs/raw/ads.json",
-      "sha256": "87f2251d5fa2c75ec382eac10629800ce055bb812f7a77e0a767bb2d39693538",
+      "sha256": "9b5f22dc895e3dd1b0a190a1f674679680b2d8d2a4a6688fdab21a701e96bc1d",
       "operations": 24
     },
     {
@@ -111,7 +111,7 @@
       "title": "Авито.Работа",
       "source": "https://developers.avito.ru/web/1/openapi/info/job",
       "raw_file": "specs/raw/job.json",
-      "sha256": "8ff23c1ec3a8a77b67ffb904fa052adcdadf34ef25bdd085b7a515dabcea8a0a",
+      "sha256": "d8ae1eab2e30d40638cbc403ae147cd54b5146801773764e547d2a39c486b900",
       "operations": 25
     },
     {

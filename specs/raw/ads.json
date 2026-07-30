@@ -884,6 +884,7 @@
           "in_moderation",
           "moderation_failed",
           "erir_registration",
+          "will_launch_soon",
           "active",
           "pausing",
           "paused",

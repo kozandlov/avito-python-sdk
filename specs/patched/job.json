@@ -530,8 +530,8 @@
       },
       "DriverLicence": {
         "enum": [
-          true,
-          false
+          "yes",
+          "no"
         ],
         "title": "Водительское удостоверение",
         "type": "string"
@@ -662,19 +662,19 @@
         "example": {
           "age": {
             "matching_status": "matched",
-            "value": 21
+            "value": 38
           },
           "citizenship": {
             "matching_status": "matched",
             "value": "rus"
           },
           "experience": {
-            "matching_status": "mismatched",
-            "value": "lt_1"
+            "matching_status": "matched",
+            "value": "3"
           },
           "full_name": {
             "matching_status": "no_criteria",
-            "value": null
+            "value": "Иванов Иван Иванович"
           },
           "gender": {
             "matching_status": "no_criteria",
@@ -682,9 +682,9 @@
           },
           "phone": {
             "matching_status": "no_criteria",
-            "value": "+79213223344"
+            "value": "+79211234455"
           },
-          "status": "completed_mismatched"
+          "status": "completed_matched"
         },
         "properties": {
           "age": {
@@ -896,7 +896,9 @@
                           "type": "object"
                         },
                         "gender": {
-                          "$ref": "#/components/schemas/Gender"
+                          "description": "Пол соискателя",
+                          "nullable": true,
+                          "type": "string"
                         },
                         "name": {
                           "description": "ФИО",
@@ -912,7 +914,7 @@
                       "type": "string"
                     },
                     "resume_id": {
-                      "example": 54312,
+                      "example": "2143065041",
                       "nullable": true,
                       "type": "string"
                     }
@@ -945,7 +947,7 @@
                           },
                           "value": {
                             "description": "Телефон соискателя",
-                            "example": 72002000014,
+                            "example": "+79211234455",
                             "type": "string"
                           }
                         },
@@ -958,7 +960,7 @@
                 },
                 "created_at": {
                   "description": "Дата создания отклика",
-                  "example": "2022-05-04T12:00:00+03:00",
+                  "example": "2026-07-10T12:00:00+03:00",
                   "format": "date-time (RFC3339)",
                   "type": "string"
                 },
@@ -979,12 +981,12 @@
                 },
                 "is_viewed": {
                   "description": "Отклик просмотрен",
-                  "example": true,
+                  "example": false,
                   "type": "boolean"
                 },
                 "negotiation_id": {
                   "description": "Идентификатор отклика старого формата",
-                  "example": 1132,
+                  "example": 123456789,
                   "format": "int64",
                   "nullable": true,
                   "type": "integer"
@@ -1014,14 +1016,17 @@
                   "properties": {
                     "bonus": {
                       "description": "Цена целевого действия в бонусах (копейки)",
+                      "example": 0,
                       "type": "integer"
                     },
                     "real": {
                       "description": "Цена целевого действия в реальных деньгах (копейки)",
+                      "example": 65000,
                       "type": "integer"
                     },
                     "total": {
                       "description": "Общая цена целевого действия (копейки)",
+                      "example": 65000,
                       "type": "integer"
                     }
                   },
@@ -1056,13 +1061,13 @@
                 },
                 "updated_at": {
                   "description": "Дата обновления отклика",
-                  "example": "2022-05-04T12:00:00+03:00",
+                  "example": "2026-07-10T12:05:00+03:00",
                   "format": "date-time (RFC3339)",
                   "type": "string"
                 },
                 "vacancy_id": {
                   "description": "Идентификатор вакансии на сайте Авито",
-                  "example": 18725423,
+                  "example": 52287485844,
                   "format": "int64",
                   "type": "integer"
                 }
@@ -1082,7 +1087,7 @@
               "properties": {
                 "created_at": {
                   "description": "Дата создания отклика",
-                  "example": "2022-03-21T10:23:23Z",
+                  "example": "2026-07-17T12:57:12.38374+03:00",
                   "format": "date-time (RFC3339)",
                   "type": "string"
                 },
@@ -1098,7 +1103,7 @@
                 },
                 "updated_at": {
                   "description": "Дата обновления отклика",
-                  "example": "2022-03-21T12:37:41Z",
+                  "example": "2026-07-17T10:31:10Z",
                   "format": "date-time (RFC3339)",
                   "type": "string"
                 }
@@ -1214,8 +1219,8 @@
       },
       "MedicalBook": {
         "enum": [
-          true,
-          false
+          "yes",
+          "no"
         ],
         "title": "Медкнижка",
         "type": "string"
@@ -1283,7 +1288,7 @@
       },
       "OwnTransport": {
         "enum": [
-          false,
+          "no",
           "car",
           "cargo-car",
           "bike",
@@ -1370,7 +1375,8 @@
         "description": "Ответ на вопрос превалидации. Содержит лейбл, название и значение переменной.",
         "example": {
           "label": "ФИО",
-          "value": "Сидоров Иван Петрович"
+          "value": "Иванов Иван Иванович",
+          "variable": "job_fio"
         },
         "nullable": true,
         "properties": {
@@ -1501,8 +1507,8 @@
               "driver_licence": {
                 "description": "Водительское удостоверение",
                 "enum": [
-                  true,
-                  false
+                  "Есть",
+                  "Нет"
                 ],
                 "nullable": true,
                 "type": "string"
@@ -1511,16 +1517,16 @@
                 "description": "Категория водительских прав",
                 "items": {
                   "enum": [
-                    "a",
-                    "b",
-                    "be",
-                    "c",
-                    "ce",
-                    "d",
-                    "de",
-                    "m",
-                    "tm",
-                    "tb"
+                    "A",
+                    "B",
+                    "BE",
+                    "C",
+                    "CE",
+                    "D",
+                    "DE",
+                    "M",
+                    "Tm",
+                    "Tb"
                   ],
                   "type": "string"
                 },
@@ -1564,6 +1570,11 @@
                 },
                 "nullable": true,
                 "type": "array"
+              },
+              "experience": {
+                "description": "Опыт работы в годах",
+                "nullable": true,
+                "type": "integer"
               },
               "experience_list": {
                 "items": {
@@ -1666,16 +1677,14 @@
                 "type": "string"
               },
               "schedule": {
-                "description": "Режим работы\nВозможные значения:\n  - flyInFlyOut - Вахта\n  - partTime - Неполный день\n  - fullDay - Полный день\n  - flexible - Плавающий\n  - shift - Сменный\n  - remote - Удалённая работа\n  - fiveDay - Пятидневная рабочая неделя\n  - sixDay - Шестидневная рабочая неделя\n",
+                "description": "Режим работы\nВозможные значения:\n  - Вахтовый метод\n  - Неполный день\n  - Полный день\n  - Свободный график\n  - Сменный график\n  - Удалённая работа\n",
                 "enum": [
-                  "flyInFlyOut",
-                  "partTime",
-                  "fullDay",
-                  "flexible",
-                  "shift",
-                  "remote",
-                  "fiveDay",
-                  "sixDay"
+                  "Вахтовый метод",
+                  "Неполный день",
+                  "Полный день",
+                  "Свободный график",
+                  "Сменный график",
+                  "Удалённая работа"
                 ],
                 "nullable": true,
                 "type": "string"
@@ -1981,8 +1990,7 @@
             "title": "Возраст",
             "type": "integer"
           },
-          "created": {
-            "format": "date-time",
+          "created_at": {
             "readOnly": true,
             "title": "Дата публикации",
             "type": "string"
@@ -2050,8 +2058,8 @@
             "title": "Стаж работы",
             "type": "integer"
           },
-          "updated": {
-            "format": "date-time",
+          "updated_at": {
+            "readOnly": true,
             "title": "Дата последнего обновления",
             "type": "string"
           }
@@ -2223,6 +2231,8 @@
                 "is_company_car",
                 "is_remote",
                 "is_side_job",
+                "job_responsibilities",
+                "jobs_number",
                 "manufacturing_type",
                 "medical_book",
                 "medical_specialization",
@@ -2387,18 +2397,27 @@
                 "description": "Подходит кандидатам",
                 "items": {
                   "enum": [
-                    "Соискатели старше 45 лет",
-                    "Соискатели от 14 лет",
-                    "Соискатели от 16 лет",
-                    "С нарушениями здоровья",
-                    "Для студентов",
-                    "Для пенсионеров"
+                    "от 14 лет",
+                    "от 16 лет",
+                    "старше 45 лет",
+                    "для студентов",
+                    "для пенсионеров",
+                    "с нарушениями здоровья"
                   ],
                   "type": "string"
                 },
                 "nullable": true,
                 "type": "array",
                 "uniqueItems": true
+              },
+              "applies_filter": {
+                "description": "Фильтр откликов на вакансию",
+                "enum": [
+                  "Любые",
+                  "Только с резюме"
+                ],
+                "nullable": true,
+                "type": "string"
               },
               "bonuses": {
                 "description": "Бонусы, которые компания предоставляет кандидатам",
@@ -2580,12 +2599,13 @@
               },
               "education_level": {
                 "description": "Предпочтительный уровень образования кандидата",
-                "items": {
-                  "type": "string"
-                },
+                "enum": [
+                  "Не имеет значения",
+                  "Среднее профессиональное",
+                  "Высшее"
+                ],
                 "nullable": true,
-                "type": "array",
-                "uniqueItems": true
+                "type": "string"
               },
               "employment": {
                 "description": "Занятость\n",
@@ -2668,6 +2688,18 @@
                 "nullable": true,
                 "type": "string"
               },
+              "job_responsibilities": {
+                "description": "Должностные обязанности сотрудника",
+                "maxLength": 3970,
+                "nullable": true,
+                "type": "string"
+              },
+              "jobs_number": {
+                "description": "Количество рабочих мест по вакансии",
+                "maximum": 999999999,
+                "nullable": true,
+                "type": "integer"
+              },
               "medical_book": {
                 "description": "Требуется ли медкнижка и кем она оформляется при приеме на работу",
                 "enum": [
@@ -2702,12 +2734,12 @@
               "payout_frequency": {
                 "description": "Частота выплат",
                 "enum": [
-                  "почасовая оплата",
-                  "каждый день",
-                  "дважды в месяц",
-                  "раз в неделю",
-                  "три раза в месяц",
-                  "раз в месяц"
+                  "Почасовая оплата",
+                  "Каждый день",
+                  "Дважды в месяц",
+                  "Раз в неделю",
+                  "Три раза в месяц",
+                  "Раз в месяц"
                 ],
                 "nullable": true,
                 "type": "string"
@@ -2985,14 +3017,6 @@
           },
           "age_preferences": {
             "description": "Блок \"в том числе для кандидатов\" (массив строк)\n\nВозможные значения элементов массива:\n  - \"olderThan45\" - старше 45 лет;\n  - \"olderThan14\" - от 14 лет;\n  - \"olderThan16\" - от 16 лет;\n  - \"withHealthProblems\" - с нарушениями здоровья;\n  - \"students\" - для студентов;\n  - \"pensioners\" - для пенсионеров.\n",
-            "enum": [
-              "olderThan45",
-              "olderThan14",
-              "olderThan16",
-              "withHealthProblems",
-              "students",
-              "pensioners"
-            ],
             "items": {
               "enum": [
                 "olderThan45",
@@ -3146,9 +3170,27 @@
             "nullable": true,
             "type": "boolean"
           },
+          "is_remote": {
+            "deprecated": true,
+            "description": "Удалённая работа. Устарело. Используйте work_format.",
+            "nullable": true,
+            "type": "boolean"
+          },
           "is_side_job": {
             "description": "Подработка",
             "type": "boolean"
+          },
+          "job_responsibilities": {
+            "description": "Должностные обязанности сотрудника",
+            "maxLength": 3970,
+            "nullable": true,
+            "type": "string"
+          },
+          "jobs_number": {
+            "description": "Количество рабочих мест по вакансии",
+            "maximum": 999999999,
+            "nullable": true,
+            "type": "integer"
           },
           "medical_book": {
             "$ref": "#/components/schemas/MedicalBookVacancy"
@@ -3367,11 +3409,19 @@
           "ids": {
             "items": {
               "description": "Идентификатор публикации вакансии в формате UUID",
+              "format": "uuid",
+              "maxLength": 36,
+              "minLength": 1,
               "type": "string"
             },
+            "maxItems": 50,
+            "minItems": 1,
             "type": "array"
           }
         },
+        "required": [
+          "ids"
+        ],
         "type": "object"
       },
       "VacancyStatusesResult": {
@@ -3426,7 +3476,11 @@
                 },
                 "reasons": {
                   "description": "Расширенное описание статуса",
-                  "type": "object"
+                  "items": {
+                    "type": "string"
+                  },
+                  "nullable": true,
+                  "type": "array"
                 },
                 "status": {
                   "description": "Статус вакансии на Авито",
@@ -3467,14 +3521,6 @@
             "$ref": "#/components/schemas/AgeCriteria"
           },
           "age_preferences": {
-            "enum": [
-              "olderThan45",
-              "olderThan14",
-              "olderThan16",
-              "withHealthProblems",
-              "students",
-              "pensioners"
-            ],
             "items": {
               "enum": [
                 "olderThan45",
@@ -3622,10 +3668,28 @@
             "nullable": true,
             "type": "boolean"
           },
+          "is_remote": {
+            "deprecated": true,
+            "description": "Удалённая работа. Устарело. Используйте work_format.",
+            "nullable": true,
+            "type": "boolean"
+          },
           "is_side_job": {
             "description": "Подработка",
             "nullable": true,
             "type": "boolean"
+          },
+          "job_responsibilities": {
+            "description": "Должностные обязанности сотрудника",
+            "maxLength": 3970,
+            "nullable": true,
+            "type": "string"
+          },
+          "jobs_number": {
+            "description": "Количество рабочих мест по вакансии",
+            "maximum": 999999999,
+            "nullable": true,
+            "type": "integer"
           },
           "medical_book": {
             "$ref": "#/components/schemas/MedicalBookVacancy"
@@ -3739,6 +3803,12 @@
       },
       "VacancyV2Create": {
         "properties": {
+          "address": {
+            "description": "Полный адрес объекта (строка длиной от 1 до 256 символов)",
+            "maxLength": 256,
+            "nullable": true,
+            "type": "string"
+          },
           "administrator_organization_type": {
             "$ref": "#/components/schemas/AdministratorOrganizationType"
           },
@@ -3747,14 +3817,6 @@
           },
           "age_preferences": {
             "description": "Блок \"в том числе для кандидатов\" (массив строк)\n\nВозможные значения элементов массива:\n  - \"olderThan45\" - старше 45 лет;\n  - \"olderThan14\" - от 14 лет;\n  - \"olderThan16\" - от 16 лет;\n  - \"withHealthProblems\" - с нарушениями здоровья;\n  - \"students\" - для студентов;\n  - \"pensioners\" - для пенсионеров.\n",
-            "enum": [
-              "olderThan45",
-              "olderThan14",
-              "olderThan16",
-              "withHealthProblems",
-              "students",
-              "pensioners"
-            ],
             "items": {
               "enum": [
                 "olderThan45",
@@ -3767,6 +3829,14 @@
               "type": "string"
             },
             "type": "array"
+          },
+          "allow_calls": {
+            "$ref": "#/components/schemas/AllowCalls"
+          },
+          "allow_messages": {
+            "description": "Возможность откликнуться на вакансию через сайт",
+            "nullable": true,
+            "type": "boolean"
           },
           "apply_processing": {
             "$ref": "#/components/schemas/ApplyProcessing"
@@ -3827,6 +3897,12 @@
           "cuisine": {
             "$ref": "#/components/schemas/Cuisine"
           },
+          "custom_employer_name": {
+            "description": "Название компании (строка длиной до 60 символов)",
+            "maxLength": 60,
+            "nullable": true,
+            "type": "string"
+          },
           "delivery_method": {
             "description": "Способ доставки",
             "items": {
@@ -3868,6 +3944,11 @@
           "education_level": {
             "$ref": "#/components/schemas/VacancyEducationLevel"
           },
+          "employee_id": {
+            "description": "Идентификатор сотрудника на Авито, за которым закрепляется вакансия",
+            "nullable": true,
+            "type": "integer"
+          },
           "employment": {
             "description": "Занятость <br>\nВозможные значения:\n  - temporary - Временная\n  - full - Полная\n  - partial - Частичная\n\nЕсли ничего не выбрать то будет автоматически проставляться в зависимости от графика работы: \nПри flexible и partTime, тип занятости - partial.\nßДля всех остальных full.\n\ndeprecated значение internship будет заменено на temporary\n",
             "nullable": true,
@@ -3904,6 +3985,9 @@
             },
             "type": "object"
           },
+          "html_tags": {
+            "$ref": "#/components/schemas/HtmlTags"
+          },
           "image_url": {
             "description": "URL-адрес логотипа вакансии. Ссылка на файл должна быть прямой | (при переходе не открываются элементы другого сайта (логотипы, кнопки или другие детали интерфейса) и не запрашивается логин и пароль) и доступной для IP 185.89.12.0/22, 146.158.48.0/21, 185.79.237.224/28 и 87.245.204.32/28;",
             "type": "string"
@@ -3913,9 +3997,27 @@
             "nullable": true,
             "type": "boolean"
           },
+          "is_remote": {
+            "deprecated": true,
+            "description": "Удалённая работа. Устарело. Используйте work_format.",
+            "nullable": true,
+            "type": "boolean"
+          },
           "is_side_job": {
             "description": "Подработка",
             "type": "boolean"
+          },
+          "job_responsibilities": {
+            "description": "Должностные обязанности сотрудника",
+            "maxLength": 3970,
+            "nullable": true,
+            "type": "string"
+          },
+          "jobs_number": {
+            "description": "Количество рабочих мест по вакансии",
+            "maximum": 999999999,
+            "nullable": true,
+            "type": "integer"
           },
           "location": {
             "description": "Геолокация вакансии (как минимум одно из значений)",
@@ -3992,6 +4094,23 @@
           "salary_detail": {
             "$ref": "#/components/schemas/SalaryDetail"
           },
+          "salary_range": {
+            "description": "Блок с вилкой зарплаты",
+            "nullable": true,
+            "properties": {
+              "from": {
+                "description": "Нижняя граница зарплаты, рублей в месяц",
+                "example": 30000,
+                "type": "integer"
+              },
+              "to": {
+                "description": "Верхняя граница зарплаты, рублей в месяц",
+                "example": 60000,
+                "type": "integer"
+              }
+            },
+            "type": "object"
+          },
           "schedule": {
             "description": "Режим работы <br>\nВозможные значения:\n  - flyInFlyOut - Вахта\n  - fixed - Фиксированный\n  - flexible - Гибкий\n  - shift - Сменный\n\nflyInFlyOut - Вахта, при выборе данного режима работы, адрес вакансии может быть только \"Город\", если адрес передается полноценный, то улица будет отрезана и адрес будет до \"Города\".\n\ndeprecated значения fiveDay, sixDay, partTime, fullDay и remote будут заменены на fixed\n",
             "enum": [
@@ -4066,7 +4185,7 @@
       "WebhookSubscribeRequestBody": {
         "properties": {
           "secret": {
-            "description": "сгенерированный ключ",
+            "description": "секретный ключ",
             "example": "cb1e150b-c5bf-4c3e-acd1-20ec88bdb3a1",
             "type": "string"
           },
@@ -4465,13 +4584,6 @@
         },
         "responses": {
           "200": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/GetApplicationsIdsResult"
-                }
-              }
-            },
             "description": "Успешный ответ",
             "headers": {
               "X-RateLimit-Limit": {
@@ -4549,27 +4661,106 @@
         "requestBody": {
           "content": {
             "application/json": {
+              "example": {
+                "ids": [
+                  "6a59fc8d59237327aa2dcfd8"
+                ]
+              },
               "schema": {
                 "properties": {
                   "ids": {
                     "items": {
                       "description": "идентификатор отклика",
-                      "example": "11102026de0ad1be10e2236f",
+                      "example": "6a59fc8d59237327aa2dcfd8",
                       "type": "string"
                     },
                     "maxItems": 100,
+                    "minItems": 1,
                     "type": "array"
                   }
                 },
+                "required": [
+                  "ids"
+                ],
                 "type": "object"
               }
             }
-          }
+          },
+          "required": true
         },
         "responses": {
           "200": {
             "content": {
               "application/json": {
+                "example": {
+                  "applies": [
+                    {
+                      "applicant": {
+                        "data": {
+                          "birthday": "1982-06-07",
+                          "citizenship": "Россия",
+                          "full_name": {
+                            "first_name": "Иван",
+                            "last_name": "Иванов",
+                            "patronymic": "Иванович"
+                          },
+                          "gender": "Мужской",
+                          "name": "Иванов Иван Иванович"
+                        },
+                        "id": "710723689",
+                        "resume_id": "52282551484"
+                      },
+                      "contacts": {
+                        "chat": {
+                          "value": "u2i-0mSKNtVvcEaAPctc5Jp8nw"
+                        },
+                        "phones": [
+                          {
+                            "status": null,
+                            "value": "72004629161"
+                          }
+                        ]
+                      },
+                      "created_at": "2026-07-17T12:57:12.38374+03:00",
+                      "employee_id": 710706272,
+                      "enriched_properties": {
+                        "age": {
+                          "matching_status": "matched",
+                          "value": 44
+                        },
+                        "citizenship": {
+                          "matching_status": "matched",
+                          "value": "rus"
+                        },
+                        "experience": {
+                          "matching_status": "matched",
+                          "value": "has_experience"
+                        },
+                        "full_name": {
+                          "matching_status": "no_criteria",
+                          "value": "Иванов Иван Иванович"
+                        },
+                        "phone": {
+                          "matching_status": "no_criteria",
+                          "value": "+72004629161"
+                        },
+                        "status": "completed_matched"
+                      },
+                      "id": "6a59fc8d59237327aa2dcfd8",
+                      "is_viewed": true,
+                      "negotiation_id": 366626710,
+                      "price": {
+                        "bonus": 0,
+                        "real": 7300,
+                        "total": 7300
+                      },
+                      "state": "interview",
+                      "type": "by_chat",
+                      "updated_at": "2026-07-17T10:31:10Z",
+                      "vacancy_id": 52282438230
+                    }
+                  ]
+                },
                 "schema": {
                   "$ref": "#/components/schemas/GetApplicationsByIdsResult"
                 }
@@ -4764,6 +4955,34 @@
           "200": {
             "content": {
               "application/json": {
+                "example": {
+                  "states": [
+                    {
+                      "description": "Новый кандидат",
+                      "slug": "new"
+                    },
+                    {
+                      "description": "Может подойти",
+                      "slug": "inprocess"
+                    },
+                    {
+                      "description": "Собеседование",
+                      "slug": "interview"
+                    },
+                    {
+                      "description": "Приглашение на работу",
+                      "slug": "selected"
+                    },
+                    {
+                      "description": "Отказ",
+                      "slug": "rejected"
+                    },
+                    {
+                      "description": "Архив",
+                      "slug": "archive"
+                    }
+                  ]
+                },
                 "schema": {
                   "$ref": "#/components/schemas/ApplicationsGetStatesResult"
                 }
@@ -4941,6 +5160,7 @@
                       "properties": {
                         "id": {
                           "description": "Идентификатор отклика",
+                          "example": "11102026de0ad1be10e2236f",
                           "type": "string"
                         },
                         "is_viewed": {
@@ -5103,7 +5323,8 @@
                 "$ref": "#/components/schemas/WebhookSubscribeRequestBody"
               }
             }
-          }
+          },
+          "required": true
         },
         "responses": {
           "200": {
@@ -5172,6 +5393,50 @@
           "200": {
             "content": {
               "application/json": {
+                "example": {
+                  "meta": {
+                    "cursor": 1538480436,
+                    "page": 1,
+                    "pages": 6,
+                    "per_page": 25
+                  },
+                  "resumes": [
+                    {
+                      "address_details": {
+                        "address": "пос. Подольской машинно-испытательной станции, 17",
+                        "coordinates": {
+                          "latitude": 55.34384,
+                          "longitude": 37.557215
+                        },
+                        "district": "",
+                        "location": "Подольск",
+                        "metro": ""
+                      },
+                      "age": 24,
+                      "created_at": "2026-04-20T16:23:46",
+                      "education_level": "secondary",
+                      "gender": "female",
+                      "id": 8095642848,
+                      "is_purchased": false,
+                      "location": {
+                        "id": 639180,
+                        "title": "пос. Подольской машинно-испытательной станции, 17"
+                      },
+                      "medical_book": "yes",
+                      "nationality": {
+                        "id": 15973,
+                        "title": "Россия"
+                      },
+                      "specialization": {
+                        "id": 10174,
+                        "title": "Фитнес, салоны красоты"
+                      },
+                      "title": "Массажистка",
+                      "total_experience": 0,
+                      "updated_at": "2026-04-20T16:23:46"
+                    }
+                  ]
+                },
                 "schema": {
                   "properties": {
                     "meta": {
@@ -5619,8 +5884,8 @@
           "name": "driver_licence",
           "schema": {
             "enum": [
-              true,
-              false
+              "yes",
+              "no"
             ],
             "type": "string"
           }
@@ -5663,7 +5928,7 @@
           "name": "own_transport",
           "schema": {
             "enum": [
-              false,
+              "no",
               "car",
               "cargo-car",
               "bike",
@@ -5678,8 +5943,8 @@
           "name": "medical_book",
           "schema": {
             "enum": [
-              true,
-              false
+              "yes",
+              "no"
             ],
             "type": "string"
           }
@@ -5694,6 +5959,24 @@
           "200": {
             "content": {
               "application/json": {
+                "example": {
+                  "already_bought": true,
+                  "contacts": [
+                    {
+                      "type": "phone",
+                      "value": "8 958 461-80-39"
+                    },
+                    {
+                      "type": "e-mail",
+                      "value": "ivanov@email.ru"
+                    },
+                    {
+                      "type": "chat_id",
+                      "value": "u2i-ugpbZyw~GsG0i6y2J6XyVg"
+                    }
+                  ],
+                  "name": "Иванов Иван Иванович"
+                },
                 "schema": {
                   "$ref": "#/components/schemas/ResumeContacts"
                 }
@@ -5884,54 +6167,138 @@
           "content": {
             "application/json": {
               "example": {
-                "address": "Москва",
+                "address": "Москва, Лесная улица, 7",
+                "administrator_organization_type": 10116,
                 "age": {
-                  "from": 65,
-                  "to": 16
+                  "from": 18,
+                  "to": 65
                 },
                 "age_preferences": [
-                  "olderThan45",
-                  "withHealthProblems"
+                  "olderThan45"
                 ],
+                "allow_calls": true,
                 "allow_messages": true,
                 "apply_processing": {
                   "additional_questions": [
-                    "experience",
-                    "age",
-                    "citizenship"
+                    "experience"
                   ],
-                  "apply_type": "with_assistant"
+                  "apply_type": "only_with_resume"
                 },
                 "billing_type": "package",
+                "bonuses": [
+                  "pitanie",
+                  "prozivanie"
+                ],
                 "business_area": 7,
                 "citizenship": [
-                  "rus",
-                  "blr"
+                  "rus"
+                ],
+                "construction_work_type": [
+                  "paintingWorks"
                 ],
                 "contacts": {
                   "email": "ivalerevich@company.ru",
                   "name": "Игорь Валерьевич",
                   "phone": {
-                    "city": "201",
-                    "country": "+7",
-                    "number": "1001158"
+                    "city": "800",
+                    "country": "8",
+                    "number": "1001159"
                   }
                 },
-                "description": "описание",
-                "employment": "partial",
-                "experience": {
-                  "id": "moreThan1"
+                "coordinates": {
+                  "latitude": 55.755814,
+                  "longitude": 37.617635
                 },
+                "cuisine": [
+                  "russian"
+                ],
+                "custom_employer_name": "ООО Ромашка",
+                "delivery_method": [
+                  "car"
+                ],
+                "description": "Доставка заказов по району, свободный график",
+                "driving_experience": {
+                  "id": "noExperience"
+                },
+                "driving_license_category": [
+                  "A"
+                ],
+                "eatery_type": [
+                  "cafe"
+                ],
+                "education_level": "higher",
+                "employment": "temporary",
+                "experience": {
+                  "id": "noMatter"
+                },
+                "facility_type": [
+                  "production"
+                ],
+                "food_production_shop_type": [
+                  "cold"
+                ],
+                "grade": "lead",
+                "html_tags": true,
+                "image_url": "https://example.com/vacancy/courier.jpg",
+                "is_company_car": true,
                 "is_remote": true,
-                "is_side_job": false,
-                "name": "объявление",
+                "is_side_job": true,
+                "job_responsibilities": "Доставлять заказы клиентам и передавать отчетность в приложении",
+                "jobs_number": 3,
+                "medical_book": "registerByCandidate",
+                "medical_specialization_ids": [
+                  3265936
+                ],
+                "name": "Курьер на личном автомобиле",
                 "payout_frequency": {
-                  "id": "dailyPay"
+                  "id": "monthlyPay"
                 },
                 "profession": 3201667,
+                "registration_method": [
+                  "contract"
+                ],
+                "retail_equipment_type": [
+                  "cashRegisterAndPosTerminals"
+                ],
+                "retail_shop_type": [
+                  "hypermarketOrSupermarket"
+                ],
+                "salary_detail": {
+                  "base": {
+                    "bonus": "5% от продаж в месяц",
+                    "range": {
+                      "from": 30000,
+                      "to": 60000
+                    }
+                  },
+                  "paid_period": "month",
+                  "taxes": "gross"
+                },
+                "salary_range": {
+                  "from": 30000,
+                  "to": 60000
+                },
                 "schedule": {
                   "id": "flyInFlyOut"
-                }
+                },
+                "shifts": [
+                  2
+                ],
+                "tools_availability": "needYourOwn",
+                "vacancy_code": "COURIER-2026-01",
+                "vehicle_type": 3286367,
+                "work_days_per_week": [
+                  5
+                ],
+                "work_format": [
+                  "office"
+                ],
+                "work_hours_per_day": [
+                  8
+                ],
+                "worker_class": [
+                  "1"
+                ]
               },
               "schema": {
                 "$ref": "#/components/schemas/VacancyCreate"
@@ -5944,6 +6311,11 @@
           "201": {
             "content": {
               "application/json": {
+                "example": {
+                  "id": "52282511259",
+                  "url": "/52282511259",
+                  "uuid": "09d4823a-8c0b-41dc-b2c3-2752a6b8f1b6"
+                },
                 "schema": {
                   "$ref": "#/components/schemas/VacancyCreateResult"
                 }
@@ -6253,36 +6625,133 @@
           "content": {
             "application/json": {
               "example": {
-                "address": "Москва",
+                "address": "Москва, Лесная улица, 7",
+                "administrator_organization_type": 10116,
+                "age": {
+                  "from": 18,
+                  "to": 65
+                },
                 "age_preferences": [
-                  "olderThan45",
-                  "withHealthProblems"
+                  "olderThan45"
                 ],
+                "allow_calls": true,
                 "allow_messages": true,
                 "apply_processing": {
+                  "additional_questions": [
+                    "experience"
+                  ],
                   "apply_type": "only_with_resume"
                 },
                 "billing_type": "package",
+                "bonuses": [
+                  "pitanie",
+                  "prozivanie"
+                ],
+                "citizenship": [
+                  "rus"
+                ],
+                "construction_work_type": [
+                  "paintingWorks"
+                ],
                 "contacts": {
                   "email": "ivalerevich@company.ru",
                   "name": "Игорь Валерьевич",
                   "phone": {
-                    "city": "201",
-                    "country": "+7",
-                    "number": "1001158"
+                    "city": "800",
+                    "country": "8",
+                    "number": "1001159"
                   }
                 },
-                "description": "описание",
+                "coordinates": {
+                  "latitude": 55.755814,
+                  "longitude": 37.617635
+                },
+                "cuisine": [
+                  "russian"
+                ],
+                "custom_employer_name": "ООО Ромашка",
+                "delivery_method": [
+                  "car"
+                ],
+                "description": "Доставка заказов по району, свободный график",
+                "driving_experience": {
+                  "id": "noExperience"
+                },
+                "driving_license_category": [
+                  "A"
+                ],
+                "eatery_type": [
+                  "cafe"
+                ],
+                "education_level": "higher",
                 "experience": {
-                  "id": "moreThan1"
+                  "id": "noMatter"
                 },
-                "is_remote": false,
+                "facility_type": [
+                  "production"
+                ],
+                "food_production_shop_type": [
+                  "cold"
+                ],
+                "grade": "lead",
+                "html_tags": true,
+                "image_url": "https://example.com/vacancy/courier.jpg",
+                "is_company_car": true,
+                "is_remote": true,
                 "is_side_job": true,
-                "name": "объявление",
+                "job_responsibilities": "Доставлять заказы клиентам и передавать отчетность в приложении",
+                "jobs_number": 3,
+                "medical_book": "registerByCandidate",
+                "medical_specialization_ids": [
+                  3265936
+                ],
+                "name": "Курьер на личном автомобиле",
                 "payout_frequency": {
-                  "id": "dailyPay"
+                  "id": "monthlyPay"
                 },
-                "profession": 3201667
+                "profession": 3201667,
+                "registration_method": [
+                  "contract"
+                ],
+                "retail_equipment_type": [
+                  "cashRegisterAndPosTerminals"
+                ],
+                "retail_shop_type": [
+                  "hypermarketOrSupermarket"
+                ],
+                "salary_detail": {
+                  "base": {
+                    "bonus": "5% от продаж в месяц",
+                    "range": {
+                      "from": 30000,
+                      "to": 60000
+                    }
+                  },
+                  "paid_period": "month",
+                  "taxes": "gross"
+                },
+                "salary_range": {
+                  "from": 30000,
+                  "to": 60000
+                },
+                "shifts": [
+                  2
+                ],
+                "tools_availability": "needYourOwn",
+                "vacancy_code": "COURIER-2026-01",
+                "vehicle_type": 3286367,
+                "work_days_per_week": [
+                  5
+                ],
+                "work_format": [
+                  "office"
+                ],
+                "work_hours_per_day": [
+                  8
+                ],
+                "worker_class": [
+                  "1"
+                ]
               },
               "schema": {
                 "$ref": "#/components/schemas/VacancyUpdate"
@@ -6446,7 +6915,8 @@
           "content": {
             "application/json": {
               "example": {
-                "billing_type": "package"
+                "billing_type": "package",
+                "employee_id": 12342348
               },
               "schema": {
                 "$ref": "#/components/schemas/VacancyProlongate"
@@ -6572,6 +7042,60 @@
           "200": {
             "content": {
               "application/json": {
+                "example": {
+                  "address_details": {
+                    "address": "Воронеж",
+                    "coordinates": {
+                      "latitude": 51.660781,
+                      "longitude": 39.200296
+                    },
+                    "district": "Ленинский",
+                    "location": "Воронеж",
+                    "metro": ""
+                  },
+                  "description": "информация о себе",
+                  "id": 52282551484,
+                  "is_active": true,
+                  "is_purchased": true,
+                  "params": {
+                    "ability_to_business_trip": "Готов",
+                    "address": "Воронеж",
+                    "age": 44,
+                    "business_area": "Строительство",
+                    "driver_licence": "Есть",
+                    "driver_licence_category": [
+                      "B",
+                      "C"
+                    ],
+                    "education": "Высшее",
+                    "education_list": [
+                      {
+                        "education_stop": "2018",
+                        "institution": "Воронежский государственный университет",
+                        "specialty": "архитектор"
+                      }
+                    ],
+                    "experience": 5,
+                    "experience_list": [
+                      {
+                        "company": "Авито",
+                        "position": "QA инженер",
+                        "responsibilities": "обязанности на работе",
+                        "work_finish": "2019-11-01",
+                        "work_start": "2014-06-01"
+                      }
+                    ],
+                    "moving": "Возможен",
+                    "nationality": "Россия",
+                    "pol": "Мужской",
+                    "schedule": "Полный день"
+                  },
+                  "salary": 40000,
+                  "start_time": "2026-07-17T09:57:03Z",
+                  "title": "Строитель",
+                  "update_time": "2026-07-17T10:16:02Z",
+                  "url": "/voronezh/rezume/stroitel_52282551484"
+                },
                 "schema": {
                   "$ref": "#/components/schemas/Resume2.0"
                 }
@@ -6828,6 +7352,26 @@
           "200": {
             "content": {
               "application/json": {
+                "example": {
+                  "meta": {
+                    "page": 1,
+                    "pages": 100,
+                    "per_page": 25
+                  },
+                  "vacancies": [
+                    {
+                      "addressDetails": {
+                        "address": "Москва, улица Свободы, 16, подъезд 1",
+                        "city": "Москва"
+                      },
+                      "businessArea": "Архитектура и дизайн",
+                      "companyName": "Работодатель",
+                      "link": "https://avito.ru/moskva/vakansii/fasovschiki_upakovschiki_komplektovschiki_139490_5228279016",
+                      "profession": "Официант",
+                      "title": "Название вакансии"
+                    }
+                  ]
+                },
                 "schema": {
                   "properties": {
                     "meta": {
@@ -6970,69 +7514,129 @@
           "content": {
             "application/json": {
               "example": {
+                "address": "Москва, Лесная улица, 7",
+                "administrator_organization_type": 10116,
                 "age": {
-                  "from": 65,
-                  "to": 16
+                  "from": 18,
+                  "to": 65
                 },
                 "age_preferences": [
-                  "olderThan45",
-                  "withHealthProblems"
+                  "olderThan45"
                 ],
+                "allow_calls": true,
+                "allow_messages": true,
                 "apply_processing": {
                   "additional_questions": [
-                    "experience",
-                    "age",
-                    "citizenship"
+                    "experience"
                   ],
-                  "apply_type": "with_assistant"
+                  "apply_type": "only_with_resume"
                 },
-                "billing_type": "packageOrSingle",
+                "billing_type": "package",
+                "bonuses": [
+                  "pitanie",
+                  "prozivanie"
+                ],
                 "business_area": 7,
                 "citizenship": [
-                  "rus",
-                  "blr"
+                  "rus"
+                ],
+                "construction_work_type": [
+                  "paintingWorks"
                 ],
                 "contacts": {
-                  "allow_messages": true,
                   "email": "ivalerevich@company.ru",
                   "name": "Игорь Валерьевич",
-                  "phone": "+72011001158"
+                  "phone": "88001001159"
                 },
+                "cuisine": [
+                  "russian"
+                ],
+                "custom_employer_name": "ООО Ромашка",
                 "delivery_method": [
-                  "car",
-                  "bike"
+                  "car"
                 ],
-                "description": "описание",
-                "driving_experience": "moreThan10",
+                "description": "Доставка заказов по району, свободный график",
+                "driving_experience": "6-10",
                 "driving_license_category": [
-                  "B",
-                  "C",
-                  "M"
+                  "A"
                 ],
-                "employment": "partial",
-                "experience": "moreThan1",
+                "eatery_type": [
+                  "cafe"
+                ],
+                "education_level": "higher",
+                "employee_id": 12342348,
+                "employment": "temporary",
+                "experience": "moreThan3",
+                "facility_type": [
+                  "production"
+                ],
+                "food_production_shop_type": [
+                  "cold"
+                ],
+                "grade": "lead",
+                "html_tags": true,
+                "image_url": "https://example.com/vacancy/courier.jpg",
                 "is_company_car": true,
-                "is_remote": false,
+                "is_remote": true,
                 "is_side_job": true,
+                "job_responsibilities": "Доставлять заказы клиентам и передавать отчетность в приложении",
+                "jobs_number": 3,
                 "location": {
-                  "address": {
-                    "house": "д.1",
-                    "locality": "Москва",
-                    "street": "ул. Лесная"
-                  },
                   "coordinates": {
-                    "latitude": 55.778644,
-                    "longitude": 37.587901
+                    "latitude": 55.755814,
+                    "longitude": 37.617635
                   }
                 },
-                "payout_frequency": "dailyPay",
+                "medical_book": "registerByCandidate",
+                "medical_specialization_ids": [
+                  3265936
+                ],
+                "payout_frequency": "thriceMonthlyPay",
                 "profession": 3201667,
-                "salary": {
-                  "from": 1000,
-                  "to": 2000
+                "registration_method": [
+                  "contract"
+                ],
+                "retail_equipment_type": [
+                  "cashRegisterAndPosTerminals"
+                ],
+                "retail_shop_type": [
+                  "hypermarketOrSupermarket"
+                ],
+                "salary_detail": {
+                  "base": {
+                    "bonus": "5% от продаж в месяц",
+                    "range": {
+                      "from": 30000,
+                      "to": 60000
+                    }
+                  },
+                  "paid_period": "month",
+                  "taxes": "gross"
                 },
-                "schedule": "flyInFlyOut",
-                "title": "объявление"
+                "salary_range": {
+                  "from": 30000,
+                  "to": 60000
+                },
+                "schedule": "flexible",
+                "shifts": [
+                  2
+                ],
+                "title": "Курьер на личном автомобиле",
+                "tools_availability": "needYourOwn",
+                "vacancy_code": "COURIER-2026-01",
+                "vehicle_type": 3286367,
+                "work_days_per_week": [
+                  5
+                ],
+                "work_format": [
+                  "office"
+                ],
+                "work_hours_per_day": [
+                  8
+                ],
+                "worker_class": [
+                  "1"
+                ]
               },
               "schema": {
                 "$ref": "#/components/schemas/VacancyV2Create"
@@ -7171,15 +7775,44 @@
             "application/json": {
               "example": {
                 "fields": [
-                  "title"
+                  "title",
+                  "description",
+                  "url",
+                  "salary",
+                  "start_time",
+                  "update_time",
+                  "is_active"
                 ],
                 "ids": [
-                  12342348,
-                  12342349
+                  52283165832
                 ],
                 "params": [
+                  "address",
+                  "age_preferences",
+                  "applies_filter",
+                  "bonuses",
                   "business_area",
-                  "schedule"
+                  "citizenship",
+                  "coordinates",
+                  "delivery_method",
+                  "driving_experience",
+                  "driving_license_category",
+                  "education_level",
+                  "employment",
+                  "experience",
+                  "is_side_job",
+                  "job_responsibilities",
+                  "jobs_number",
+                  "paid_period",
+                  "payout_frequency",
+                  "profession",
+                  "registration_method",
+                  "salary",
+                  "salary_base_bonus",
+                  "salary_base_range",
+                  "schedule",
+                  "taxes",
+                  "vacancy_code"
                 ]
               },
               "schema": {
@@ -7193,6 +7826,84 @@
           "200": {
             "content": {
               "application/json": {
+                "example": [
+                  {
+                    "addressDetails": {
+                      "address": "Москва, проезд Воскресенские Ворота",
+                      "city": "Москва",
+                      "coordinates": {
+                        "latitude": 55.755814,
+                        "longitude": 37.617635
+                      },
+                      "province": "Центральный федеральный округ, Москва"
+                    },
+                    "contacts": {
+                      "allow_calls": true,
+                      "allow_messages": true,
+                      "email": "ivalerevich@company.ru",
+                      "name": "Игорь Валерьевич"
+                    },
+                    "description": "Доставка заказов по району, свободный график",
+                    "id": 52283165832,
+                    "is_active": true,
+                    "params": {
+                      "address": "Москва, проезд Воскресенские Ворота",
+                      "age_preferences": [
+                        "старше 45 лет"
+                      ],
+                      "applies_filter": "Только с резюме",
+                      "bonuses": [
+                        "Проживание",
+                        "Питание"
+                      ],
+                      "business_area": "Продажа и обслуживание автомобилей",
+                      "citizenship": [
+                        "Россия"
+                      ],
+                      "coordinates": {
+                        "latitude": 55.755814,
+                        "longitude": 37.617635
+                      },
+                      "delivery_method": [
+                        "На автомобиле"
+                      ],
+                      "driving_experience": "Нет опыта",
+                      "driving_license_category": [
+                        "A"
+                      ],
+                      "education_level": "Высшее",
+                      "employment": "Разовая или временная",
+                      "experience": "Без опыта",
+                      "is_side_job": "Да",
+                      "job_responsibilities": "Доставлять заказы клиентам и передавать отчетность в приложении",
+                      "jobs_number": 3,
+                      "paid_period": "в месяц",
+                      "payout_frequency": "Раз в месяц",
+                      "profession": "Авитолог",
+                      "registration_method": [
+                        "Трудовой договор"
+                      ],
+                      "salary": {
+                        "from": 30000,
+                        "to": 60000
+                      },
+                      "salary_base_bonus": "5% от продаж в месяц",
+                      "salary_base_range": {
+                        "from": 30000,
+                        "to": 60000
+                      },
+                      "schedule": "Вахта",
+                      "taxes": "До вычета налогов",
+                      "vacancy_code": "COURIER-2026-01"
+                    },
+                    "salary": 45000,
+                    "start_time": "2026-07-10T09:04:00Z",
+                    "title": "Курьер на личном автомобиле",
+                    "update_time": "2026-07-10T10:11:04Z",
+                    "url": "/moskva/vakansii/kurer_na_lichnom_avtomobile_52283165832",
+                    "uuid": "d423917c-79d4-477d-aa0d-b02414611176"
+                  }
+                ],
                 "schema": {
                   "$ref": "#/components/schemas/Vacancies2.0"
                 }
@@ -7335,6 +8046,11 @@
         "requestBody": {
           "content": {
             "application/json": {
+              "example": {
+                "ids": [
+                  "8a904f34-f235-4e89-9251-9110c767ccd5"
+                ]
+              },
               "schema": {
                 "$ref": "#/components/schemas/VacancyStatusesBody"
               }
@@ -7346,6 +8062,25 @@
           "200": {
             "content": {
               "application/json": {
+                "example": [
+                  {
+                    "id": "8a904f34-f235-4e89-9251-9110c767ccd5",
+                    "last_action": {
+                      "datetime": "2026-07-10T16:30:00+03:00",
+                      "error": {
+                        "code": 200
+                      },
+                      "status": "success"
+                    },
+                    "vacancy": {
+                      "id": 52287485844,
+                      "moderation_status": "in_progress",
+                      "reasons": null,
+                      "status": "activated",
+                      "url": "https://avito.ru/52287485844"
+                    }
+                  }
+                ],
                 "schema": {
                   "$ref": "#/components/schemas/VacancyStatusesResult"
                 }
@@ -7474,55 +8209,129 @@
           "content": {
             "application/json": {
               "example": {
+                "address": "Москва, Лесная улица, 7",
+                "administrator_organization_type": 10116,
+                "age": {
+                  "from": 18,
+                  "to": 65
+                },
                 "age_preferences": [
-                  "olderThan45",
-                  "withHealthProblems"
+                  "olderThan45"
                 ],
+                "allow_calls": true,
+                "allow_messages": true,
                 "apply_processing": {
+                  "additional_questions": [
+                    "experience"
+                  ],
                   "apply_type": "only_with_resume"
                 },
-                "billing_type": "packageOrSingle",
+                "billing_type": "package",
+                "bonuses": [
+                  "pitanie",
+                  "prozivanie"
+                ],
                 "business_area": 7,
+                "citizenship": [
+                  "rus"
+                ],
+                "construction_work_type": [
+                  "paintingWorks"
+                ],
                 "contacts": {
-                  "allow_messages": true,
-                  "name": "менеджер",
-                  "phone": 72011001158
+                  "email": "ivalerevich@company.ru",
+                  "name": "Игорь Валерьевич",
+                  "phone": "88001001159"
                 },
+                "cuisine": [
+                  "russian"
+                ],
+                "custom_employer_name": "ООО Ромашка",
                 "delivery_method": [
-                  "car",
-                  "bike"
+                  "car"
                 ],
-                "description": "описание <strong>c тегами</strong>",
-                "driving_experience": "moreThan10",
+                "description": "Доставка заказов по району, свободный график",
+                "driving_experience": "6-10",
                 "driving_license_category": [
-                  "B",
-                  "C",
-                  "M"
+                  "A"
                 ],
-                "employment": "partial",
-                "experience": "moreThan1",
+                "eatery_type": [
+                  "cafe"
+                ],
+                "education_level": "higher",
+                "employee_id": 12342348,
+                "employment": "temporary",
+                "experience": "moreThan3",
+                "facility_type": [
+                  "production"
+                ],
+                "food_production_shop_type": [
+                  "cold"
+                ],
+                "grade": "lead",
+                "html_tags": true,
+                "image_url": "https://example.com/vacancy/courier.jpg",
                 "is_company_car": true,
                 "is_remote": true,
                 "is_side_job": true,
+                "job_responsibilities": "Доставлять заказы клиентам и передавать отчетность в приложении",
+                "jobs_number": 3,
                 "location": {
-                  "address": {
-                    "house": "д.1",
-                    "locality": "Москва",
-                    "street": "ул. Лесная"
-                  },
                   "coordinates": {
-                    "latitude": 55.778644,
-                    "longitude": 37.587901
+                    "latitude": 55.755814,
+                    "longitude": 37.617635
                   }
                 },
-                "payout_frequency": "dailyPay",
+                "medical_book": "registerByCandidate",
+                "medical_specialization_ids": [
+                  3265936
+                ],
+                "payout_frequency": "thriceMonthlyPay",
                 "profession": 3201667,
-                "salary": {
-                  "from": 1000,
-                  "to": 2000
+                "registration_method": [
+                  "contract"
+                ],
+                "retail_equipment_type": [
+                  "cashRegisterAndPosTerminals"
+                ],
+                "retail_shop_type": [
+                  "hypermarketOrSupermarket"
+                ],
+                "salary_detail": {
+                  "base": {
+                    "bonus": "5% от продаж в месяц",
+                    "range": {
+                      "from": 30000,
+                      "to": 60000
+                    }
+                  },
+                  "paid_period": "month",
+                  "taxes": "gross"
                 },
-                "schedule": "flyInFlyOut",
-                "title": "объявление"
+                "salary_range": {
+                  "from": 30000,
+                  "to": 60000
+                },
+                "schedule": "flexible",
+                "shifts": [
+                  2
+                ],
+                "title": "Курьер на личном автомобиле",
+                "tools_availability": "needYourOwn",
+                "vacancy_code": "COURIER-2026-01",
+                "vehicle_type": 3286367,
+                "work_days_per_week": [
+                  5
+                ],
+                "work_format": [
+                  "office"
+                ],
+                "work_hours_per_day": [
+                  8
+                ],
+                "worker_class": [
+                  "1"
+                ]
               },
               "schema": {
                 "$ref": "#/components/schemas/VacancyV2Create"
@@ -7535,6 +8344,9 @@
           "202": {
             "content": {
               "application/json": {
+                "example": {
+                  "id": "c958ec2b-ecd7-494a-818d-5bb5f2c361eb"
+                },
                 "schema": {
                   "$ref": "#/components/schemas/VacancyV2CreateResult"
                 }
@@ -7635,6 +8447,82 @@
           "200": {
             "content": {
               "application/json": {
+                "example": {
+                  "addressDetails": {
+                    "address": "Москва, проезд Воскресенские Ворота",
+                    "city": "Москва",
+                    "coordinates": {
+                      "latitude": 55.755814,
+                      "longitude": 37.617635
+                    },
+                    "province": "Центральный федеральный округ, Москва"
+                  },
+                  "contacts": {
+                    "allow_calls": true,
+                    "allow_messages": true,
+                    "email": "ivalerevich@company.ru",
+                    "name": "Игорь Валерьевич"
+                  },
+                  "description": "Доставка заказов по району, свободный график",
+                  "id": 52283165832,
+                  "is_active": true,
+                  "params": {
+                    "address": "Москва, проезд Воскресенские Ворота",
+                    "age_preferences": [
+                      "старше 45 лет"
+                    ],
+                    "applies_filter": "Только с резюме",
+                    "bonuses": [
+                      "Проживание",
+                      "Питание"
+                    ],
+                    "business_area": "Продажа и обслуживание автомобилей",
+                    "citizenship": [
+                      "Россия"
+                    ],
+                    "coordinates": {
+                      "latitude": 55.755814,
+                      "longitude": 37.617635
+                    },
+                    "delivery_method": [
+                      "На автомобиле"
+                    ],
+                    "driving_experience": "Нет опыта",
+                    "driving_license_category": [
+                      "A"
+                    ],
+                    "education_level": "Высшее",
+                    "employment": "Разовая или временная",
+                    "experience": "Без опыта",
+                    "is_side_job": "Да",
+                    "job_responsibilities": "Доставлять заказы клиентам и передавать отчетность в приложении",
+                    "jobs_number": 3,
+                    "paid_period": "в месяц",
+                    "payout_frequency": "Раз в месяц",
+                    "profession": "Авитолог",
+                    "registration_method": [
+                      "Трудовой договор"
+                    ],
+                    "salary": {
+                      "from": 30000,
+                      "to": 60000
+                    },
+                    "salary_base_bonus": "5% от продаж в месяц",
+                    "salary_base_range": {
+                      "from": 30000,
+                      "to": 60000
+                    },
+                    "schedule": "Вахта",
+                    "taxes": "До вычета налогов",
+                    "vacancy_code": "COURIER-2026-01"
+                  },
+                  "salary": 45000,
+                  "start_time": "2026-07-10T09:04:00Z",
+                  "title": "Курьер на личном автомобиле",
+                  "update_time": "2026-07-10T10:11:04Z",
+                  "url": "/moskva/vakansii/kurer_na_lichnom_avtomobile_52283165832",
+                  "uuid": "d423917c-79d4-477d-aa0d-b02414611176"
+                },
                 "schema": {
                   "$ref": "#/components/schemas/Vacancy2.0"
                 }
@@ -7819,6 +8707,8 @@
               "is_company_car",
               "is_remote",
               "is_side_job",
+              "job_responsibilities",
+              "jobs_number",
               "manufacturing_type",
               "medical_book",
               "medical_specialization",

@@ -234,7 +234,7 @@ class LegalInfo(_BaseModel):
     kktu: str = None
     notes: str | None = None
 
-class CreativesStatus(RootModel[Literal['draft', 'ready_for_moderation', 'in_moderation', 'moderation_failed', 'erir_registration', 'active', 'pausing', 'paused', 'unpausing', 'stopped', 'finished', 'archived']]):
+class CreativesStatus(RootModel[Literal['draft', 'ready_for_moderation', 'in_moderation', 'moderation_failed', 'erir_registration', 'will_launch_soon', 'active', 'pausing', 'paused', 'unpausing', 'stopped', 'finished', 'archived']]):
     pass
 
 class Creative(_BaseModel):
