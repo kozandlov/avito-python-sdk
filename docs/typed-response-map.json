@@ -924,6 +924,24 @@
       "schema_kind": "object"
     },
     {
+      "operation_id": "coreItem",
+      "python_method": "core_item",
+      "http_method": "GET",
+      "path": "/core/v1/accounts/{user_id}/items/{item_id}/",
+      "response_status": "200",
+      "response_model": "AvitoPromoApiCoreItemResponse",
+      "schema_kind": "object"
+    },
+    {
+      "operation_id": "coreItems",
+      "python_method": "core_items",
+      "http_method": "GET",
+      "path": "/core/v1/items",
+      "response_status": "200",
+      "response_model": "AvitoPromoApiCoreItemsResponse",
+      "schema_kind": "object"
+    },
+    {
       "operation_id": "statsAccountsItems",
       "python_method": "stats_accounts_items",
       "http_method": "POST",

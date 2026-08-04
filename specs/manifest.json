@@ -39,7 +39,7 @@
       "title": "Автозагрузка",
       "source": "https://developers.avito.ru/web/1/openapi/info/autoload",
       "raw_file": "specs/raw/autoload.json",
-      "sha256": "0cbade308b1d9584df3ca7e4d50aff7a01bbd10fa6f1668dca81c47b4d2b5375",
+      "sha256": "9190bd0b73777157f14ab07a4163e6db90dc2799c9f61c38e3f5cfd7792bf718",
       "operations": 22
     },
     {
@@ -63,8 +63,8 @@
       "title": "Авито Promo",
       "source": "https://developers.avito.ru/web/1/openapi/info/avito-promo",
       "raw_file": "specs/raw/avito-promo.json",
-      "sha256": "6687e91003d93a1758d59df3570802fea02020fc42dcbf268d514e973f5c0a15",
-      "operations": 13
+      "sha256": "e4efad7a63c0493e8770f2b773bbcb3b610f7369cb2a1c99598244887039af4c",
+      "operations": 15
     },
     {
       "slug": "calltracking",
@@ -111,7 +111,7 @@
       "title": "Авито.Работа",
       "source": "https://developers.avito.ru/web/1/openapi/info/job",
       "raw_file": "specs/raw/job.json",
-      "sha256": "d8ae1eab2e30d40638cbc403ae147cd54b5146801773764e547d2a39c486b900",
+      "sha256": "18ac256f69668fe53f3723ea7ea125f3cfaf10ac7986479d8dee7454eb67fd11",
       "operations": 25
     },
     {

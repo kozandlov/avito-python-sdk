@@ -163,27 +163,72 @@ class AvitoPromoApiAgencyUsersVerificationStatusResponse(_BaseModel):
     result: AvitoPromoApiAgencyUsersVerificationStatusResponseResultModel15
     status: OkResponseStatus
 
+class ItemStatus(RootModel[Literal['active', 'removed', 'old', 'blocked', 'rejected']]):
+    pass
+
+class ItemURL(RootModel[str]):
+    pass
+
+class AvitoPromoApiCoreItemResponseVasItemModel16(_BaseModel):
+    finish_time: DateTime = None
+    vas_id: str
+
+class AvitoPromoApiCoreItemResponse(_BaseModel):
+    autoload_item_id: str = None
+    finish_time: DateTime = None
+    start_time: DateTime = None
+    status: ItemStatus
+    url: ItemURL
+    vas: list[AvitoPromoApiCoreItemResponseVasItemModel16]
+
+class ItemPage(RootModel[int]):
+    pass
+
+class ItemPerPage(RootModel[int]):
+    pass
+
+class AvitoPromoApiCoreItemsResponseMetaModel17(_BaseModel):
+    page: ItemPage
+    per_page: ItemPerPage
+
+class AvitoPromoApiCoreItemsResponseResourcesModel18CategoryModel19(_BaseModel):
+    id: Id = None
+    name: str = None
+
+class AvitoPromoApiCoreItemsResponseResourcesModel18(_BaseModel):
+    address: str
+    category: AvitoPromoApiCoreItemsResponseResourcesModel18CategoryModel19
+    id: Id
+    price: int = None
+    status: ItemStatus
+    title: str
+    url: ItemURL
+
+class AvitoPromoApiCoreItemsResponse(_BaseModel):
+    meta: AvitoPromoApiCoreItemsResponseMetaModel17
+    resources: AvitoPromoApiCoreItemsResponseResourcesModel18
+
 class StatsMetric(RootModel[Literal['views', 'contacts', 'contactsShowPhone', 'contactsMessenger', 'contactsShowPhoneAndMessenger', 'contactsSbcDiscount', 'viewsToContactsConversion', 'favorites', 'averageViewCost', 'averageContactCost', 'impressions', 'impressionsToViewsConversion', 'clickPackages', 'jobContacts', 'viewsToOrderedItemsConversion', 'orderedItems', 'orderedItemsPrice', 'deliveredItems', 'deliveredItemsPrice', 'bookingPlacedCount', 'bookingPlacedPrice', 'bookingApprovedCount', 'bookingApprovedPrice', 'bookingAcceptedCount', 'bookingAcceptedPrice', 'allSpending', 'spending', 'presenceSpending', 'promoSpending', 'restSpending', 'commission', 'spendingBonus', 'activeItems', 'newActiveItems', 'oldActiveItems']]):
     pass
 
-class AvitoPromoApiStatsAccountsItemsResponseResultModel16GroupingsItemModel17MetricsItemModel18(_BaseModel):
+class AvitoPromoApiStatsAccountsItemsResponseResultModel20GroupingsItemModel21MetricsItemModel22(_BaseModel):
     slug: StatsMetric
     value: Counter
 
 class StatsMetricsGrouping(RootModel[Literal['day', 'week', 'month', 'totals']]):
     pass
 
-class AvitoPromoApiStatsAccountsItemsResponseResultModel16GroupingsItemModel17(_BaseModel):
+class AvitoPromoApiStatsAccountsItemsResponseResultModel20GroupingsItemModel21(_BaseModel):
     id: Id
-    metrics: list[AvitoPromoApiStatsAccountsItemsResponseResultModel16GroupingsItemModel17MetricsItemModel18]
+    metrics: list[AvitoPromoApiStatsAccountsItemsResponseResultModel20GroupingsItemModel21MetricsItemModel22]
     type: StatsMetricsGrouping
 
-class AvitoPromoApiStatsAccountsItemsResponseResultModel16(_BaseModel):
+class AvitoPromoApiStatsAccountsItemsResponseResultModel20(_BaseModel):
     data_total_count: Counter = Field(alias='dataTotalCount')
-    groupings: list[AvitoPromoApiStatsAccountsItemsResponseResultModel16GroupingsItemModel17]
+    groupings: list[AvitoPromoApiStatsAccountsItemsResponseResultModel20GroupingsItemModel21]
 
 class AvitoPromoApiStatsAccountsItemsResponse(_BaseModel):
-    result: AvitoPromoApiStatsAccountsItemsResponseResultModel16
+    result: AvitoPromoApiStatsAccountsItemsResponseResultModel20
 
 class Date(RootModel[str]):
     pass
@@ -191,31 +236,31 @@ class Date(RootModel[str]):
 class AmountDouble(RootModel[float]):
     pass
 
-class AvitoPromoApiStatsAccountsSpendingsResponseResultModel19GroupingsItemModel20SpendingsItemModel21ServicesItemModel22(_BaseModel):
+class AvitoPromoApiStatsAccountsSpendingsResponseResultModel23GroupingsItemModel24SpendingsItemModel25ServicesItemModel26(_BaseModel):
     slug: Literal['bbip', 'perf_vas', 'vas_xl', 'vas_highlight', 'sbc_discount', 'vas_sticker', 'vas_package', 'orders_commission', 'bookings_commission', 'delivery_subsidy', 'fbs_commission', 'tariff_listing', 'lf', 'tariff_remainder', 'cpa_click_package', 'cpa_target_call', 'cpa_target_chat', 'cpa_job_contact', 'service_fee', 'cpa_rfp_contact', 'cpa_transfer_select', 'profile_promo', 'profile_promo_v2', 'tariff_ext', 'chat_bot', 'cv', 'other']
     value: AmountDouble
 
-class AvitoPromoApiStatsAccountsSpendingsResponseResultModel19GroupingsItemModel20SpendingsItemModel21(_BaseModel):
-    services: list[AvitoPromoApiStatsAccountsSpendingsResponseResultModel19GroupingsItemModel20SpendingsItemModel21ServicesItemModel22]
+class AvitoPromoApiStatsAccountsSpendingsResponseResultModel23GroupingsItemModel24SpendingsItemModel25(_BaseModel):
+    services: list[AvitoPromoApiStatsAccountsSpendingsResponseResultModel23GroupingsItemModel24SpendingsItemModel25ServicesItemModel26]
     slug: Literal['promotion', 'presence', 'commission', 'rest']
     value: AmountDouble
 
 class StatsSpendingsGrouping(RootModel[Literal['day', 'week', 'month']]):
     pass
 
-class AvitoPromoApiStatsAccountsSpendingsResponseResultModel19GroupingsItemModel20(_BaseModel):
+class AvitoPromoApiStatsAccountsSpendingsResponseResultModel23GroupingsItemModel24(_BaseModel):
     date: Date
-    spendings: list[AvitoPromoApiStatsAccountsSpendingsResponseResultModel19GroupingsItemModel20SpendingsItemModel21]
+    spendings: list[AvitoPromoApiStatsAccountsSpendingsResponseResultModel23GroupingsItemModel24SpendingsItemModel25]
     type: StatsSpendingsGrouping
 
 class Timestamp(RootModel[int]):
     pass
 
-class AvitoPromoApiStatsAccountsSpendingsResponseResultModel19(_BaseModel):
-    groupings: list[AvitoPromoApiStatsAccountsSpendingsResponseResultModel19GroupingsItemModel20]
+class AvitoPromoApiStatsAccountsSpendingsResponseResultModel23(_BaseModel):
+    groupings: list[AvitoPromoApiStatsAccountsSpendingsResponseResultModel23GroupingsItemModel24]
     timestamp: Timestamp
 
 class AvitoPromoApiStatsAccountsSpendingsResponse(_BaseModel):
-    result: AvitoPromoApiStatsAccountsSpendingsResponseResultModel19
+    result: AvitoPromoApiStatsAccountsSpendingsResponseResultModel23
 
-__all__ = ['TransactionId', 'AvitoPromoApiAgencyBalanceResponseResultModel1', 'AvitoPromoApiAgencyBalanceResponse', 'TransactionStatus', 'AvitoPromoApiAgencyTransactionsResponseResultItemModel2', 'AvitoPromoApiAgencyTransactionsResponse', 'ErrorMessage', 'AvitoPromoApiAgencyTransactionResponseResultModel3', 'AvitoPromoApiAgencyTransactionResponse', 'AmountKopecks', 'AvitoPromoApiAgencyClientsResponseResultModel4ClientsItemModel5AdvanceModel6', 'AvitoPromoApiAgencyClientsResponseResultModel4ClientsItemModel5BalanceModel7', 'Id', 'DateTime', 'LinkType', 'Counter', 'AvitoPromoApiAgencyClientsResponseResultModel4ClientsItemModel5StatisticsModel8', 'Toggle', 'AvitoPromoApiAgencyClientsResponseResultModel4ClientsItemModel5SubscriptionModel9', 'AvitoPromoApiAgencyClientsResponseResultModel4ClientsItemModel5', 'AvitoPromoApiAgencyClientsResponseResultModel4', 'OkResponseStatus', 'AvitoPromoApiAgencyClientsResponse', 'TargetTaskId', 'AvitoPromoApiAgencyClientsTargetCreateResponse', 'Inn', 'AvitoPromoApiAgencyClientsTargetResultResponseResultModel10ItemsItemModel11ResultsItemModel12', 'AvitoPromoApiAgencyClientsTargetResultResponseResultModel10ItemsItemModel11', 'AvitoPromoApiAgencyClientsTargetResultResponseResultModel10', 'AvitoPromoApiAgencyClientsTargetResultResponse', 'AvitoPromoApiAgencyFinancesBalanceResponse', 'AvitoPromoApiAgencyFinancesTransactionsHistoryResponseItemsItemModel13', 'AvitoPromoApiAgencyFinancesTransactionsHistoryResponse', 'InviteId', 'AvitoPromoApiAgencyUsersInviteSendResponse', 'AvitoPromoApiAgencyUsersInviteStatusResponseResultModel14', 'AvitoPromoApiAgencyUsersInviteStatusResponse', 'AvitoPromoApiAgencyUsersVerificationStatusResponseResultModel15', 'AvitoPromoApiAgencyUsersVerificationStatusResponse', 'StatsMetric', 'AvitoPromoApiStatsAccountsItemsResponseResultModel16GroupingsItemModel17MetricsItemModel18', 'StatsMetricsGrouping', 'AvitoPromoApiStatsAccountsItemsResponseResultModel16GroupingsItemModel17', 'AvitoPromoApiStatsAccountsItemsResponseResultModel16', 'AvitoPromoApiStatsAccountsItemsResponse', 'Date', 'AmountDouble', 'AvitoPromoApiStatsAccountsSpendingsResponseResultModel19GroupingsItemModel20SpendingsItemModel21ServicesItemModel22', 'AvitoPromoApiStatsAccountsSpendingsResponseResultModel19GroupingsItemModel20SpendingsItemModel21', 'StatsSpendingsGrouping', 'AvitoPromoApiStatsAccountsSpendingsResponseResultModel19GroupingsItemModel20', 'Timestamp', 'AvitoPromoApiStatsAccountsSpendingsResponseResultModel19', 'AvitoPromoApiStatsAccountsSpendingsResponse']
+__all__ = ['TransactionId', 'AvitoPromoApiAgencyBalanceResponseResultModel1', 'AvitoPromoApiAgencyBalanceResponse', 'TransactionStatus', 'AvitoPromoApiAgencyTransactionsResponseResultItemModel2', 'AvitoPromoApiAgencyTransactionsResponse', 'ErrorMessage', 'AvitoPromoApiAgencyTransactionResponseResultModel3', 'AvitoPromoApiAgencyTransactionResponse', 'AmountKopecks', 'AvitoPromoApiAgencyClientsResponseResultModel4ClientsItemModel5AdvanceModel6', 'AvitoPromoApiAgencyClientsResponseResultModel4ClientsItemModel5BalanceModel7', 'Id', 'DateTime', 'LinkType', 'Counter', 'AvitoPromoApiAgencyClientsResponseResultModel4ClientsItemModel5StatisticsModel8', 'Toggle', 'AvitoPromoApiAgencyClientsResponseResultModel4ClientsItemModel5SubscriptionModel9', 'AvitoPromoApiAgencyClientsResponseResultModel4ClientsItemModel5', 'AvitoPromoApiAgencyClientsResponseResultModel4', 'OkResponseStatus', 'AvitoPromoApiAgencyClientsResponse', 'TargetTaskId', 'AvitoPromoApiAgencyClientsTargetCreateResponse', 'Inn', 'AvitoPromoApiAgencyClientsTargetResultResponseResultModel10ItemsItemModel11ResultsItemModel12', 'AvitoPromoApiAgencyClientsTargetResultResponseResultModel10ItemsItemModel11', 'AvitoPromoApiAgencyClientsTargetResultResponseResultModel10', 'AvitoPromoApiAgencyClientsTargetResultResponse', 'AvitoPromoApiAgencyFinancesBalanceResponse', 'AvitoPromoApiAgencyFinancesTransactionsHistoryResponseItemsItemModel13', 'AvitoPromoApiAgencyFinancesTransactionsHistoryResponse', 'InviteId', 'AvitoPromoApiAgencyUsersInviteSendResponse', 'AvitoPromoApiAgencyUsersInviteStatusResponseResultModel14', 'AvitoPromoApiAgencyUsersInviteStatusResponse', 'AvitoPromoApiAgencyUsersVerificationStatusResponseResultModel15', 'AvitoPromoApiAgencyUsersVerificationStatusResponse', 'ItemStatus', 'ItemURL', 'AvitoPromoApiCoreItemResponseVasItemModel16', 'AvitoPromoApiCoreItemResponse', 'ItemPage', 'ItemPerPage', 'AvitoPromoApiCoreItemsResponseMetaModel17', 'AvitoPromoApiCoreItemsResponseResourcesModel18CategoryModel19', 'AvitoPromoApiCoreItemsResponseResourcesModel18', 'AvitoPromoApiCoreItemsResponse', 'StatsMetric', 'AvitoPromoApiStatsAccountsItemsResponseResultModel20GroupingsItemModel21MetricsItemModel22', 'StatsMetricsGrouping', 'AvitoPromoApiStatsAccountsItemsResponseResultModel20GroupingsItemModel21', 'AvitoPromoApiStatsAccountsItemsResponseResultModel20', 'AvitoPromoApiStatsAccountsItemsResponse', 'Date', 'AmountDouble', 'AvitoPromoApiStatsAccountsSpendingsResponseResultModel23GroupingsItemModel24SpendingsItemModel25ServicesItemModel26', 'AvitoPromoApiStatsAccountsSpendingsResponseResultModel23GroupingsItemModel24SpendingsItemModel25', 'StatsSpendingsGrouping', 'AvitoPromoApiStatsAccountsSpendingsResponseResultModel23GroupingsItemModel24', 'Timestamp', 'AvitoPromoApiStatsAccountsSpendingsResponseResultModel23', 'AvitoPromoApiStatsAccountsSpendingsResponse']

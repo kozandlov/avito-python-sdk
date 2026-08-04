@@ -4537,7 +4537,7 @@
     "contact": {
       "email": "supportautoload@avito.ru"
     },
-    "description": "API для размещения, редактирования и снятия с публикации вакансии Авито Работа\n**Авито API для бизнеса предоставляется согласно [Условиям\n  использования](https://www.avito.ru/legal/pro_tools/public-api).**\n",
+    "description": "API для размещения, редактирования и снятия с публикации вакансии Авито Работа\nОписание API произведено в формате [**Swagger 3.0**](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.0.0.md).\nВы можете использовать данный файл для ознакомления с методами API, а также для генерации базового\nкода для работы с API на удобном для вас языке программирования с помощью утилиты\n[**Swagger Codegen**](https://swagger.io/swagger-codegen/) или online сервиса [**Swagger Editor**](https://editor.swagger.io/).\n\n**Авито API для бизнеса предоставляется согласно [Условиям использования](https://www.avito.ru/legal/pro_tools/public-api).**\n\nПо всем вопросам работы с API необходимо обращаться в Службу Поддержки профессиональных инструментов:\n\n<li>телефон: <b>+7 495 777-10-66</b></li>\n<li>email: <a href=\"mailto:supportautoload@avito.ru\">supportautoload@avito.ru</a></li>\n\n# Типы авторизации\nДля использования данного API запрос должен быть авторизован. В данный момент API Авито использует следующие механизмы авторизации.\n\n<!-- ReDoc-Inject: <security-definitions> -->\n\nПодробнее о каждом механизме и его назначении можно прочитать в соответствующем разделе.\n",
     "title": "Авито.Работа",
     "version": "1"
   },
@@ -4625,7 +4625,7 @@
         ],
         "summary": "Батчевая смена статуса откликов\n",
         "tags": [
-          "Job"
+          "JobApplications"
         ]
       }
     },
@@ -4799,7 +4799,7 @@
         ],
         "summary": "Получение списка откликов\n",
         "tags": [
-          "Job"
+          "JobApplications"
         ]
       }
     },
@@ -4918,7 +4918,7 @@
         ],
         "summary": "Получение идентификаторов откликов\n",
         "tags": [
-          "Job"
+          "JobApplications"
         ]
       },
       "parameters": [
@@ -5091,7 +5091,7 @@
         ],
         "summary": "Получение списка возможных статусов откликов\n",
         "tags": [
-          "Job"
+          "JobApplications"
         ]
       },
       "parameters": [
@@ -5232,7 +5232,7 @@
         ],
         "summary": "Изменение статуса отклика\n",
         "tags": [
-          "Job"
+          "JobApplications"
         ]
       }
     },
@@ -5275,7 +5275,7 @@
         ],
         "summary": "Отключение уведомлений по откликам (webhook)\n",
         "tags": [
-          "Job"
+          "JobApplications"
         ]
       },
       "get": {
@@ -5305,7 +5305,7 @@
         ],
         "summary": "Получение информации о подписках (webhook)\n",
         "tags": [
-          "Job"
+          "JobApplications"
         ]
       },
       "parameters": [
@@ -5350,7 +5350,7 @@
         ],
         "summary": "Включение уведомлений по откликам (webhook)\n",
         "tags": [
-          "Job"
+          "JobApplications"
         ]
       }
     },
@@ -5382,7 +5382,7 @@
         ],
         "summary": "Получение списка подписок (webhook)\n",
         "tags": [
-          "Job"
+          "JobApplications"
         ]
       }
     },
@@ -5528,7 +5528,7 @@
         ],
         "summary": "Поиск резюме\n",
         "tags": [
-          "Job"
+          "JobResumes"
         ]
       },
       "parameters": [
@@ -6085,7 +6085,7 @@
         ],
         "summary": "Доступ к контактным данным соискателя\n",
         "tags": [
-          "Job"
+          "JobResumes"
         ]
       },
       "parameters": [
@@ -6432,7 +6432,7 @@
         ],
         "summary": "Публикация вакансии",
         "tags": [
-          "Job"
+          "JobVacancies"
         ]
       }
     },
@@ -6585,7 +6585,7 @@
         ],
         "summary": "Остановка публикации вакансии",
         "tags": [
-          "Job"
+          "JobVacancies"
         ]
       }
     },
@@ -6875,7 +6875,7 @@
         ],
         "summary": "Редактирование вакансии",
         "tags": [
-          "Job"
+          "JobVacancies"
         ]
       }
     },
@@ -7030,7 +7030,7 @@
         ],
         "summary": "Реактивация вакансии",
         "tags": [
-          "Job"
+          "JobVacancies"
         ]
       }
     },
@@ -7184,7 +7184,7 @@
         ],
         "summary": "Просмотр данных резюме\n",
         "tags": [
-          "Job"
+          "JobResumes"
         ]
       },
       "parameters": [
@@ -7476,7 +7476,7 @@
         ],
         "summary": "Поиск вакансий\n",
         "tags": [
-          "Job"
+          "JobVacancies"
         ],
         "x-rate-limiter": {
           "default": 120
@@ -7737,7 +7737,7 @@
         ],
         "summary": "Публикация вакансии v2",
         "tags": [
-          "Job"
+          "JobVacancies"
         ]
       }
     },
@@ -8010,7 +8010,7 @@
         ],
         "summary": "Просмотр данных вакансий\n",
         "tags": [
-          "Job"
+          "JobVacancies"
         ]
       }
     },
@@ -8169,7 +8169,7 @@
         ],
         "summary": "Получение статуса публикации вакансий V2",
         "tags": [
-          "Job"
+          "JobVacancies"
         ]
       }
     },
@@ -8435,7 +8435,7 @@
         ],
         "summary": "Редактирование вакансии v2",
         "tags": [
-          "Job"
+          "JobVacancies"
         ]
       }
     },
@@ -8621,7 +8621,7 @@
         ],
         "summary": "Просмотр данных вакансии\n",
         "tags": [
-          "Job"
+          "JobVacancies"
         ]
       },
       "parameters": [
@@ -8854,7 +8854,7 @@
         ],
         "summary": "Автопродление вакансии v2",
         "tags": [
-          "Job"
+          "JobVacancies"
         ]
       }
     },
@@ -8910,7 +8910,7 @@
         },
         "summary": "Получение списка доступных словарей",
         "tags": [
-          "Job"
+          "JobDictionaries"
         ]
       },
       "parameters": [
@@ -8996,7 +8996,7 @@
         },
         "summary": "Получение доступных значений списка по ID словаря",
         "tags": [
-          "Job"
+          "JobDictionaries"
         ]
       },
       "parameters": [
@@ -9036,9 +9036,24 @@
   ],
   "tags": [
     {
-      "description": "API для размещения, редактирования и снятия с публикации вакансии Авито Работа\nОписание API произведено в формате [**Swagger 3.0**](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.0.0.md).\nВы можете использовать данный файл для ознакомления с методами API, а также для генерации базового\nкода для работы с API на удобном для вас языке программирования с помощью утилиты\n[**Swagger Codegen**](https://swagger.io/swagger-codegen/) или online сервиса [**Swagger Editor**](https://editor.swagger.io/).\n\n**Авито API для бизнеса предоставляется согласно [Условиям использования](https://www.avito.ru/legal/pro_tools/public-api).**\n\nПо всем вопросам работы с API необходимо обращаться в Службу Поддержки профессиональных инструментов:\n\n<li>телефон: <b>+7 495 777-10-66</b></li>\n<li>email: <a href=\"mailto:supportautoload@avito.ru\">supportautoload@avito.ru</a></li>\n\n# Типы авторизации\nДля использования данного API запрос должен быть авторизован. В данный момент API Авито использует следующие механизмы авторизации.\n\n<!-- ReDoc-Inject: <security-definitions> -->\n\nПодробнее о каждом механизме и его назначении можно прочитать в соответствующем разделе.\n",
-      "name": "Job",
-      "x-displayName": "Работа"
+      "name": "JobApplications",
+      "x-displayName": "Отклики",
+      "x-subdivName": "Отклики"
+    },
+    {
+      "name": "JobResumes",
+      "x-displayName": "Резюме",
+      "x-subdivName": "Резюме"
+    },
+    {
+      "name": "JobVacancies",
+      "x-displayName": "Вакансии",
+      "x-subdivName": "Вакансии"
+    },
+    {
+      "name": "JobDictionaries",
+      "x-displayName": "Справочники вакансий",
+      "x-subdivName": "Справочники вакансий"
     }
   ]
 }
