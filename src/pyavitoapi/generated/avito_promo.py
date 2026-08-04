@@ -7,7 +7,7 @@ from pydantic import ValidationError
 
 from pyavitoapi.transport.errors import AvitoValidationError
 from pyavitoapi.transport.http import AvitoHttpTransport
-from pyavitoapi.generated_models.avito_promo import AvitoPromoApiAgencyBalanceResponse, AvitoPromoApiAgencyClientsResponse, AvitoPromoApiAgencyClientsTargetCreateResponse, AvitoPromoApiAgencyClientsTargetResultResponse, AvitoPromoApiAgencyFinancesBalanceResponse, AvitoPromoApiAgencyFinancesTransactionsHistoryResponse, AvitoPromoApiAgencyTransactionResponse, AvitoPromoApiAgencyTransactionsResponse, AvitoPromoApiAgencyUsersInviteSendResponse, AvitoPromoApiAgencyUsersInviteStatusResponse, AvitoPromoApiAgencyUsersVerificationStatusResponse, AvitoPromoApiStatsAccountsItemsResponse, AvitoPromoApiStatsAccountsSpendingsResponse
+from pyavitoapi.generated_models.avito_promo import AvitoPromoApiAgencyBalanceResponse, AvitoPromoApiAgencyClientsResponse, AvitoPromoApiAgencyClientsTargetCreateResponse, AvitoPromoApiAgencyClientsTargetResultResponse, AvitoPromoApiAgencyFinancesBalanceResponse, AvitoPromoApiAgencyFinancesTransactionsHistoryResponse, AvitoPromoApiAgencyTransactionResponse, AvitoPromoApiAgencyTransactionsResponse, AvitoPromoApiAgencyUsersInviteSendResponse, AvitoPromoApiAgencyUsersInviteStatusResponse, AvitoPromoApiAgencyUsersVerificationStatusResponse, AvitoPromoApiCoreItemResponse, AvitoPromoApiCoreItemsResponse, AvitoPromoApiStatsAccountsItemsResponse, AvitoPromoApiStatsAccountsSpendingsResponse
 
 
 class AvitoPromoApi:
@@ -375,6 +375,72 @@ class AvitoPromoApi:
                     "python_method": "agency_users_verification_status",
                     "http_method": "POST",
                     "path": "/api/1/agency/users/verificationStatus",
+                    "errors": exc.errors(),
+                },
+            ) from exc
+
+    async def core_item(
+        self,
+        *,
+        path_params: Optional[dict[str, Any]] = None,
+        query: Optional[dict[str, Any]] = None,
+        json_body: Optional[dict[str, Any]] = None,
+        headers: Optional[dict[str, str]] = None,
+    ) -> AvitoPromoApiCoreItemResponse:
+        """Получение информации по объявлению клиента"""
+        payload = await self._transport.request(
+            method="GET",
+            path_template="/core/v1/accounts/{user_id}/items/{item_id}/",
+            path_params=path_params,
+            query=query,
+            json_body=json_body,
+            headers=headers,
+        )
+        try:
+            return AvitoPromoApiCoreItemResponse.model_validate(payload)
+        except ValidationError as exc:
+            raise AvitoValidationError(
+                "Response validation failed for avito-promo.core_item (GET /core/v1/accounts/{user_id}/items/{item_id}/)",
+                payload=payload,
+                details={
+                    "slug": "avito-promo",
+                    "operation_id": "coreItem",
+                    "python_method": "core_item",
+                    "http_method": "GET",
+                    "path": "/core/v1/accounts/{user_id}/items/{item_id}/",
+                    "errors": exc.errors(),
+                },
+            ) from exc
+
+    async def core_items(
+        self,
+        *,
+        path_params: Optional[dict[str, Any]] = None,
+        query: Optional[dict[str, Any]] = None,
+        json_body: Optional[dict[str, Any]] = None,
+        headers: Optional[dict[str, str]] = None,
+    ) -> AvitoPromoApiCoreItemsResponse:
+        """Получение информации по объявлениям клиента"""
+        payload = await self._transport.request(
+            method="GET",
+            path_template="/core/v1/items",
+            path_params=path_params,
+            query=query,
+            json_body=json_body,
+            headers=headers,
+        )
+        try:
+            return AvitoPromoApiCoreItemsResponse.model_validate(payload)
+        except ValidationError as exc:
+            raise AvitoValidationError(
+                "Response validation failed for avito-promo.core_items (GET /core/v1/items)",
+                payload=payload,
+                details={
+                    "slug": "avito-promo",
+                    "operation_id": "coreItems",
+                    "python_method": "core_items",
+                    "http_method": "GET",
+                    "path": "/core/v1/items",
                     "errors": exc.errors(),
                 },
             ) from exc
